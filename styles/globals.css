@@ -1,16 +1,49 @@
+* {
+  font-feature-settings: 'palt';
+}
+
 html,
 body {
-  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+figure {
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Noto Sans JP', '游ゴシック体', YuGothic,
+    '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック', 'Yu Gothic',
+    'Yu Gothic', sans-serif, 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo,
+    sans-serif;
+  font-size: 13pt;
+  background: var(--color-background-body);
+  color: var(--color-body);
 }
 
 a {
-  color: inherit;
+  color: var(--color-link);
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+:root {
+  --color-background-body: #ffffff;
+  --color-body: #545454;
+  --color-border: rgb(211, 212, 228);
+  --color-link: #1da1f2;
+}
+
+[data-theme='dark'] {
+  --color-background-body: #15202b;
+  --color-body: #ffffff;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
 }
