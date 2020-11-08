@@ -10,6 +10,14 @@ const logs: {
   doc?: string
 }[] = [
   {
+    title: 'Cybozu Frontend Monthly #4',
+    url: 'https://cybozu.connpass.com/event/192820/',
+    img:
+      'https://connpass-tokyo.s3.amazonaws.com/thumbs/4f/db/4fdb88e8a02cd395721bb06ed873a4a1.png',
+    date: '2020/10/27',
+    desc: 'ゲスト参加'
+  },
+  {
     title: 'ヤフー福岡 Tech Meetup #5',
     url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
     img:
