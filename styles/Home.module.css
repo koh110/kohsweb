@@ -9,7 +9,7 @@
 .icon {
   grid-area: icon;
   border-radius: 50%;
-  background: url(${icon}) no-repeat left top;
+  background: url('/icon.jpg') no-repeat left top;
   background-size: 100% 100%;
   height: 80px;
   min-width: 80px;
