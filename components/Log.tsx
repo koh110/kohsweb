@@ -1,15 +1,43 @@
 import WorkWrapper from './WorkWrapper'
 import Element from './LogElement'
 
-const logs: {
-  url: string
-  title: string
-  date: string
-  desc: string
-  img: string
-  doc?: string
-}[] = [
+type Log = {
+  type: 'log';
+  url: string;
+  title: string;
+  date: string;
+  desc: string;
+  img: string;
+  doc?: string;
+}
+
+type AmazonLog = {
+  type: 'amazon';
+  title: string;
+  date: string;
+  desc: string;
+  html: string;
+}
+
+const logs: (Log | AmazonLog)[] = [
   {
+    type: 'log',
+    title: 'Cybozu Frontend Monthly #9',
+    url: 'https://github.com/cybozu/frontend-monthly/blob/master/posts/2021/03.md',
+    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/79/69/796994454f725bb78b68a577459a6288.png',
+    date: '2021/03/30',
+    desc: 'またゲストで呼んでいただいた。ちょうどSharedArrayBufferの件を追っていてCybouzuの方に聞いてみたいことがあったので持ち込み。'
+},
+  { 
+    type: 'amazon',
+    title: '動かして学ぶ! Slackアプリ開発入門',
+    date: '2020/12/14',
+    desc: 'SlackSDKを利用したアプリの作成方法についての解説本。業務フローの例に合わせてSlackAPIとサンプルコードを一緒に追っていく形式。',
+    html: `<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=qf_sp_asin_til&t=koh110-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B08KDNPT2B&linkId=97b56cbebbad2dac7ae8918ad4e43b1f&bc1=ffffff&amp;lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
+    </iframe>`
+  },
+  {
+    type: 'log',
     title: 'Cybozu Frontend Monthly #4',
     url: 'https://cybozu.connpass.com/event/192820/',
     img:
@@ -18,6 +46,7 @@ const logs: {
     desc: 'ゲスト参加'
   },
   {
+    type: 'log',
     title: 'ヤフー福岡 Tech Meetup #5',
     url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
     img:
@@ -26,6 +55,7 @@ const logs: {
     desc: '大規模Slackをセキュアに運用するためのTips'
   },
   {
+    type: 'log',
     title:
       'Node.js徹底攻略 ─ ヤフーのノウハウに学ぶ、パフォーマンス劣化やコールバック地獄との戦い方',
     url: 'https://employment.en-japan.com/engineerhub/entry/2019/08/08/103000',
@@ -35,6 +65,7 @@ const logs: {
     desc: 'ヤフーでのNode.js利用についてのインタビュー'
   },
   {
+    type: 'log',
     title: '関西Node学園 6時限目',
     date: '2019/05/09',
     url: 'https://nodejs.connpass.com/event/126358/',
@@ -44,6 +75,7 @@ const logs: {
     doc: 'https://speakerdeck.com/koh110/nodejs-commit'
   },
   {
+    type: 'log',
     title: 'Callback を撲滅せよ',
     date: '2018/12/25',
     url: 'https://techblog.yahoo.co.jp/javascript/nodejs/callback-to-promise/',
@@ -51,6 +83,7 @@ const logs: {
     desc: 'CallbackをPromise化する手法について'
   },
   {
+    type: 'log',
     title: 'おつかれさま、MYM 〜僕とMYMのフロントエンド戦争〜',
     date: '2018/12/25',
     url: 'https://techblog.yahoo.co.jp/advent-calendar-2018/thankyou-mym/',
@@ -59,6 +92,7 @@ const logs: {
     desc: '内製チャットシステムMYMのフロントエンドの仕組みについて'
   },
   {
+    type: 'log',
     title: '市ヶ谷Geek★Night #18 フロントエンド、マジ卍',
     date: '2018/03/26',
     url: 'https://ichigayageek.connpass.com/event/87792/',
@@ -69,6 +103,7 @@ const logs: {
     doc: 'https://speakerdeck.com/koh110/angular-and-me'
   },
   {
+    type: 'log',
     title: 'Bonfire Frontend #1',
     date: '2018/03/26',
     url: 'https://yj-meetup.connpass.com/event/58718/',
@@ -79,6 +114,7 @@ const logs: {
     doc: 'https://speakerdeck.com/koh110/bonfire-frontend-number-1'
   },
   {
+    type: 'log',
     title: 'デブサミ2018',
     date: '2018/02/16',
     url: 'https://codezine.jp/article/detail/10693',
@@ -87,6 +123,7 @@ const logs: {
     doc: 'https://www.slideshare.net/techblogyahoo/devsumi-16a2'
   },
   {
+    type: 'log',
     title: 'INSIDE FRONTEND',
     date: '2018/02/11',
     url: 'https://inside-frontend.com/#ama-c3-2',
@@ -95,6 +132,7 @@ const logs: {
       'コンポーネント座談会。React, Angular, Vueのコンポーネントをどう設計しているか。誘って頂いた。'
   },
   {
+    type: 'log',
     title: 'Yahoo! JAPAN Tech Conference',
     date: '2018/01/27',
     url: 'https://techconference.yahoo.co.jp/2018/',
@@ -104,6 +142,7 @@ const logs: {
     doc: 'https://www.slideshare.net/techblogyahoo/yjtc18-a6-nodejs'
   },
   {
+    type: 'log',
     title: '東京Node学園祭2017',
     date: '2017/11/25',
     url: 'https://nodefest.jp/2017/schedule.html',
@@ -113,6 +152,7 @@ const logs: {
     doc: 'https://speakerdeck.com/koh110/nodexue-yuan-ji-2017'
   },
   {
+    type: 'log',
     title:
       'Node.jsのコミッターを迎え、炎の特訓—Node.js社内勉強会はこうして始まった',
     date: '2017/10/13',
@@ -122,6 +162,7 @@ const logs: {
     desc: '社内のNode.jsサポートチームのはなし'
   },
   {
+    type: 'log',
     title: 'ヤフーの社内システムを紹介します',
     date: '2016/12/05',
     url: 'https://techblog.yahoo.co.jp/advent-calendar-2016/pozzy/',
@@ -129,6 +170,7 @@ const logs: {
     desc: 'ヤフーの内製IoT社内システムの紹介'
   },
   {
+    type: 'log',
     title: 'ES6時代のNode.js',
     date: '2015/12/02',
     url: 'https://techblog.yahoo.co.jp/javascript/nodejs/Node-es6/',
@@ -137,15 +179,60 @@ const logs: {
   }
 ]
 
+const AmazonLinkElement = (props: AmazonLog) => {
+  return (
+    <div className="wrapper">
+      <style jsx>{`
+        .wrapper {
+          padding: 1em 0 2em 0;
+          display: grid;
+          grid-template-columns: 160px auto;
+          grid-template-rows: 1fr 1ch auto;
+          grid-template-areas:
+            'title title'
+            'link time'
+            'link desc';
+        }
+        .link {
+          grid-area: link;
+          place-self: center;
+        }
+        .title {
+          padding: 0 1em;
+          grid-area: title;
+        }
+        .time {
+          font-size: 13px;
+          grid-area: time;
+        }
+        .desc {
+          grid-area: desc;
+        }
+      `}</style>
+      <div className="link">
+        <div dangerouslySetInnerHTML={{ __html: props.html }}></div>
+      </div>
+      <div className="title">
+        <h3>{props.title}</h3>
+      </div>
+      <time className="time">{props.date}</time>
+      <p className="desc">{props.desc}</p>
+    </div>
+  )
+}
+
 const Log = () => {
   return (
     <WorkWrapper>
       <div>
         <h2>Log</h2>
-        <div>いままで出たやつを忘れないようにするやつ</div>
-        {logs.map((e, i) => (
-          <Element {...e} key={`${i}-${e.title}`} />
-        ))}
+        <div>いままで出たやつ</div>
+        {logs.map((e, i) => {
+          if (e.type === 'amazon') {
+            return <AmazonLinkElement {...e} key={`${i}-${e.title}`} />
+          }
+          return <Element {...e} key={`${i}-${e.title}`} />
+        })}
       </div>
     </WorkWrapper>
   )

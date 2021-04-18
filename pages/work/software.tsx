@@ -40,7 +40,7 @@ const Software: PageComponent = () => {
     <WorkWrapper>
       <div>
         <h2>Software</h2>
-        <div>いままで作ったやつを忘れないようにするやつ</div>
+        <div>いままで作ったやつ</div>
         {softs.map((e, i) => (
           <Element key={`${i}-${e.title}`} {...e} />
         ))}

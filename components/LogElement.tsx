@@ -16,22 +16,20 @@ const Log = ({ url, title, date, desc, img, doc }: Props) => {
         .wrapper {
           padding: 1em 0 2em 0;
           display: grid;
-          grid-template-columns: 100px 1fr;
+          grid-template-columns: 160px 1fr;
           grid-template-areas:
-            'img title'
+            'title title'
             'img time'
             'img desc'
             'img doc';
-        }
-        h3 {
-          margin-bottom: 0;
         }
         .img {
           grid-area: img;
           place-self: center;
         }
         .img img {
-          max-width: 50px;
+          min-width: 50px;
+          max-width: 100px;
         }
         .title {
           grid-area: title;
@@ -49,7 +47,7 @@ const Log = ({ url, title, date, desc, img, doc }: Props) => {
       `}</style>
       <div className="img">
         <a href={url} target="_blank" rel="noopener noreferrer">
-          <img src={img} style={{ maxWidth: '50px' }} />
+          <img src={img} />
         </a>
       </div>
       <a className="title" href={url} target="_blank" rel="noopener noreferrer">
