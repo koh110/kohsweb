@@ -47,6 +47,14 @@ const logs: (Log | AmazonLog)[] = [
   },
   {
     type: 'log',
+    title: 'ヤフーのフロントエンドとNode.jsの関係性',
+    url: 'https://techblog.yahoo.co.jp/entry/20191120782387/',
+    img: 'https://s.yimg.jp/images/tecblog/2019-H2/node.js/ogp_20191115T150404.png',
+    date: '2019/11/20',
+    desc: 'ヤフーの中でNode.jsがどう使われているかの紹介'
+  },
+  {
+    type: 'log',
     title: 'ヤフー福岡 Tech Meetup #5',
     url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
     img:
