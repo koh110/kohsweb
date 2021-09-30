@@ -31,7 +31,7 @@ const softs: { url: string; img?: string; title: string; desc: string }[] = [
     url:
       'https://chrome.google.com/webstore/detail/twit-web-switcher/hedkbblkbhiagpppkgcbmkojnlphmcca?hl=ja',
     title: 'twit-web-switcher',
-    desc: 'twitterのアカウントを切り替えるchrome拡張'
+    desc: 'twitterのアカウントを切り替えるchrome拡張。更新停止してたので落とした'
   }
 ]
 

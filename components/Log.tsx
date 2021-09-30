@@ -22,12 +22,28 @@ type AmazonLog = {
 const logs: (Log | AmazonLog)[] = [
   {
     type: 'log',
+    title: 'ヤフー第10代黒帯が語る最新技術動向 ──ネットワーク・セキュリティ、自然言語処理、iOSアプリ、アクセシビリティ、ビジュアルデザイン',
+    url: 'https://about.yahoo.co.jp/hr/linotice/20210910.html',
+    img: 'https://s.yimg.jp/i/docs/integrate/images/hr/linotice/kuroobi4.png',
+    date: '2021/09/10',
+    desc: '社内でやった黒帯LTのまとめ'
+  },
+  {
+    type: 'log',
     title: 'Cybozu Frontend Monthly #9',
     url: 'https://github.com/cybozu/frontend-monthly/blob/master/posts/2021/03.md',
     img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/79/69/796994454f725bb78b68a577459a6288.png',
     date: '2021/03/30',
     desc: 'またゲストで呼んでいただいた。ちょうどSharedArrayBufferの件を追っていてCybouzuの方に聞いてみたいことがあったので持ち込み。'
-},
+  },
+  {
+    type: 'log',
+    title: 'ヤフーの黒帯制度とは？──第9代黒帯が語る「技術専門家として歩むキャリア」',
+    url: 'https://about.yahoo.co.jp/hr/linotice/20201218.html',
+    img: 'https://cms-pctr.c.yimg.jp/dk/iwiz-blog-cms/about/hr/linotice/kuroobi3.png',
+    date: '2020/12/18',
+    desc: '社内でやった黒帯LTのまとめ'
+  },
   { 
     type: 'amazon',
     title: '動かして学ぶ! Slackアプリ開発入門',
@@ -234,7 +250,7 @@ const Log = () => {
     <WorkWrapper>
       <div>
         <h2>Log</h2>
-        <div>いままで出たやつ</div>
+        <div>いままでのWebに残ってるログまとめ</div>
         {logs.map((e, i) => {
           if (e.type === 'amazon') {
             return <AmazonLinkElement {...e} key={`${i}-${e.title}`} />
