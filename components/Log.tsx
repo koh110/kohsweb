@@ -180,8 +180,8 @@ const logs: (Log | AmazonLog)[] = [
     title:
       'Node.jsのコミッターを迎え、炎の特訓—Node.js社内勉強会はこうして始まった',
     date: '2017/10/13',
-    url: 'https://linotice.tumblr.com/post/166348035844/20171013',
-    img: 'https://about.yahoo.co.jp/hr/linotice/20171013.html',
+    url: 'https://about.yahoo.co.jp/hr/linotice/20171013.html',
+    img: 'https://cms-pctr.c.yimg.jp/dk/iwiz-blog-cms/about/hr/linotice/kakou_kakou_42A3935.jpg',
     desc: '社内のNode.jsサポートチームのはなし'
   },
   {
