@@ -22,6 +22,22 @@ type AmazonLog = {
 const logs: (Log | AmazonLog)[] = [
   {
     type: 'log',
+    title: 'ヤフー社内で実践しているWebパフォーマンス改善ことはじめ～Web Vitalsの計測と改善手法',
+    url: 'https://codezine.jp/article/detail/15443',
+    img: 'https://codezine.jp/static/images/article/15443/15443_og.png',
+    date: '2022/02/10',
+    desc: 'ヤフーで行っているWebパフォーマンス向上PJで作成している改善の始め方ドキュメントを公開'
+  },
+  {
+    type: 'log',
+    title: '第11代Webフロントエンド黒帯が語る──私たちはこうして鍛えられ、エキスパートになった',
+    url: 'https://about.yahoo.co.jp/hr/linotice/20220207.html',
+    img: 'https://s.yimg.jp/i/docs/integrate/images/hr/linotice/kuroobi4.png',
+    date: '2022/02/07',
+    desc: '黒帯インタビュー'
+  },
+  {
+    type: 'log',
     title: 'ヤフー第10代黒帯が語る最新技術動向 ──ネットワーク・セキュリティ、自然言語処理、iOSアプリ、アクセシビリティ、ビジュアルデザイン',
     url: 'https://about.yahoo.co.jp/hr/linotice/20210910.html',
     img: 'https://s.yimg.jp/i/docs/integrate/images/hr/linotice/kuroobi4.png',
