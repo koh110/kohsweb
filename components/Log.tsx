@@ -22,6 +22,14 @@ type AmazonLog = {
 const logs: (Log | AmazonLog)[] = [
   {
     type: 'log',
+    title: 'ヤフーのIE11 サポート終了の進め方',
+    url: 'https://techblog.yahoo.co.jp/entry/2022021630265506/',
+    img: 'https://s.yimg.jp/images/tecblog/2021-H2/ie11/ogp_20220215T115912.png',
+    date: '2022/02/16',
+    desc: 'IE11のEOL対応で考えた事や調査したことのまとめ'
+  },
+  {
+    type: 'log',
     title: 'ヤフー社内で実践しているWebパフォーマンス改善ことはじめ～Web Vitalsの計測と改善手法',
     url: 'https://codezine.jp/article/detail/15443',
     img: 'https://codezine.jp/static/images/article/15443/15443_og.png',
