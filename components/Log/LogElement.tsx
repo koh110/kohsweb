@@ -37,8 +37,10 @@ export const LogElement: React.FC<Props> = (props) => {
           border-radius: 8px;
           max-width: 345px;
           min-width: 200px;
-          transition: <box-s></box-s>hadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-          box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+          transition: <box-s></box-s>hadow 300ms cubic-bezier(0.4, 0, 0.2, 1)
+            0ms;
+          box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+            rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
         }
         .title {
           padding: 0.5rem 1rem;
@@ -76,9 +78,11 @@ export const LogElement: React.FC<Props> = (props) => {
       <div className="content">
         <p>{props.desc}</p>
       </div>
-      {props.doc && <div className="footer">
-        <Doc doc={props.doc} />
-      </div>}
+      {props.doc && (
+        <div className="footer">
+          <Doc doc={props.doc} />
+        </div>
+      )}
     </div>
   )
 }

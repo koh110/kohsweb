@@ -28,8 +28,7 @@ export const TimeLine: React.FC<Props> = (props) => {
           margin-bottom: 1em;
           display: grid;
           grid-template-columns: 1fr 2em 1fr;
-          grid-template-areas:
-            "left center right"
+          grid-template-areas: 'left center right';
         }
         .circle {
           --top-margin: 2em;
@@ -49,7 +48,7 @@ export const TimeLine: React.FC<Props> = (props) => {
           border: 0.5em solid var(--color-timeline-bar);
           background: transport;
           border-radius: 50%;
-          content: "";
+          content: '';
         }
         .circle .border:before {
           content: '';
@@ -116,8 +115,7 @@ export const TimeLine: React.FC<Props> = (props) => {
         @media only screen and (max-width: 700px) {
           .wrapper {
             grid-template-columns: 1fr 2em 3fr;
-            grid-template-areas:
-              "date border content"
+            grid-template-areas: 'date border content';
           }
           .circle {
             grid-area: border;
@@ -144,8 +142,7 @@ export const TimeLine: React.FC<Props> = (props) => {
         @media only screen and (max-width: 460px) {
           .wrapper {
             grid-template-columns: 1em 2em 1fr;
-            grid-template-areas:
-              "date border content"
+            grid-template-areas: 'date border content';
           }
           .content {
             padding: 0 1em 0 0;
@@ -172,7 +169,7 @@ export const TimeLine: React.FC<Props> = (props) => {
             opacity: 0;
             transform: translateY(5em);
           }
-        
+
           to {
             opacity: 1;
             transform: translateY(0);
@@ -185,7 +182,11 @@ export const TimeLine: React.FC<Props> = (props) => {
       <div className={contentClassName} ref={intersectionRef}>
         <div className="card">
           <time>{props.log.date}</time>
-          {props.log.type === 'amazon' ? <AmazonElement {...props.log} /> : <LogElement {...props.log} />}
+          {props.log.type === 'amazon' ? (
+            <AmazonElement {...props.log} />
+          ) : (
+            <LogElement {...props.log} />
+          )}
         </div>
         <div className="line" />
       </div>

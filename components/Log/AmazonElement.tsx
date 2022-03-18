@@ -54,7 +54,9 @@ export const AmazonElement: React.FC<Props> = (props) => {
       <div className="body">
         <div className="title">{props.title}</div>
         <div className="content">
-          {props.desc.split('\n').map((e, i) => <p key={i}>{e}</p>)}
+          {props.desc.split('\n').map((e, i) => (
+            <p key={i}>{e}</p>
+          ))}
         </div>
       </div>
     </div>
