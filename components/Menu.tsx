@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import ToggleOn from '@material-ui/icons/ToggleOn'
-import ToggleOff from '@material-ui/icons/ToggleOff'
+import ToggleOnIcon from '@mui/icons-material/ToggleOn'
+import ToggleOffIcon from '@mui/icons-material/ToggleOff'
 import { DarkModeContext } from '../context/darkMode'
 
 const Menu = () => {
@@ -54,8 +54,8 @@ const Menu = () => {
         </Link>
       </div>
       <div className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
-        {darkMode && <ToggleOn />}
-        {!darkMode && <ToggleOff />}
+        {darkMode && <ToggleOnIcon />}
+        {!darkMode && <ToggleOffIcon />}
       </div>
     </div>
   )

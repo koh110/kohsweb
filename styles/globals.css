@@ -30,16 +30,24 @@ a {
   text-decoration: none;
 }
 
+h2 {
+  font-size: 1em;
+}
+
 :root {
   --color-background-body: #ffffff;
   --color-body: #545454;
   --color-border: rgb(211, 212, 228);
   --color-link: #1da1f2;
+  --color-body-card: rgb(255, 255, 255);
+  --color-on-card: rgba(0, 0, 0, 0.7);
 }
 
 [data-theme='dark'] {
-  --color-background-body: #15202b;
+  --color-background-body: rgb(26, 32, 39);
   --color-body: #ffffff;
+  --color-body-card: rgb(18, 18, 18);
+  --color-on-card: rgba(255, 255, 255, 0.7);
 }
 
 @keyframes blink {

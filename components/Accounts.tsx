@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import AccountBox from '@material-ui/icons/AccountBox'
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
 
 const Accounts = ({ style }: { style: CSSProperties }) => {
   return (
@@ -25,7 +25,7 @@ const Accounts = ({ style }: { style: CSSProperties }) => {
         }
       `}</style>
       <h3>
-        <AccountBox style={{ marginRight: '0.5em' }} />
+        <AccountBoxIcon style={{ marginRight: '0.5em' }} />
         accounts
       </h3>
       <ul>

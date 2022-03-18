@@ -1,4 +1,5 @@
-import { MailOutline, ChatBubbleOutline } from '@material-ui/icons'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
+import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import { PageComponent } from '../types/Component'
 import Layout from '../components/Layout'
 import Title from '../components/ContentTitle'
@@ -14,7 +15,7 @@ const Contact: PageComponent = () => {
       </p>
       <div style={{ marginTop: '2em' }}>
         <a href="mailto:kohta110@gmail.com">
-          <MailOutline style={{ fontSize: `${fontSize * 1.2}pt` }} />
+          <MailOutlineIcon style={{ fontSize: `${fontSize * 1.2}pt` }} />
           <span
             style={{
               paddingLeft: '5px',
@@ -32,7 +33,7 @@ const Contact: PageComponent = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <ChatBubbleOutline style={{ fontSize: `${fontSize * 1.2}pt` }} />
+          <ChatBubbleOutlineIcon style={{ fontSize: `${fontSize * 1.2}pt` }} />
           <span style={{ paddingLeft: '5px', fontSize: `${fontSize * 0.8}pt` }}>
             @koh110
           </span>

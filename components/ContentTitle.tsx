@@ -4,8 +4,8 @@ const Title = ({ children }) => {
       {children}
       <style jsx>{`
         .title {
-          margin: 0.5em 0 1em 0;
-          font-size: 2em;
+          margin: 0.5em 0 0.5em 0;
+          font-size: 1.5em;
         }
       `}</style>
     </div>
