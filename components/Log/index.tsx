@@ -1,8 +1,7 @@
 import WorkWrapper from '../WorkWrapper'
-import { LogElement, Props as Log } from './LogElement'
-import { AmazonElement, Props as AmazonLog } from './AmazonElement'
+import { TimeLine, Props } from './TimeLine'
 
-const logs: (Log | AmazonLog)[] = [
+const logs: Props['log'][] = [
   {
     type: 'log',
     title: 'ヤフーのIE11 サポート終了の進め方',
@@ -36,7 +35,7 @@ const logs: (Log | AmazonLog)[] = [
     url: 'https://about.yahoo.co.jp/hr/linotice/20210910.html',
     img: 'https://s.yimg.jp/i/docs/integrate/images/hr/linotice/kuroobi4.png',
     date: '2021/09/10',
-    desc: '社内でやった黒帯LTのまとめ'
+    desc: 'ヤフー社内でやった黒帯LTのまとめ'
   },
   {
     type: 'log',
@@ -53,7 +52,7 @@ const logs: (Log | AmazonLog)[] = [
     url: 'https://about.yahoo.co.jp/hr/linotice/20201218.html',
     img: 'https://cms-pctr.c.yimg.jp/dk/iwiz-blog-cms/about/hr/linotice/kuroobi3.png',
     date: '2020/12/18',
-    desc: '社内でやった黒帯LTのまとめ'
+    desc: 'ヤフー社内でやった黒帯LTのまとめ'
   },
   {
     type: 'amazon',
@@ -119,7 +118,7 @@ const logs: (Log | AmazonLog)[] = [
     date: '2018/12/25',
     url: 'https://techblog.yahoo.co.jp/advent-calendar-2018/thankyou-mym/',
     img: 'https://s.yimg.jp/images/tecblog/2018-2H/thankyou-mym/thankyoumym_ogp.png',
-    desc: '内製チャットシステムMYMのフロントエンドの仕組みについて'
+    desc: 'ヤフー内製チャットシステムMYMのフロントエンドの仕組みについて'
   },
   {
     type: 'log',
@@ -136,7 +135,7 @@ const logs: (Log | AmazonLog)[] = [
     date: '2018/03/26',
     url: 'https://yj-meetup.connpass.com/event/58718/',
     img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/d1/28/d1284989fa5d17e979cd69f88d62cef1.png',
-    desc: '僕の考えるフロントエンドエンジニアの生き残り方。技術的な話というよりエモな感じ',
+    desc: '僕の考えるフロントエンドエンジニアの生き残り方。技術的な話というより考え方よりな話',
     doc: 'https://speakerdeck.com/koh110/bonfire-frontend-number-1'
   },
   {
@@ -181,7 +180,7 @@ const logs: (Log | AmazonLog)[] = [
     date: '2017/10/13',
     url: 'https://about.yahoo.co.jp/hr/linotice/20171013.html',
     img: 'https://cms-pctr.c.yimg.jp/dk/iwiz-blog-cms/about/hr/linotice/kakou_kakou_42A3935.jpg',
-    desc: '社内のNode.jsサポートチームのはなし'
+    desc: 'ヤフー社内のNode.jsサポートチームのはなし'
   },
   {
     type: 'log',
@@ -205,21 +204,14 @@ const Log = () => {
   return (
     <WorkWrapper>
       <style jsx>{`
-        .logs {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          column-gap: 2rem;
-          row-gap: 2rem;
+        h2 {
+          padding: 0 1em;
         }
       `}</style>
       <h2>Log</h2>
       <div className="logs">
         {logs.map((e, i) => {
-          if (e.type === 'amazon') {
-            return <AmazonElement {...e} key={`${i}-${e.title}`} />
-          }
-          return <LogElement {...e} key={`${i}-${e.title}`} />
+          return <TimeLine log={e} index={i} key={`${i}-${e.title}`} />
         })}
       </div>
     </WorkWrapper>

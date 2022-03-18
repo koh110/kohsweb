@@ -3,7 +3,7 @@ import Layout from '../../components/Layout'
 import { Software as SoftInnter } from '../../components/Software'
 
 const Software: PageComponent = () => {
-  return (<SoftInnter />)
+  return <SoftInnter />
 }
 
 Software.Layout = Layout

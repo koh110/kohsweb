@@ -19,7 +19,8 @@ export const SoftwareElement: React.FC<Props> = (props) => {
           border-radius: 8px;
           max-width: 345px;
           transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-          box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+          box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+            rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
         }
         .title {
           padding: 0.5rem 1rem;
@@ -31,7 +32,8 @@ export const SoftwareElement: React.FC<Props> = (props) => {
           justify-content: center;
           background: rgb(255, 255, 255);
         }
-        .img-wrap a, .img-wrap img {
+        .img-wrap a,
+        .img-wrap img {
           max-width: 100%;
         }
         .content {
@@ -55,7 +57,9 @@ export const SoftwareElement: React.FC<Props> = (props) => {
           </a>
         </div>
       )}
-      <div className="content"><p>{props.desc}</p></div>
+      <div className="content">
+        <p>{props.desc}</p>
+      </div>
     </div>
   )
 }

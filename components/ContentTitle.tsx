@@ -4,7 +4,7 @@ const Title = ({ children }) => {
       {children}
       <style jsx>{`
         .title {
-          margin: 0.5em 0 0.5em 0;
+          padding: 0 0.5em;
           font-size: 1.5em;
         }
       `}</style>
