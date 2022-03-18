@@ -41,6 +41,7 @@ h2 {
   --color-link: #1da1f2;
   --color-body-card: rgb(255, 255, 255);
   --color-on-card: rgba(0, 0, 0, 0.7);
+  --color-timeline-bar: #d8e5ee;
 }
 
 [data-theme='dark'] {

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build  && next export",
     "start": "next start",
-    "format": "prettier --write {pages,components,contexts,public,styles,types}/**/*.{ts,tsx}",
+    "format": "prettier --write {pages,components,contexts,public,styles,types,lib}/**/*.{ts,tsx}",
     "serve": "serve out -l 3000"
   },
   "dependencies": {

@@ -17,7 +17,7 @@ const Work = ({ children }) => {
   return (
     <>
       <Title>Work</Title>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0 1em' }}>
         <Link href="/work/log" passHref shallow>
           <a style={log}>Log</a>
         </Link>

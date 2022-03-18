@@ -21,11 +21,16 @@ const Layout: LayoutComponent = ({ children }) => {
           align-items: center;
           width: 100%;
         }
+        .contents:before {
+          content: '';
+          width: 100%;
+          margin-top: 1em;
+          border-top: 1px solid var(--color-border);
+        }
         .contents-wrapper {
           width: 100%;
           margin: 1em 0px 0px;
-          padding: 1em 3em 0px;
-          border-top: 1px solid var(--color-border);
+          max-width: 820px;
         }
       `}</style>
       <Header />

@@ -62,6 +62,7 @@ const Header = () => {
           top: 0;
           width: 100%;
           transition: opacity 0.3s ease;
+          z-index: 100;
         }
       `}</style>
       <header style={titleStyle}>

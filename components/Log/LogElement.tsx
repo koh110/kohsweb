@@ -36,7 +36,8 @@ export const LogElement: React.FC<Props> = (props) => {
           background: var(--color-body-card);
           border-radius: 8px;
           max-width: 345px;
-          transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+          min-width: 200px;
+          transition: <box-s></box-s>hadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
           box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
         }
         .title {
@@ -61,10 +62,6 @@ export const LogElement: React.FC<Props> = (props) => {
         .footer {
           padding: 0.5rem 1rem;
         }
-        .footer time {
-          color: var(--color-on-card);
-          font-size: 0.875rem;
-        }
       `}</style>
       <div className="title">
         <a href={props.url} target="_blank" rel="noopener noreferrer">
@@ -79,10 +76,9 @@ export const LogElement: React.FC<Props> = (props) => {
       <div className="content">
         <p>{props.desc}</p>
       </div>
-      <div className="footer">
-        <time>{props.date}</time>
-        {props.doc && (<Doc doc={props.doc} />)}
-      </div>
+      {props.doc && <div className="footer">
+        <Doc doc={props.doc} />
+      </div>}
     </div>
   )
 }
