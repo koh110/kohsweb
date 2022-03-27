@@ -34,6 +34,31 @@ h2 {
   font-size: 1em;
 }
 
+.fadeup {
+  animation: 0.5s fadeup;
+  opacity: 1;
+}
+.before-fadeup {
+  opacity: 0;
+}
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(5em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+}
+
 :root {
   --color-background-body: #ffffff;
   --color-body: #545454;
@@ -56,10 +81,4 @@ h2 {
   --color-body: #ffffff;
   --color-body-card: #1e1e1e;
   --color-on-card: rgba(255, 255, 255, 0.7);
-}
-
-@keyframes blink {
-  from {
-    opacity: 1;
-  }
 }

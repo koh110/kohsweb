@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { LogElement, Props as Log } from './LogElement'
 import { AmazonElement, Props as AmazonLog } from './AmazonElement'
-import { useIntersectionObserver } from '../../lib/useIntersectionObserver'
+import { useFadeup } from '../../lib/useFadeup'
 
 export type Props = {
   index: number
@@ -9,17 +9,15 @@ export type Props = {
 }
 
 export const TimeLine: React.FC<Props> = (props) => {
-  const [intersectionRef, isIntersecting] = useIntersectionObserver()
+  const { intersectionRef, classnames } = useFadeup()
   const [contentClassName, setContentClassName] = useState('content')
 
   const isEven = useMemo(() => props.index % 2 === 0, [props.index])
   const wrapClassName = isEven ? 'wrapper' : 'wrapper reverse'
 
   useEffect(() => {
-    if (isIntersecting) {
-      setContentClassName('content fadeup')
-    }
-  }, [isIntersecting])
+    setContentClassName(['content', ...classnames].join(' '))
+  }, [classnames])
 
   return (
     <div className={wrapClassName}>
@@ -75,7 +73,6 @@ export const TimeLine: React.FC<Props> = (props) => {
           flex-direction: row-reverse;
         }
         .content {
-          opacity: 0;
           display: flex;
           grid-area: left;
           justify-content: flex-end;
@@ -156,23 +153,6 @@ export const TimeLine: React.FC<Props> = (props) => {
           .card time {
             display: block;
             margin-bottom: 0.5em;
-          }
-        }
-
-        .fadeup {
-          animation-duration: 0.5s;
-          animation-name: fadeup;
-          opacity: 1;
-        }
-        @keyframes fadeup {
-          from {
-            opacity: 0;
-            transform: translateY(5em);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateY(0);
           }
         }
       `}</style>

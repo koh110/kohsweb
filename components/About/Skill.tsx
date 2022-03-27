@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import css from 'styled-jsx/css'
+import { useAnimation } from '../../lib/useAnimation'
 
 type Props = {
   title: string
@@ -72,20 +73,44 @@ const styles = css`
   .skill:nth-child(5):before {
     background-color: var(--color-skill-5);
   }
+
+  .zoom-right {
+    animation: 1s zoom-right;
+  }
+
+  @keyframes zoom-right {
+    from {
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+    to {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+  }
 `
 
 export const Skill: React.FC<Props> = (props) => {
+  const { intersectionRef, addClassnameFlag } = useAnimation()
+  const [barWrap, setBarWrap] = useState<string>('bar-wrap')
+
   const denominator = useMemo(() => {
     return props.skills.reduce((prev, next) => {
       return prev + next.num
     }, 0)
   }, [])
 
+  useEffect(() => {
+    if (addClassnameFlag) {
+      setBarWrap('bar-wrap zoom-right')
+    }
+  }, [addClassnameFlag])
+
   return (
     <div className="wrap">
       <style jsx>{styles}</style>
       <div className="title">{props.title}</div>
-      <ul className="bar-wrap">
+      <ul className={barWrap} ref={intersectionRef}>
         {props.skills.map((e, i) => {
           return (
             <li key={e.name} className="bar" style={{ width: `${e.num / denominator * 100}%` }}></li>

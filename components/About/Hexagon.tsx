@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import css from 'styled-jsx/css'
+import { useAnimation } from '../../lib/useAnimation'
 
 export const HexagonWrap: React.FC = (props) => {
   return (
@@ -28,8 +29,6 @@ export const HexagonGroup: React.FC = (props) => {
           grid-template-columns: repeat(2, calc(var(--hexagon-width)));
           grid-gap: 0 calc(var(--hexagon-width)/2 + 1px);
         }
-        .hexagon-group-wrap > :global(*) {
-        }
         .hexagon-group-wrap > :global(*):nth-child(2n) {
           transform: translateY(50%);
         }
@@ -46,7 +45,8 @@ const styles = css`
     position: relative;
     display: inline-block;
     background-color: #00b2c4;
-    color: var(--color-body);
+    color: #ffffff;
+    font-weight: 600;
   }
   .hexagon,
   .hexagon::before,
@@ -76,13 +76,64 @@ const styles = css`
     font-size: 0.7rem;
     transform: translate(-50%, calc(var(--hexagon-height)/2 - 50%));
     z-index: 100;
-    max-width: calc(var(--hexagon-width) * 2)
+    max-width: calc(var(--hexagon-width) * 2);
+    transition: transform 0.3s;
+  }
+  .hexagon:hover .inner {
+    transform: translate(-50%, calc(var(--hexagon-height)/2 - 50%)) scale(1.2);
+  }
+
+  .blur-zoom-before {
+    opacity: 0;
+  }
+  .blur-zoom, .blur-zoom-even {
+    opacity: 1;
+    animation-duration: 1s;
+  }
+  .blur-zoom {
+    animation-name: blur-zoom;
+  }
+  .blur-zoom-even {
+      animation-name: blur-zoom-even;
+  }
+  @keyframes blur-zoom {
+    from {
+      filter: blur(5px);
+      transform: scale(0.3) rotateX(50deg);
+    }
+    to {
+      filter: blur(0);
+      transform: scale(1) rotateX(0);
+    }
+  }
+  @keyframes blur-zoom-even {
+    from {
+      filter: blur(5px);
+      transform: scale(0.3) rotateX(50deg) translateY(50%);
+    }
+    to {
+      filter: blur(0);
+      transform: scale(1) rotateX(0) translateY(50%);
+    }
   }
 `
 
-export const Hexagon: React.FC = (props) => {
+export const Hexagon: React.FC<{ even: boolean }> = (props) => {
+  const { intersectionRef, addClassnameFlag } = useAnimation()
+  const [ wrapClassname, setWrapClassname ] = useState<string>('hexagon')
+
+  useEffect(() => {
+    if (addClassnameFlag) {
+      setTimeout(() => {
+        setWrapClassname(props.even ? 'hexagon blur-zoom-even' : 'hexagon blur-zoom')
+      }, window.crypto.getRandomValues(new Uint8Array(1))[0])
+    } else {
+      setWrapClassname('hexagon')
+    }
+  }, [addClassnameFlag])
+
   return (
-    <div className="hexagon">
+    <div className={wrapClassname} ref={intersectionRef}>
       <style jsx>{styles}</style>
       <div className="inner">{props.children}</div>
     </div>

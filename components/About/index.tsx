@@ -147,52 +147,52 @@ export const About: React.FC = () => {
           <div className="title">Others</div>
           <HexagonWrap>
             <HexagonGroup>
-              <Hexagon>Lighthouse</Hexagon>
-              <Hexagon>Prisma.js</Hexagon>
+              <Hexagon even={false}>Lighthouse</Hexagon>
+              <Hexagon even={true}>Prisma.js</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>webpack</Hexagon>
-              <Hexagon>vite</Hexagon>
+              <Hexagon even={false}>webpack</Hexagon>
+              <Hexagon even={true}>vite</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>Redux</Hexagon>
-              <Hexagon>Recoil</Hexagon>
+              <Hexagon even={false}>Redux</Hexagon>
+              <Hexagon even={true}>Recoil</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>MongoDB</Hexagon>
-              <Hexagon>Redis</Hexagon>
+              <Hexagon even={false}>MongoDB</Hexagon>
+              <Hexagon even={true}>Redis</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>MySQL</Hexagon>
-              <Hexagon>PostgreSQL</Hexagon>
+              <Hexagon even={false}>MySQL</Hexagon>
+              <Hexagon even={true}>PostgreSQL</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>Docker</Hexagon>
-              <Hexagon>Docker-compose</Hexagon>
+              <Hexagon even={false}>Docker</Hexagon>
+              <Hexagon even={true}>Docker-compose</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>Chef</Hexagon>
-              <Hexagon>Fabric</Hexagon>
+              <Hexagon even={false}>Chef</Hexagon>
+              <Hexagon even={true}>Fabric</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>CircleCI</Hexagon>
-              <Hexagon>GitHub Actions</Hexagon>
-            </HexagonGroup>
-              <HexagonGroup>
-              <Hexagon>Screwdriver.cd</Hexagon>
-            <Hexagon>Jenkins</Hexagon>
+              <Hexagon even={false}>CircleCI</Hexagon>
+              <Hexagon even={true}>GitHub Actions</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>Ubuntu</Hexagon>
-              <Hexagon>CentOS</Hexagon>
+              <Hexagon even={false}>Screwdriver.cd</Hexagon>
+              <Hexagon even={true}>Jenkins</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>nginx</Hexagon>
-              <Hexagon>Apache HTTP Server</Hexagon>
+              <Hexagon even={false}>Ubuntu</Hexagon>
+              <Hexagon even={true}>CentOS</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon>ElasticSearch</Hexagon>
-              <Hexagon>Dev-Ops</Hexagon>
+              <Hexagon even={false}>nginx</Hexagon>
+              <Hexagon even={true}>Apache HTTP Server</Hexagon>
+            </HexagonGroup>
+            <HexagonGroup>
+              <Hexagon even={false}>ElasticSearch</Hexagon>
+              <Hexagon even={true}>Dev-Ops</Hexagon>
             </HexagonGroup>
           </HexagonWrap>
         </section>
