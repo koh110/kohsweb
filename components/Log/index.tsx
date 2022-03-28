@@ -8,7 +8,7 @@ const logs: Props['log'][] = [
     url: 'https://techblog.yahoo.co.jp/entry/2022021630265506/',
     img: 'https://s.yimg.jp/images/tecblog/2021-H2/ie11/ogp_20220215T115912.png',
     date: '2022/02/16',
-    desc: 'IE11のEOL対応で考えた事や調査したことのまとめ'
+    desc: 'IE11のEOL対応で考えた事や調査したこと'
   },
   {
     type: 'log',
@@ -144,7 +144,29 @@ const logs: Props['log'][] = [
     date: '2018/02/16',
     url: 'https://codezine.jp/article/detail/10693',
     img: 'https://codezine.jp/static/images/article/10693/10693_og.jpg',
-    desc: '「ヤフーを支える社内システム」ヤフーの情シスについて',
+    desc: (
+      <>
+        <p>「ヤフーを支える社内システム」ヤフーの情シスについて</p>
+        <p>
+          <a
+            href="https://togetter.com/li/1199992"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            まとめ
+          </a>
+        </p>
+        <p>
+          <a
+            href="https://codezine.jp/article/detail/11209"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            話題賞を頂いた
+          </a>
+        </p>
+      </>
+    ),
     doc: 'https://www.slideshare.net/techblogyahoo/devsumi-16a2'
   },
   {

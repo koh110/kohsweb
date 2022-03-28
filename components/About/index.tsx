@@ -1,11 +1,11 @@
 import React from 'react'
-import Image from 'next/image'
 import css from 'styled-jsx/css'
 import Title from '../ContentTitle'
 import { Accounts } from './Accounts'
 import { Skill } from './Skill'
 import { HexagonWrap, HexagonGroup, Hexagon } from './Hexagon'
 import { ProfileIcon } from './ProfileIcon'
+import { History } from './History'
 
 const styles = css`
   .section {
@@ -19,7 +19,10 @@ const styles = css`
 
   .profile {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
   .icon {
     grid-area: icon;
     border-radius: 50%;
@@ -30,11 +33,11 @@ const styles = css`
   }
 
   .name {
-    padding: 2em;
+    padding: 0 0 0 2em;
   }
 
   .name h2 {
-    margin: 1em 0 0 0;
+    margin: 0;
   }
 
   .name h3 {
@@ -71,27 +74,25 @@ const styles = css`
   }
 
   .skill .others {
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
-    margin-top: 1em;
     padding: 1em;
   }
   .skill .title {
     font-size: 0.875rem;
   }
 
+  .history {
+    margin-top: 1em;
+  }
+
   @media only screen and (max-width: 460px) {
     .profile {
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       margin-top: 1em;
     }
     .name {
       padding: 0 0.5em 0;
     }
   }
-
 `
 
 export const About: React.FC = () => {
@@ -120,9 +121,7 @@ export const About: React.FC = () => {
       <section className="skill section">
         <h3>Skills</h3>
         <h4>I love Node.js and JavaScript!!</h4>
-        <span>
-          フロントエンドからバックエンドまで一気通貫で行うシステム構築をNode.jsで行うのが得意です。
-        </span>
+        <span>システム構築をSPA+Node.jsで行うのが得意です。</span>
         <span>
           一人でざっくりとシステムの設計/開発/運用/パフォーマンス調査・チューニングまで対応できます。
         </span>
@@ -207,6 +206,9 @@ export const About: React.FC = () => {
             </HexagonGroup>
           </HexagonWrap>
         </section>
+      </section>
+      <section className="section history">
+        <History />
       </section>
     </>
   )

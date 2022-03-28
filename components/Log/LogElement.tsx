@@ -7,7 +7,7 @@ export type Props = {
   url: string
   title: string
   date: string
-  desc: string
+  desc: string | React.ReactNode
   img: string
   doc?: string
 }
@@ -19,12 +19,19 @@ const Doc: React.FC<{ doc: string }> = (props) => {
       href={props.doc}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ fontSize: '0.875rem' }}
+      style={{ fontSize: '0.875rem', display: 'flex' }}
     >
-      <AttachFileIcon />
+      <AttachFileIcon fontSize="small" />
       資料
     </a>
   )
+}
+
+const Desc: React.FC<{ desc: Props['desc'] }> = (props) => {
+  if (typeof props.desc === 'string') {
+    return <p>{props.desc}</p>
+  }
+  return <>{props.desc}</>
 }
 
 export const LogElement: React.FC<Props> = (props) => {
@@ -44,14 +51,11 @@ export const LogElement: React.FC<Props> = (props) => {
         }
         .content {
           flex: 1;
-        }
-        .content p {
-          padding: 0.5rem 1rem;
+          padding: 0 1rem;
           color: var(--color-on-card);
-          font-size: 0.875rem;
         }
         .footer {
-          padding: 0.5rem 1rem;
+          padding: 0 1rem 0.5rem;
         }
       `}</style>
       <div className="title">
@@ -65,7 +69,7 @@ export const LogElement: React.FC<Props> = (props) => {
         </a>
       </div>
       <div className="content">
-        <p>{props.desc}</p>
+        <Desc desc={props.desc} />
       </div>
       {props.doc && (
         <div className="footer">

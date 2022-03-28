@@ -5,16 +5,16 @@ export const Accounts = () => {
     <div className="wrap">
       <style jsx>{`
         .wrap {
-          padding: 2em 1em 0;
-          margin-top: 1em;
-          padding: 0 1em 0 0;
+          padding: 0;
           display: flex;
           flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
         }
         .link {
           border-radius: 4px;
           font-size: 0.875rem;
-          margin: 0 0 1em 1em;
+          margin: 1em 1em 0 0;
           border: 1px solid var(--color-link);
           padding: 0.5em 1em;
         }

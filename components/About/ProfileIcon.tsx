@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import css from 'styled-jsx/css'
-import RssFeedIcon from '@mui/icons-material/RssFeed';
+import RssFeedIcon from '@mui/icons-material/RssFeed'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import FacebookIcon from '@mui/icons-material/Facebook'
@@ -11,15 +11,18 @@ const styles = css`
     --icon-length: 80px;
     --account-length: 40px;
     --icon-menu-length: calc(var(--icon-length) + var(--account-length) * 2);
-    --margin-length: 0.5em;
-    --translate-length: calc(var(--icon-menu-length) / 2 - var(--account-length) / 2);
-    width: var(--icon-menu-length);
-    height: var(--icon-menu-length);
+    --margin-length: 0.8em;
+    --translate-length: calc(
+      var(--icon-menu-length) / 2 - var(--account-length) / 2
+    );
+    width: calc(var(--icon-menu-length) * 1.2);
+    height: calc(var(--icon-menu-length) * 1.2);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .icon {
     grid-area: icon;
     border-radius: 50%;
@@ -38,7 +41,11 @@ const styles = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0);
+    transform: translate3d(
+      0,
+      calc((var(--translate-length) + var(--margin-length)) * -1),
+      0
+    );
   }
   :global([data-theme='dark']) .account-icon {
     background-color: #b1c7d4;
@@ -52,22 +59,46 @@ const styles = css`
   .account-icon:nth-of-type(2).move {
     z-index: 900;
     animation: moveup-2 1s;
-    transform: rotate(calc(360deg / 5)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5));
+    transform: rotate(calc(360deg / 5))
+      translate3d(
+        0,
+        calc((var(--translate-length) + var(--margin-length)) * -1),
+        0
+      )
+      rotate(calc(-360deg / 5));
   }
   .account-icon:nth-of-type(3).move {
     z-index: 800;
     animation: moveup-3 1s;
-    transform: rotate(calc(360deg / 5 * 2)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5 * 2));
+    transform: rotate(calc(360deg / 5 * 2))
+      translate3d(
+        0,
+        calc((var(--translate-length) + var(--margin-length)) * -1),
+        0
+      )
+      rotate(calc(-360deg / 5 * 2));
   }
   .account-icon:nth-of-type(4).move {
     z-index: 700;
     animation: moveup-4 1s;
-    transform: rotate(calc(360deg / 5 * 3)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5 * 3));
+    transform: rotate(calc(360deg / 5 * 3))
+      translate3d(
+        0,
+        calc((var(--translate-length) + var(--margin-length)) * -1),
+        0
+      )
+      rotate(calc(-360deg / 5 * 3));
   }
   .account-icon:nth-of-type(5).move {
     z-index: 600;
     animation: moveup-5 1s;
-    transform: rotate(calc(360deg / 5 * 4)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5 * 4));
+    transform: rotate(calc(360deg / 5 * 4))
+      translate3d(
+        0,
+        calc((var(--translate-length) + var(--margin-length)) * -1),
+        0
+      )
+      rotate(calc(-360deg / 5 * 4));
   }
 
   @keyframes moveup {
@@ -76,24 +107,40 @@ const styles = css`
     }
 
     to {
-      transform: translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0);
+      transform: translate3d(
+        0,
+        calc((var(--translate-length) + var(--margin-length)) * -1),
+        0
+      );
     }
   }
-  
+
   @keyframes moveup-2 {
     0% {
       opacity: 0;
       transform: translate3d(0, 0, 0);
     }
-  
-    40%  {
+
+    40% {
       opacity: 0;
-      transform: rotate(0) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(0) ;
+      transform: rotate(0)
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(0);
     }
 
     100% {
       opacity: 1;
-      transform: rotate(calc(360deg / 5)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5));
+      transform: rotate(calc(360deg / 5))
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(calc(-360deg / 5));
     }
   }
 
@@ -105,12 +152,24 @@ const styles = css`
 
     40% {
       opacity: 0;
-      transform: rotate(0) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(0);
+      transform: rotate(0)
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(0);
     }
 
     100% {
       opacity: 1;
-      transform: rotate(calc(360deg / 5 * 2)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5 * 2));
+      transform: rotate(calc(360deg / 5 * 2))
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(calc(-360deg / 5 * 2));
     }
   }
 
@@ -122,12 +181,24 @@ const styles = css`
 
     40% {
       opacity: 0;
-      transform: rotate(0) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(0);
+      transform: rotate(0)
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(0);
     }
 
     100% {
       opacity: 1;
-      transform: rotate(calc(360deg / 5 * 3)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5 * 3));
+      transform: rotate(calc(360deg / 5 * 3))
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(calc(-360deg / 5 * 3));
     }
   }
 
@@ -139,12 +210,24 @@ const styles = css`
 
     40% {
       opacity: 0;
-      transform: rotate(0) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(0);
+      transform: rotate(0)
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(0);
     }
 
     100% {
       opacity: 1;
-      transform: rotate(calc(360deg / 5 * 4)) translate3d(0, calc((var(--translate-length) + var(--margin-length)) * -1), 0) rotate(calc(-360deg / 5 * 4));
+      transform: rotate(calc(360deg / 5 * 4))
+        translate3d(
+          0,
+          calc((var(--translate-length) + var(--margin-length)) * -1),
+          0
+        )
+        rotate(calc(-360deg / 5 * 4));
     }
   }
 `
@@ -157,7 +240,7 @@ export const ProfileIcon: React.FC = () => {
       setAnimationClass('move')
     }, 10)
   }, [])
-  
+
   return (
     <div className="icon-menu">
       <style jsx>{styles}</style>
