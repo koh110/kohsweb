@@ -113,14 +113,20 @@ export const Skill: React.FC<Props> = (props) => {
       <ul className={barWrap} ref={intersectionRef}>
         {props.skills.map((e, i) => {
           return (
-            <li key={e.name} className="bar" style={{ width: `${e.num / denominator * 100}%` }}></li>
+            <li
+              key={e.name}
+              className="bar"
+              style={{ width: `${(e.num / denominator) * 100}%` }}
+            ></li>
           )
         })}
       </ul>
       <div className="skills">
         {props.skills.map((e, i) => {
           return (
-            <div key={e.name} className="skill"><span>{e.name}</span></div>
+            <div key={e.name} className="skill">
+              <span>{e.name}</span>
+            </div>
           )
         })}
       </div>

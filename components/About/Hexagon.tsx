@@ -9,10 +9,13 @@ export const HexagonWrap: React.FC = (props) => {
         .hexagon-wrap {
           margin-top: 1em;
           display: grid;
-          grid-template-columns: repeat(auto-fill, calc(var(--hexagon-width)*2.5));
-          grid-gap: 1px calc(var(--hexagon-width)/2 + 3px);
+          grid-template-columns: repeat(
+            auto-fill,
+            calc(var(--hexagon-width) * 2.5)
+          );
+          grid-gap: 1px calc(var(--hexagon-width) / 2 + 3px);
           grid-auto-flow: dense;
-          padding: 0 0 var(--hexagon-width) calc(var(--hexagon-width)/2);
+          padding: 0 0 var(--hexagon-width) calc(var(--hexagon-width) / 2);
         }
       `}</style>
       {props.children}
@@ -27,7 +30,7 @@ export const HexagonGroup: React.FC = (props) => {
         .hexagon-group-wrap {
           display: grid;
           grid-template-columns: repeat(2, calc(var(--hexagon-width)));
-          grid-gap: 0 calc(var(--hexagon-width)/2 + 1px);
+          grid-gap: 0 calc(var(--hexagon-width) / 2 + 1px);
         }
         .hexagon-group-wrap > :global(*):nth-child(2n) {
           transform: translateY(50%);
@@ -38,13 +41,12 @@ export const HexagonGroup: React.FC = (props) => {
   )
 }
 
-
 const styles = css`
   .hexagon {
     flex: 1;
     position: relative;
     display: inline-block;
-    background-color: #00b2c4;
+    background-color: #6cb2d3;
     color: #ffffff;
     font-weight: 600;
   }
@@ -57,14 +59,14 @@ const styles = css`
   }
   .hexagon::before {
     background-color: inherit;
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     transform: rotate(-60deg);
   }
   .hexagon::after {
     background-color: inherit;
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     transform: rotate(60deg);
@@ -74,19 +76,20 @@ const styles = css`
     top: 0;
     left: 50%;
     font-size: 0.7rem;
-    transform: translate(-50%, calc(var(--hexagon-height)/2 - 50%));
+    transform: translate(-50%, calc(var(--hexagon-height) / 2 - 50%));
     z-index: 100;
     max-width: calc(var(--hexagon-width) * 2);
     transition: transform 0.3s;
   }
   .hexagon:hover .inner {
-    transform: translate(-50%, calc(var(--hexagon-height)/2 - 50%)) scale(1.2);
+    transform: translate(-50%, calc(var(--hexagon-height) / 2 - 50%)) scale(1.2);
   }
 
   .blur-zoom-before {
     opacity: 0;
   }
-  .blur-zoom, .blur-zoom-even {
+  .blur-zoom,
+  .blur-zoom-even {
     opacity: 1;
     animation-duration: 1s;
   }
@@ -94,7 +97,7 @@ const styles = css`
     animation-name: blur-zoom;
   }
   .blur-zoom-even {
-      animation-name: blur-zoom-even;
+    animation-name: blur-zoom-even;
   }
   @keyframes blur-zoom {
     from {
@@ -120,12 +123,14 @@ const styles = css`
 
 export const Hexagon: React.FC<{ even: boolean }> = (props) => {
   const { intersectionRef, addClassnameFlag } = useAnimation()
-  const [ wrapClassname, setWrapClassname ] = useState<string>('hexagon')
+  const [wrapClassname, setWrapClassname] = useState<string>('hexagon')
 
   useEffect(() => {
     if (addClassnameFlag) {
       setTimeout(() => {
-        setWrapClassname(props.even ? 'hexagon blur-zoom-even' : 'hexagon blur-zoom')
+        setWrapClassname(
+          props.even ? 'hexagon blur-zoom-even' : 'hexagon blur-zoom'
+        )
       }, window.crypto.getRandomValues(new Uint8Array(1))[0])
     } else {
       setWrapClassname('hexagon')

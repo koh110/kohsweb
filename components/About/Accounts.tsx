@@ -25,38 +25,6 @@ export const Accounts = () => {
       `}</style>
       <a
         className="link"
-        href="https://github.com/koh110"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Github
-      </a>
-      <a
-        className="link"
-        href="https://twitter.com/koh110"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        twitter
-      </a>
-      <a
-        className="link"
-        href="https://www.facebook.com/kohta110"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        facebook
-      </a>
-      <a
-        className="link"
-        href="https://jp.linkedin.com/in/ito-kohta-24078410b"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        linked.in
-      </a>
-      <a
-        className="link"
         href="https://speakerdeck.com/koh110"
         target="_blank"
         rel="noopener noreferrer"

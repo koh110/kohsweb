@@ -1,9 +1,11 @@
 import React from 'react'
+import Image from 'next/image'
 import css from 'styled-jsx/css'
 import Title from '../ContentTitle'
 import { Accounts } from './Accounts'
 import { Skill } from './Skill'
 import { HexagonWrap, HexagonGroup, Hexagon } from './Hexagon'
+import { ProfileIcon } from './ProfileIcon'
 
 const styles = css`
   .section {
@@ -16,26 +18,20 @@ const styles = css`
   }
 
   .profile {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    grid-template-areas:
-      'icon name'
-      'desc desc';
+    display: flex;
   }
 
   .icon {
     grid-area: icon;
     border-radius: 50%;
-    background: url('/icon.jpg') no-repeat left top;
-    background-size: 100% 100%;
+    width: 80px;
     height: 80px;
-    min-width: 80px;
+    overflow: hidden;
     justify-self: center;
   }
 
   .name {
-    grid-area: name;
-    padding-left: 1em;
+    padding-left: 2em;
   }
 
   .name h2 {
@@ -47,14 +43,13 @@ const styles = css`
   }
 
   .desc {
-    grid-area: desc;
-    padding: 2em 1em 0;
+    padding: 1em 0 0;
   }
 
   .line {
     margin: 0;
     line-height: 1.9;
-    font-size: 12pt;
+    font-size: 0.875rem;
   }
 
   .skill {
@@ -94,18 +89,18 @@ export const About: React.FC = () => {
       <Title>About</Title>
       <section className="section">
         <div className="profile">
-          <figure className="icon" />
+          <ProfileIcon />
           <div className="name">
             <h2>Kohta Ito@koh110</h2>
             <h3>Web Engineer</h3>
-          </div>
-          <div className="desc">
-            <p className="line">
-              フロントエンド/サーバサイド/インフラ整備までWebならなんでも。
-            </p>
-            <p className="line">
-              技術を使って驚かせたり楽しませたりが好きです。
-            </p>
+            <div className="desc">
+              <p className="line">
+                フロントエンド/サーバサイド/インフラ整備までWebならなんでも。
+              </p>
+              <p className="line">
+                技術を使って驚かせたり楽しませたりが好きです。
+              </p>
+            </div>
           </div>
         </div>
         <Accounts />
@@ -113,8 +108,12 @@ export const About: React.FC = () => {
       <section className="skill section">
         <h3>Skills</h3>
         <h4>I love Node.js and JavaScript!!</h4>
-        <span>フロントエンドからバックエンドまで一気通貫で行うシステム構築をNode.jsで行うのが得意です。</span>
-        <span>一人でざっくりとシステムの設計/開発/運用/パフォーマンス調査・チューニングまで対応できます。</span>
+        <span>
+          フロントエンドからバックエンドまで一気通貫で行うシステム構築をNode.jsで行うのが得意です。
+        </span>
+        <span>
+          一人でざっくりとシステムの設計/開発/運用/パフォーマンス調査・チューニングまで対応できます。
+        </span>
         <Skill
           title="Frontend"
           skills={[
