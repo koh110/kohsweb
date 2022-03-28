@@ -57,7 +57,7 @@ export const HistoryElement: React.FC<Props> = (props) => {
           background: var(--color-timeline-bar);
         }
         .wrap:last-of-type .border:after {
-          height: calc(100% - var(--top-margin)*2);
+          height: calc(100% - var(--top-margin) * 2);
         }
 
         .body {
