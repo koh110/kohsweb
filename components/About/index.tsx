@@ -204,6 +204,9 @@ export const About: React.FC = () => {
               <Hexagon even={false}>ElasticSearch</Hexagon>
               <Hexagon even={true}>Dev-Ops</Hexagon>
             </HexagonGroup>
+            <HexagonGroup>
+              <Hexagon even={false}>k8s</Hexagon>
+            </HexagonGroup>
           </HexagonWrap>
         </section>
       </section>
