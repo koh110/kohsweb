@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
 import css from 'styled-jsx/css'
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import TwitterIcon from '@mui/icons-material/Twitter'
@@ -163,7 +162,7 @@ export const ProfileIcon: React.FC = () => {
     <div className="icon-menu">
       <style jsx>{styles}</style>
       <div className="icon">
-        <Image src="/icon.jpg" alt="account image" width={80} height={80} />
+        <img src="/icon.jpg" alt="account image" width={80} height={80} />
       </div>
       <a
         className={`account-icon ${animationClass}`}
