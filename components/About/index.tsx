@@ -20,7 +20,6 @@ const styles = css`
   .profile {
     display: flex;
   }
-
   .icon {
     grid-area: icon;
     border-radius: 50%;
@@ -31,7 +30,7 @@ const styles = css`
   }
 
   .name {
-    padding-left: 2em;
+    padding: 2em;
   }
 
   .name h2 {
@@ -80,6 +79,19 @@ const styles = css`
   .skill .title {
     font-size: 0.875rem;
   }
+
+  @media only screen and (max-width: 460px) {
+    .profile {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1em;
+    }
+    .name {
+      padding: 0 0.5em 0;
+    }
+  }
+
 `
 
 export const About: React.FC = () => {
