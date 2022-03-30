@@ -122,7 +122,7 @@ export const History: React.FC = (props) => {
       <HistoryElement date="2017-">
         <p>クリエイターエバンジェリスト (-2018) 技術広報のような活動。</p>
         <p>
-          第9,10,11代Webフロントエンド (2019-)
+          第9,10,11代Webフロントエンド 
           <a
             href="https://about.yahoo.co.jp/hr/workplace/mypolaris/"
             target="_blank"
@@ -130,7 +130,7 @@ export const History: React.FC = (props) => {
           >
             黒帯
           </a>
-          。ヤフーにおける領域のスペシャリスト認定のようなもの。
+          (2019-) ヤフーにおける領域のスペシャリスト認定のようなもの。
         </p>
         <ul>
           <li>
