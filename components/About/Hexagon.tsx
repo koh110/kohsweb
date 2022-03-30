@@ -35,6 +35,41 @@ export const HexagonGroup: React.FC = (props) => {
         .hexagon-group-wrap > :global(*):nth-child(2n) {
           transform: translateY(50%);
         }
+
+        .hexagon-group-wrap > :global(.blur-zoom-before) {
+          opacity: 0;
+        }
+        .hexagon-group-wrap > :global(.blur-zoom) {
+          opacity: 1;
+          animation-duration: 1s;
+        }
+        .hexagon-group-wrap > :global(.blur-zoom):nth-child(2n+1) {
+          animation-name: blur-zoom;
+        }
+        .hexagon-group-wrap > :global(.blur-zoom):nth-child(2n) {
+          animation-name: blur-zoom-even;
+        }
+
+        @keyframes blur-zoom {
+          from {
+            filter: blur(5px);
+            transform: scale(0.3) rotateX(50deg);
+          }
+          to {
+            filter: blur(0);
+            transform: scale(1) rotateX(0);
+          }
+        }
+        @keyframes blur-zoom-even {
+          from {
+            filter: blur(5px);
+            transform: scale(0.3) rotateX(50deg) translateY(50%);
+          }
+          to {
+            filter: blur(0);
+            transform: scale(1) rotateX(0) translateY(50%);
+          }
+        }
       `}</style>
       {props.children}
     </div>
@@ -84,56 +119,19 @@ const styles = css`
   .hexagon:hover .inner {
     transform: translate(-50%, calc(var(--hexagon-height) / 2 - 50%)) scale(1.2);
   }
-
-  .blur-zoom-before {
-    opacity: 0;
-  }
-  .blur-zoom,
-  .blur-zoom-even {
-    opacity: 1;
-    animation-duration: 1s;
-  }
-  .blur-zoom {
-    animation-name: blur-zoom;
-  }
-  .blur-zoom-even {
-    animation-name: blur-zoom-even;
-  }
-  @keyframes blur-zoom {
-    from {
-      filter: blur(5px);
-      transform: scale(0.3) rotateX(50deg);
-    }
-    to {
-      filter: blur(0);
-      transform: scale(1) rotateX(0);
-    }
-  }
-  @keyframes blur-zoom-even {
-    from {
-      filter: blur(5px);
-      transform: scale(0.3) rotateX(50deg) translateY(50%);
-    }
-    to {
-      filter: blur(0);
-      transform: scale(1) rotateX(0) translateY(50%);
-    }
-  }
 `
 
-export const Hexagon: React.FC<{ even: boolean }> = (props) => {
+export const Hexagon: React.FC = (props) => {
   const { intersectionRef, addClassnameFlag } = useAnimation()
-  const [wrapClassname, setWrapClassname] = useState<string>('hexagon')
+  const [wrapClassname, setWrapClassname] = useState<string>('hexagon blur-before')
 
   useEffect(() => {
     if (addClassnameFlag) {
       setTimeout(() => {
-        setWrapClassname(
-          props.even ? 'hexagon blur-zoom-even' : 'hexagon blur-zoom'
-        )
+        setWrapClassname('hexagon blur-zoom')
       }, window.crypto.getRandomValues(new Uint8Array(1))[0])
     } else {
-      setWrapClassname('hexagon')
+      setWrapClassname('hexagon blur-before')
     }
   }, [addClassnameFlag])
 

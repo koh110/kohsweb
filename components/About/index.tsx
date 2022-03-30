@@ -123,7 +123,7 @@ export const About: React.FC = () => {
         <h4>I love Node.js and JavaScript!!</h4>
         <span>システム構築をSPA+Node.jsで行うのが得意です。</span>
         <span>
-          一人でざっくりとシステムの設計/開発/運用/パフォーマンス調査・チューニングまで対応できます。
+          一人でざっくりとシステムの設計/開発/運用/パフォーマンス調査・チューニングの対応が可能です。
         </span>
         <Skill
           title="Frontend"
@@ -157,55 +157,56 @@ export const About: React.FC = () => {
           <div className="title">Others</div>
           <HexagonWrap>
             <HexagonGroup>
-              <Hexagon even={false}>Lighthouse</Hexagon>
-              <Hexagon even={true}>Prisma.js</Hexagon>
+              <Hexagon>Lighthouse</Hexagon>
+              <Hexagon>Prisma.js</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>webpack</Hexagon>
-              <Hexagon even={true}>vite</Hexagon>
+              <Hexagon>webpack</Hexagon>
+              <Hexagon>vite</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>Redux</Hexagon>
-              <Hexagon even={true}>Recoil</Hexagon>
+              <Hexagon>Redux</Hexagon>
+              <Hexagon>Recoil</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>MongoDB</Hexagon>
-              <Hexagon even={true}>Redis</Hexagon>
+              <Hexagon>Puppeteer</Hexagon>
+              <Hexagon>Kubernetes</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>MySQL</Hexagon>
-              <Hexagon even={true}>PostgreSQL</Hexagon>
+              <Hexagon>MongoDB</Hexagon>
+              <Hexagon>Redis</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>Docker</Hexagon>
-              <Hexagon even={true}>Docker-compose</Hexagon>
+              <Hexagon>MySQL</Hexagon>
+              <Hexagon>PostgreSQL</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>Chef</Hexagon>
-              <Hexagon even={true}>Fabric</Hexagon>
+              <Hexagon>Docker</Hexagon>
+              <Hexagon>Docker Compose</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>CircleCI</Hexagon>
-              <Hexagon even={true}>GitHub Actions</Hexagon>
+              <Hexagon>Chef</Hexagon>
+              <Hexagon>Fabric</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>Screwdriver.cd</Hexagon>
-              <Hexagon even={true}>Jenkins</Hexagon>
+              <Hexagon>CircleCI</Hexagon>
+              <Hexagon>GitHub Actions</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>Ubuntu</Hexagon>
-              <Hexagon even={true}>CentOS</Hexagon>
+              <Hexagon>Screwdriver.cd</Hexagon>
+              <Hexagon>Jenkins</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>nginx</Hexagon>
-              <Hexagon even={true}>Apache HTTP Server</Hexagon>
+              <Hexagon>Ubuntu</Hexagon>
+              <Hexagon>CentOS</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>ElasticSearch</Hexagon>
-              <Hexagon even={true}>Dev-Ops</Hexagon>
+              <Hexagon>nginx</Hexagon>
+              <Hexagon>Apache HTTP Server</Hexagon>
             </HexagonGroup>
             <HexagonGroup>
-              <Hexagon even={false}>k8s</Hexagon>
+              <Hexagon>ElasticSearch</Hexagon>
+              <Hexagon>Dev-Ops</Hexagon>
             </HexagonGroup>
           </HexagonWrap>
         </section>
