@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 type Props = {
   date: string
 }
 
-export const HistoryElement: React.FC<Props> = (props) => {
+export const HistoryElement: React.FC<PropsWithChildren<Props>> = (props) => {
   return (
     <div className="wrap">
       <style jsx>{`

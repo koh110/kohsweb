@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, PropsWithChildren } from 'react'
 import css from 'styled-jsx/css'
 import { useAnimation } from '../../lib/useAnimation'
 
-export const HexagonWrap: React.FC = (props) => {
+export const HexagonWrap: React.FC<PropsWithChildren> = (props) => {
   return (
     <div className="hexagon-wrap">
       <style jsx>{`
@@ -23,7 +23,7 @@ export const HexagonWrap: React.FC = (props) => {
   )
 }
 
-export const HexagonGroup: React.FC = (props) => {
+export const HexagonGroup: React.FC<PropsWithChildren> = (props) => {
   return (
     <div className="hexagon-group-wrap">
       <style jsx>{`
@@ -121,7 +121,7 @@ const styles = css`
   }
 `
 
-export const Hexagon: React.FC = (props) => {
+export const Hexagon: React.FC<PropsWithChildren> = (props) => {
   const { intersectionRef, addClassnameFlag } = useAnimation()
   const [wrapClassname, setWrapClassname] = useState<string>('hexagon blur-before')
 

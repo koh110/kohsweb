@@ -1,8 +1,6 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
-type Props = {}
-
-export const Card: React.FC<Props> = (props) => {
+export const Card: React.FC<PropsWithChildren> = (props) => {
   return (
     <div className="card">
       <style jsx>{`
