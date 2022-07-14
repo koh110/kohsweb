@@ -69,7 +69,11 @@ export const HistoryElement: React.FC<PropsWithChildren<Props>> = (props) => {
         .body:after {
           content: '';
           width: 100%;
+          margin-top: 1em;
           border: 1px solid var(--color-timeline-bar);
+        }
+        .body :global(ul) {
+          margin-bottom: 0;
         }
         .date {
           margin-bottom: 0.5em;
