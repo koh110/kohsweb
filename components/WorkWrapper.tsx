@@ -4,36 +4,34 @@ import Title from './ContentTitle'
 
 const Work = ({ children }) => {
   const selected = { opacity: 0.3 }
-  const [isSoft, setIsSoft] = useState(false)
-  const soft = isSoft
-    ? { ...selected, paddingRight: '1em' }
-    : { paddingRight: '1em' }
-  const log = !isSoft ? { ...selected } : null
+  const [isLog, setIsLog] = useState(false)
+  const log = isLog
+    ? { ...selected, paddingLeft: '1em' }
+    : { paddingLeft: '1em' }
+  const work = !isLog ? { ...selected } : null
 
   useEffect(() => {
-    setIsSoft(location.pathname.includes('/software'))
+    setIsLog(location.pathname.includes('/work/log'))
   }, [])
 
-  return (
-    <>
-      <Title>Work</Title>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          padding: '0 1em'
-        }}
-      >
-        <Link href="/work/work" passHref shallow>
-          <a style={soft}>work</a>
-        </Link>
-        <Link href="/work/log" passHref shallow>
-          <a style={log}>Log</a>
-        </Link>
-      </div>
-      {children}
-    </>
-  )
+  return <>
+    <Title>Work</Title>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: '0 1em'
+      }}
+    >
+      <Link href="/work" passHref shallow style={work}>
+        work
+      </Link>
+      <Link href="/work/log" passHref shallow style={log}>
+        Log
+      </Link>
+    </div>
+    {children}
+  </>;
 }
 
 export default Work

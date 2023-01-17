@@ -30,7 +30,7 @@ const Menu = () => {
         }
       `}</style>
       <div className="link-wrap">
-        <Link href="/" as="/">
+        <Link href="/" as="/" legacyBehavior>
           <a style={about}>About</a>
         </Link>
       </div>
@@ -44,12 +44,12 @@ const Menu = () => {
         </a>
       </div>
       <div className="link-wrap">
-        <Link href="/work" as="/work">
+        <Link href="/work" as="/work" legacyBehavior>
           <a style={work}>Work</a>
         </Link>
       </div>
       <div className="link-wrap">
-        <Link href="/contact" as="/contact">
+        <Link href="/contact" as="/contact" legacyBehavior>
           <a style={contact}>Contact</a>
         </Link>
       </div>
@@ -58,6 +58,6 @@ const Menu = () => {
         {!darkMode && <ToggleOffIcon />}
       </div>
     </div>
-  )
+  );
 }
 export default Menu
