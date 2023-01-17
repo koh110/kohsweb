@@ -1,5 +1,4 @@
 import React from 'react'
-import MzmIcon from '../../public/mzm.svg'
 
 export type Props = {
   url: string
@@ -8,7 +7,7 @@ export type Props = {
   img?: string
 }
 
-export const SoftwareElement: React.FC<Props> = (props) => {
+export const WorkElement: React.FC<Props> = (props) => {
   return (
     <div className="wrapper">
       <style jsx>{`

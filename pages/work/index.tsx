@@ -1,9 +1,9 @@
 import { PageComponent } from '../../types/Component'
-import Log from '../../components/Log'
+import Work from '../../components/Work'
 import Layout from '../../components/Layout'
 
-const Work: PageComponent = () => <Log />
+const WorkPage: PageComponent = () => <Work />
 
-Work.Layout = Layout
+WorkPage.Layout = Layout
 
-export default Work
+export default WorkPage

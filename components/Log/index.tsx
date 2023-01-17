@@ -55,14 +55,6 @@ const logs: Props['log'][] = [
     desc: 'ヤフー社内でやった黒帯LTのまとめ'
   },
   {
-    type: 'amazon',
-    title: '動かして学ぶ! Slackアプリ開発入門',
-    date: '2020/12/14',
-    desc: 'SlackSDKを利用したアプリの作成方法についての解説本。\n業務フローの例に合わせてSlackAPIとサンプルコードを一緒に追っていく形式。',
-    html: `<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=qf_sp_asin_til&t=koh110-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B08KDNPT2B&linkId=97b56cbebbad2dac7ae8918ad4e43b1f&bc1=ffffff&amp;lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
-    </iframe>`
-  },
-  {
     type: 'log',
     title: 'Cybozu Frontend Monthly #4',
     url: 'https://cybozu.connpass.com/event/192820/',

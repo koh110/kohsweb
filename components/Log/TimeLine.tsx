@@ -1,11 +1,10 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { LogElement, Props as Log } from './LogElement'
-import { AmazonElement, Props as AmazonLog } from './AmazonElement'
 import { useFadeup } from '../../lib/useFadeup'
 
 export type Props = {
   index: number
-  log: Log | AmazonLog
+  log: Log
 }
 
 export const TimeLine: React.FC<Props> = (props) => {
@@ -162,11 +161,7 @@ export const TimeLine: React.FC<Props> = (props) => {
       <div className={contentClassName} ref={intersectionRef}>
         <div className="card">
           <time>{props.log.date}</time>
-          {props.log.type === 'amazon' ? (
-            <AmazonElement {...props.log} />
-          ) : (
-            <LogElement {...props.log} />
-          )}
+          <LogElement {...props.log} />
         </div>
         <div className="line" />
       </div>

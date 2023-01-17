@@ -15,6 +15,7 @@ export const AmazonElement: React.FC<Props> = (props) => {
         .wrapper {
           padding: 1rem;
           display: flex;
+          max-width: 500px;
           background: var(--color-body-card);
           border-radius: 8px;
         }

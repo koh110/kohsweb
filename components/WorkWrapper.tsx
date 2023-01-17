@@ -6,8 +6,8 @@ const Work = ({ children }) => {
   const selected = { opacity: 0.3 }
   const [isSoft, setIsSoft] = useState(false)
   const soft = isSoft
-    ? { ...selected, paddingLeft: '1em' }
-    : { paddingLeft: '1em' }
+    ? { ...selected, paddingRight: '1em' }
+    : { paddingRight: '1em' }
   const log = !isSoft ? { ...selected } : null
 
   useEffect(() => {
@@ -24,11 +24,11 @@ const Work = ({ children }) => {
           padding: '0 1em'
         }}
       >
+        <Link href="/work/work" passHref shallow>
+          <a style={soft}>work</a>
+        </Link>
         <Link href="/work/log" passHref shallow>
           <a style={log}>Log</a>
-        </Link>
-        <Link href="/work/software" passHref shallow>
-          <a style={soft}>Software</a>
         </Link>
       </div>
       {children}
