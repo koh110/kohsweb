@@ -5,18 +5,14 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-40547259-3"
-          ></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-TB4PRTCVBC"></script>
           <script
             dangerouslySetInnerHTML={{
-              __html: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-40547259-3');`
+              __html: `window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+            
+          gtag('config', 'G-TB4PRTCVBC');`
             }}
           ></script>
         </Head>
