@@ -5,6 +5,7 @@ const Title = ({ children }) => {
       <style jsx>{`
         .title {
           font-size: 1.5em;
+          padding: 0 1rem;
         }
       `}</style>
     </div>
