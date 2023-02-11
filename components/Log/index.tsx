@@ -40,7 +40,7 @@ const logs: Props['log'][] = [
   {
     type: 'log',
     title: 'Cybozu Frontend Monthly #9',
-    url: 'https://github.com/cybozu/frontend-monthly/blob/master/posts/2021/03.md',
+    url: 'https://cybozu.github.io/frontend-monthly/posts/2021-03/',
     img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/79/69/796994454f725bb78b68a577459a6288.png',
     date: '2021/03/30',
     desc: 'またゲストで呼んでいただいた。ちょうどSharedArrayBufferの件を追っていてCybouzuの方に聞いてみたいことがあったので持ち込み。'
