@@ -26,6 +26,7 @@ export const TimeLine: React.FC<Props> = (props) => {
           display: grid;
           grid-template-columns: 1fr 2em 1fr;
           grid-template-areas: 'left center right';
+          container-type: inline-size;
         }
         .circle {
           --top-margin: 2em;
@@ -108,7 +109,7 @@ export const TimeLine: React.FC<Props> = (props) => {
           color: var(--color-on-card);
           font-size: 0.875rem;
         }
-        @media only screen and (max-width: 700px) {
+        @container (max-width: 700px) {
           .wrapper {
             grid-template-columns: 1fr 2em 3fr;
             grid-template-areas: 'date border content';
@@ -135,7 +136,7 @@ export const TimeLine: React.FC<Props> = (props) => {
             transform: translateY(3em) skew(0, 25deg);
           }
         }
-        @media only screen and (max-width: 460px) {
+        @container (max-width: 460px) {
           .wrapper {
             grid-template-columns: 1em 2em 1fr;
             grid-template-areas: 'date border content';
@@ -151,7 +152,6 @@ export const TimeLine: React.FC<Props> = (props) => {
           }
           .card time {
             display: block;
-            margin-bottom: 0.5em;
           }
         }
       `}</style>

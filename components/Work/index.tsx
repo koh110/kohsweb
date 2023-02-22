@@ -73,6 +73,7 @@ const Work: PageComponent = () => {
           flex-wrap: wrap;
           column-gap: 2rem;
           row-gap: 2rem;
+          container-type: inline-size;
         }
         h2 {
           padding: 0 1rem;

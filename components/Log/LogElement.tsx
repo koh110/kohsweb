@@ -39,7 +39,7 @@ export const LogElement: React.FC<Props> = (props) => {
     <Card>
       <style jsx>{`
         .title {
-          padding: 0.5rem 1rem;
+          padding: 0.5rem 0;
           font-weight: 400;
           font-size: 0.875rem;
         }
@@ -51,7 +51,7 @@ export const LogElement: React.FC<Props> = (props) => {
         }
         .content {
           flex: 1;
-          padding: 0 1rem;
+          padding: 0;
           color: var(--color-on-card);
         }
         .footer {

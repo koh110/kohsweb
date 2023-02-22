@@ -54,7 +54,7 @@ export const AmazonElement: React.FC<Props> = (props) => {
           color: var(--color-on-card);
           font-size: 0.875rem;
         }
-        @media only screen and (max-width: 500px) {
+        @container (max-width: 500px) {
           .wrapper {
             flex-direction: column;
           }

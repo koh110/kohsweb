@@ -229,6 +229,9 @@ const Log = () => {
         h2 {
           padding: 0 1em;
         }
+        .logs {
+          container-type: inline-size;
+        }
       `}</style>
       <h2>Log</h2>
       <div className="logs">

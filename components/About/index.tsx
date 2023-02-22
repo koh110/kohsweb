@@ -15,6 +15,7 @@ const styles = css`
     min-width: 200px;
     border: 1px solid var(--color-border);
     padding: 1em;
+    container-type: inline-size;
   }
 
   .profile {
@@ -84,7 +85,7 @@ const styles = css`
     margin-top: 1em;
   }
 
-  @media only screen and (max-width: 460px) {
+  @container (max-width: 460px) {
     .profile {
       flex-direction: column;
       margin-top: 1em;
