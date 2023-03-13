@@ -4,6 +4,15 @@ import { TimeLine, Props } from './TimeLine'
 const logs: Props['log'][] = [
   {
     type: 'log',
+    title: 'Node学園41時限目 書籍について',
+    url: 'https://nodejs.connpass.com/event/275061/',
+    img: 'https://res.cloudinary.com/techfeed/image/upload/w_600,h_315,c_fill/v1649221766/assets/images/techfeed-conference-2022.png',
+    date: '2023/02/28',
+    desc: '実践Node.js入門について',
+    doc: 'https://docs.google.com/presentation/d/1mjsMfYje30Oz2WRscti_pGbM6eKBZRJdoo1J1SKzo-g/edit?usp=sharing'
+  },
+  {
+    type: 'log',
     title: 'TechFeed Conference 2022',
     url: 'https://techfeed.io/entries/62affbd30e97835bea17df44',
     img: 'https://res.cloudinary.com/techfeed/image/upload/w_600,h_315,c_fill/v1649221766/assets/images/techfeed-conference-2022.png',
