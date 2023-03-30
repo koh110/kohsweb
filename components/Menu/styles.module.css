@@ -1,0 +1,14 @@
+.wrap {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.link_wrap {
+  padding-left: 1em;
+}
+
+.dark_mode_toggle {
+  padding-left: 1em;
+}

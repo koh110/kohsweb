@@ -1,5 +1,6 @@
+'use client'
+
 import { PageComponent } from '../../types/Component'
-import WorkWrapper from '../WorkWrapper'
 import { WorkElement, Props as WorkProps } from './work'
 import { AmazonElement, Props as AmazonLogProps } from './AmazonElement'
 
@@ -58,7 +59,7 @@ const softs: WorkProps[] = [
 
 const Work: PageComponent = () => {
   return (
-    <WorkWrapper>
+    <>
       <style jsx>{`
         .soft {
           display: flex;
@@ -93,7 +94,7 @@ const Work: PageComponent = () => {
           ))}
         </div>
       </div>
-    </WorkWrapper>
+    </>
   )
 }
 export default Work

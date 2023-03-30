@@ -1,4 +1,4 @@
-import WorkWrapper from '../WorkWrapper'
+'use client'
 import { TimeLine, Props } from './TimeLine'
 
 const logs: Props['log'][] = [
@@ -233,7 +233,7 @@ const logs: Props['log'][] = [
 
 const Log = () => {
   return (
-    <WorkWrapper>
+    <>
       <style jsx>{`
         h2 {
           padding: 0 1em;
@@ -248,7 +248,7 @@ const Log = () => {
           return <TimeLine log={e} index={i} key={`${i}-${e.title}`} />
         })}
       </div>
-    </WorkWrapper>
+    </>
   )
 }
 export default Log

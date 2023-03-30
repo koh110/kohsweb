@@ -72,7 +72,7 @@ export const AmazonElement: React.FC<Props> = (props) => {
           {props.desc.split('\n').map((e, i) => (
             <p key={i}>{e}</p>
           ))}
-          <p dangerouslySetInnerHTML={{ __html: props.dangerouslySetInnerHTML }} />
+          { props.dangerouslySetInnerHTML && <p dangerouslySetInnerHTML={{ __html: props.dangerouslySetInnerHTML }} /> }
         </div>
       </div>
     </div>

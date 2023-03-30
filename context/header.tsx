@@ -21,9 +21,9 @@ export const HeaderProvider = ({ children }) => {
   const [title, setTitle] = useState('')
   const [end, setEnd] = useState(false)
 
-  let timer = null
+  let timer: number | null = null
   const typing = () => {
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       const renew = TITLE.slice(0, title.length + 1)
       setTitle(renew)
       if (renew.length !== TITLE.length) {
@@ -38,7 +38,9 @@ export const HeaderProvider = ({ children }) => {
     typing()
 
     return () => {
-      clearTimeout(timer)
+      if (timer) {
+        clearTimeout(timer)
+      }
     }
   }, [title])
 

@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 
 export const useIntersectionObserver = () => {
-  const [node, setNode] = useState<Element>(null)
+  const [node, setNode] = useState<Element | null>(null)
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false)
 
-  const observerRef = useRef(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
