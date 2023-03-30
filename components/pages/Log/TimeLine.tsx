@@ -1,6 +1,6 @@
 'use client'
 import LogElement, { type Props as Log } from './LogElement'
-import { useFadeup } from '../../lib/useFadeup'
+import { useFadeup } from '../../../lib/useFadeup'
 import styles from './TimeLine.module.css'
 
 export type Props = {

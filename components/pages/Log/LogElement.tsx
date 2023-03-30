@@ -1,5 +1,5 @@
 import AttachFileIcon from '@mui/icons-material/AttachFile'
-import Card from '../Card/index'
+import Card from '../../Card/index'
 import styles from './LogElement.module.css'
 
 export type Props = {

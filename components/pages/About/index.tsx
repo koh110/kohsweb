@@ -1,5 +1,5 @@
 import styles from './index.module.css'
-import Title from '../ContentTitle'
+import Title from '../../ContentTitle'
 import Accounts from './Accounts'
 import Skill from './Skill/index'
 import { HexagonWrap, HexagonGroup, Hexagon } from './Hexagon'

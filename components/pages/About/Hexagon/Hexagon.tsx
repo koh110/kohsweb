@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState, type PropsWithChildren } from 'react'
-import { useAnimation } from '../../../lib/useAnimation'
+import { useAnimation } from '../../../../lib/useAnimation'
 import styles from './Hexagon.module.css'
 
 export default function Hexagon(props: PropsWithChildren) {

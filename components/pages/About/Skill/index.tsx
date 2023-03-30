@@ -1,5 +1,5 @@
 'use client'
-import { useAnimation } from '../../../lib/useAnimation'
+import { useAnimation } from '../../../../lib/useAnimation'
 import styles from './index.module.css'
 
 type Props = {
