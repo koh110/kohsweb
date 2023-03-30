@@ -1,119 +1,26 @@
-'use client'
-
-import React from 'react'
-import css from 'styled-jsx/css'
+import styles from './index.module.css'
 import Title from '../ContentTitle'
-import { Accounts } from './Accounts'
-import { Skill } from './Skill'
+import Accounts from './Accounts'
+import Skill from './Skill/index'
 import { HexagonWrap, HexagonGroup, Hexagon } from './Hexagon'
-import { ProfileIcon } from './ProfileIcon'
-import { History } from './History'
+import ProfileIcon from './ProfileIcon/index'
+import History from './History'
 
-const styles = css`
-  .section {
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    min-width: 200px;
-    border: 1px solid var(--color-border);
-    padding: 1em;
-    container-type: inline-size;
-  }
-
-  .profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .icon {
-    grid-area: icon;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    justify-self: center;
-  }
-
-  .name {
-    padding: 0 0 0 2em;
-  }
-
-  .name h2 {
-    margin: 0;
-  }
-
-  .name h3 {
-    margin: 0;
-  }
-
-  .desc {
-    padding: 1em 0 0;
-  }
-
-  .line {
-    margin: 0;
-    line-height: 1.9;
-    font-size: 0.875rem;
-  }
-
-  .skill {
-    margin-top: 1em;
-  }
-
-  .skill h3 {
-    margin: 0 0 1em 0;
-  }
-  .skill h4 {
-    margin: 0 0 0.5em 0;
-  }
-
-  .skill span {
-    font-size: 0.875rem;
-  }
-
-  .skill li {
-    margin: 0.5em 0 0 0;
-  }
-
-  .skill .others {
-    padding: 1em;
-  }
-  .skill .title {
-    font-size: 0.875rem;
-  }
-
-  .history {
-    margin-top: 1em;
-  }
-
-  @container (max-width: 460px) {
-    .profile {
-      flex-direction: column;
-      margin-top: 1em;
-    }
-    .name {
-      padding: 0 0.5em 0;
-    }
-  }
-`
-
-export const About: React.FC = () => {
+export default function About() {
   return (
     <>
-      <style jsx>{styles}</style>
       <Title>About</Title>
-      <section className="section">
-        <div className="profile">
+      <section className  ={styles.section}>
+        <div className={styles.profile}>
           <ProfileIcon />
-          <div className="name">
+          <div className={styles.name}>
             <h2>Kohta Ito@koh110</h2>
             <h3>Web Engineer</h3>
-            <div className="desc">
-              <p className="line">
+            <div className={styles.desc}>
+              <p className={styles.line}>
                 フロントエンド/サーバサイド/インフラ整備までWebならなんでも。
               </p>
-              <p className="line">
+              <p className={styles.line}>
                 技術を使って驚かせたり楽しませたりが好きです。
               </p>
             </div>
@@ -121,7 +28,7 @@ export const About: React.FC = () => {
         </div>
         <Accounts />
       </section>
-      <section className="skill section">
+      <section className={`${styles.skill} ${styles.section}`}>
         <h3>Skills</h3>
         <h4>I love Node.js and JavaScript!!</h4>
         <span>システム構築をSPA+Node.jsで行うのが得意です。</span>
@@ -156,8 +63,8 @@ export const About: React.FC = () => {
             { name: 'Java/Go/etc...', num: 5 }
           ]}
         />
-        <section className="others">
-          <div className="title">Others</div>
+        <section className={styles.others}>
+          <div className={styles.title}>Others</div>
           <HexagonWrap>
             <HexagonGroup>
               <Hexagon>Lighthouse</Hexagon>
@@ -214,7 +121,7 @@ export const About: React.FC = () => {
           </HexagonWrap>
         </section>
       </section>
-      <section className="section history">
+      <section className={`${styles.section} ${styles.history}`}>
         <History />
       </section>
     </>

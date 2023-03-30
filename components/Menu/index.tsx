@@ -1,16 +1,12 @@
 'use client'
-import React, { useContext } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import ToggleOnIcon from '@mui/icons-material/ToggleOn'
-import ToggleOffIcon from '@mui/icons-material/ToggleOff'
-import { DarkModeContext } from '../../context/darkMode'
-import styles from './styles.module.css'
+import ToggleSwitch from './ToggleSwitch'
+import styles from './index.module.css'
 
-const Menu = () => {
-  const [darkMode, setDarkMode] = useContext(DarkModeContext)
+export default function Menu () {
   const pathname = usePathname()
-  const selected = { opacity: 0.3 }
+  const selected = { opacity: 0.3 } as const
   const about = pathname === '/' ? selected : {}
   const work = pathname?.includes('/work') ? selected : {}
   const contact = pathname?.includes('/contact') ? selected : {}
@@ -18,8 +14,8 @@ const Menu = () => {
   return (
     <div className={styles.wrap}>
       <div className={styles.link_wrap}>
-        <Link href="/" as="/" legacyBehavior>
-          <a style={about}>About</a>
+        <Link href="/" as="/" style={about}>
+          About
         </Link>
       </div>
       <div className={styles.link_wrap}>
@@ -31,21 +27,17 @@ const Menu = () => {
           Blog
         </a>
       </div>
-      <div className={styles.link_wrap}>
-        <Link href="/work" as="/work" legacyBehavior>
-          <a style={work}>Work</a>
+      <div className={styles.link_wrap} style={work}>
+        <Link href="/work" as="/work">
+          Work
         </Link>
       </div>
-      <div className={styles.link_wrap}>
-        <Link href="/contact" as="/contact" legacyBehavior>
-          <a style={contact}>Contact</a>
+      <div className={styles.link_wrap} style={contact}>
+        <Link href="/contact" as="/contact">
+          Contact
         </Link>
       </div>
-      <div className={styles.dark_mode_toggle} onClick={() => setDarkMode(!darkMode)}>
-        {darkMode && <ToggleOnIcon />}
-        {!darkMode && <ToggleOffIcon />}
-      </div>
+      <ToggleSwitch />
     </div>
   );
 }
-export default Menu

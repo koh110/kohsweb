@@ -1,7 +1,6 @@
-import React from 'react'
-import { HistoryElement } from './HistoryElement'
+import HistoryElement from './HistoryElement'
 
-export const History: React.FC = (props) => {
+export default function History() {
   return (
     <div>
       <HistoryElement date="2022/07-">

@@ -74,6 +74,7 @@ h2 {
   --color-skill-5: #2b7489;
   --hexagon-width: 40px;
   --hexagon-height: calc(var(--hexagon-width) * 1.73);
+  --toggle-switch-width-size: 40px;
 }
 
 [data-theme='dark'] {

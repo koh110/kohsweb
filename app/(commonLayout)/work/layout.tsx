@@ -23,7 +23,7 @@ export default function WorkWrapper({ children }) {
         }}
       >
         <Link href="/work" passHref shallow style={work}>
-          work
+          Work
         </Link>
         <Link href="/work/log" passHref shallow style={log}>
           Log

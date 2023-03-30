@@ -1,5 +1,5 @@
-'use client'
-import { TimeLine, Props } from './TimeLine'
+import TimeLine, { type Props } from './TimeLine'
+import styles from './index.module.css'
 
 const logs: Props['log'][] = [
   {
@@ -231,19 +231,11 @@ const logs: Props['log'][] = [
   }
 ]
 
-const Log = () => {
+export default function Log() {
   return (
     <>
-      <style jsx>{`
-        h2 {
-          padding: 0 1em;
-        }
-        .logs {
-          container-type: inline-size;
-        }
-      `}</style>
-      <h2>Log</h2>
-      <div className="logs">
+      <h2 className={styles.title}>Log</h2>
+      <div className={styles.logs}>
         {logs.map((e, i) => {
           return <TimeLine log={e} index={i} key={`${i}-${e.title}`} />
         })}
@@ -251,4 +243,3 @@ const Log = () => {
     </>
   )
 }
-export default Log

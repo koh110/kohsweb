@@ -1,6 +1,6 @@
-import React from 'react'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
-import { Card } from '../Card'
+import Card from '../Card/index'
+import styles from './LogElement.module.css'
 
 export type Props = {
   type: 'log'
@@ -12,7 +12,32 @@ export type Props = {
   doc?: string
 }
 
-const Doc: React.FC<{ doc: string }> = (props) => {
+export default function LogElement(props: Props) {
+  return (
+    <Card>
+      <div className={styles.title}>
+        <a href={props.url} target="_blank" rel="noopener noreferrer">
+          {props.title}
+        </a>
+      </div>
+      <div className={styles.img_wrap}>
+        <a href={props.url} target="_blank" rel="noopener noreferrer">
+          <img src={props.img} />
+        </a>
+      </div>
+      <div className={styles.content}>
+        <Desc desc={props.desc} />
+      </div>
+      {props.doc && (
+        <div className={styles.footer}>
+          <Doc doc={props.doc} />
+        </div>
+      )}
+    </Card>
+  )
+}
+
+function Doc(props: { doc: string }) {
   return (
     <a
       className="doc"
@@ -27,55 +52,9 @@ const Doc: React.FC<{ doc: string }> = (props) => {
   )
 }
 
-const Desc: React.FC<{ desc: Props['desc'] }> = (props) => {
+function Desc(props: { desc: Props['desc'] }) {
   if (typeof props.desc === 'string') {
     return <p>{props.desc}</p>
   }
   return <>{props.desc}</>
-}
-
-export const LogElement: React.FC<Props> = (props) => {
-  return (
-    <Card>
-      <style jsx>{`
-        .title {
-          padding: 0.5rem 0;
-          font-weight: 400;
-          font-size: 0.875rem;
-        }
-        .img-wrap {
-          width: 100%;
-        }
-        .img-wrap img {
-          width: 100%;
-        }
-        .content {
-          flex: 1;
-          padding: 0;
-          color: var(--color-on-card);
-        }
-        .footer {
-          padding: 0 1rem 0.5rem;
-        }
-      `}</style>
-      <div className="title">
-        <a href={props.url} target="_blank" rel="noopener noreferrer">
-          {props.title}
-        </a>
-      </div>
-      <div className="img-wrap">
-        <a href={props.url} target="_blank" rel="noopener noreferrer">
-          <img src={props.img} />
-        </a>
-      </div>
-      <div className="content">
-        <Desc desc={props.desc} />
-      </div>
-      {props.doc && (
-        <div className="footer">
-          <Doc doc={props.doc} />
-        </div>
-      )}
-    </Card>
-  )
 }

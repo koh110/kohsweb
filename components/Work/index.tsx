@@ -1,8 +1,8 @@
 'use client'
 
-import { PageComponent } from '../../types/Component'
-import { WorkElement, Props as WorkProps } from './work'
-import { AmazonElement, Props as AmazonLogProps } from './AmazonElement'
+import WorkElement, { type Props as WorkProps } from './WorkElement'
+import AmazonElement, { type Props as AmazonLogProps } from './AmazonElement'
+import styles from './index.module.css'
 
 const npmImage = '/npm-logo-simplifed-with-white-space.png'
 
@@ -57,38 +57,18 @@ const softs: WorkProps[] = [
   }
 ]
 
-const Work: PageComponent = () => {
+export default function Work() {
   return (
     <>
-      <style jsx>{`
-        .soft {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          column-gap: 2rem;
-          row-gap: 2rem;
-        }
-        .book {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          column-gap: 2rem;
-          row-gap: 2rem;
-          container-type: inline-size;
-        }
-        h2 {
-          padding: 0 1rem;
-        }
-      `}</style>
       <div>
-        <h2>Book</h2>
-        <div className="book">
+        <h2 className={styles.title}>Book</h2>
+        <div className={styles.book}>
           {books.map((e, i) => {
             return <AmazonElement key={`${i}-${e.title}`} {...e} />
           })}
         </div>
         <h2>Software</h2>
-        <div className="soft">
+        <div className={styles.soft}>
           {softs.map((e, i) => (
             <WorkElement key={`${i}-${e.title}`} {...e} />
           ))}
@@ -97,4 +77,3 @@ const Work: PageComponent = () => {
     </>
   )
 }
-export default Work
