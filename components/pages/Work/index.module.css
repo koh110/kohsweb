@@ -1,0 +1,20 @@
+.soft {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 2rem;
+}
+
+.book {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 2rem;
+  container-type: inline-size;
+}
+
+.title {
+  padding: 0 1rem;
+}

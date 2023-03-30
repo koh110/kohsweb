@@ -1,0 +1,85 @@
+* {
+  font-feature-settings: 'palt';
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Noto Sans JP', '游ゴシック体', YuGothic,
+    '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック', 'Yu Gothic',
+    'Yu Gothic', sans-serif, 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo,
+    sans-serif;
+  font-size: 13pt;
+  background: var(--color-background-body);
+  color: var(--color-body);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 1em;
+}
+
+.fadeup {
+  animation: 0.5s fadeup;
+  opacity: 1;
+}
+.before-fadeup {
+  opacity: 0;
+}
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(5em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+}
+
+:root {
+  --color-background-body: #ffffff;
+  --color-body: #545454;
+  --color-border: rgb(211, 212, 228);
+  --color-link: #1da1f2;
+  --color-body-card: rgb(255, 255, 255);
+  --color-on-card: rgba(0, 0, 0, 0.7);
+  --color-timeline-bar: #d8e5ee;
+  --color-skill-1: #39bedc;
+  --color-skill-2: #fa6f84;
+  --color-skill-3: #6d4a9e;
+  --color-skill-4: #f1e05a;
+  --color-skill-5: #2b7489;
+  --hexagon-width: 40px;
+  --hexagon-height: calc(var(--hexagon-width) * 1.73);
+  --toggle-switch-width-size: 40px;
+}
+
+[data-theme='dark'] {
+  --color-background-body: rgb(26, 32, 39);
+  --color-body: #ffffff;
+  --color-body-card: #1e1e1e;
+  --color-on-card: rgba(255, 255, 255, 0.7);
+}

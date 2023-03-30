@@ -1,0 +1,42 @@
+.hexagon {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  background-color: #6cb2d3;
+  color: #ffffff;
+  font-weight: 600;
+}
+.hexagon,
+.hexagon::before,
+.hexagon::after {
+  width: var(--hexagon-width);
+  height: var(--hexagon-height);
+  border-radius: 12px/3px;
+}
+.hexagon::before {
+  background-color: inherit;
+  content: '';
+  position: absolute;
+  left: 0;
+  transform: rotate(-60deg);
+}
+.hexagon::after {
+  background-color: inherit;
+  content: '';
+  position: absolute;
+  left: 0;
+  transform: rotate(60deg);
+}
+.inner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-size: 0.7rem;
+  transform: translate(-50%, calc(var(--hexagon-height) / 2 - 50%));
+  z-index: 100;
+  max-width: calc(var(--hexagon-width) * 2);
+  transition: transform 0.3s;
+}
+.hexagon:hover .inner {
+  transform: translate(-50%, calc(var(--hexagon-height) / 2 - 50%)) scale(1.2);
+}

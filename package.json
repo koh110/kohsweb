@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:tsc": "tsc --noEmit",
     "build": "next build && next export",
     "start": "next start",
     "format": "prettier --write {pages,components,contexts,public,styles,types,lib}/**/*.{ts,tsx}",
@@ -16,12 +17,12 @@
     "@mui/material": "^5.11.4",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
-    "next": "^13.1.2",
+    "next": "^13.2.5-canary.21",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanitize.css": "^13.0.0",
-    "typescript": "^4.9.4"
+    "typescript": "^5.0.2"
   },
   "devDependencies": {
     "serve": "^14.1.2"
