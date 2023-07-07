@@ -1,4 +1,5 @@
 import './globals.css'
+import type { Metadata } from 'next'
 import GA from '../components/GA'
 
 export default function RootLayout({
@@ -18,6 +19,20 @@ export default function RootLayout({
   );
 }
 
-export const metadata = {
-  title: 'kohsweb'
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://koh.dev' : 'http://localhost:3000'),
+  title: 'kohsweb',
+  viewport: {
+    width: 'device-width'
+  },
+  openGraph: {
+    url: './',
+    type: 'website',
+    siteName: 'kohsweb'
+  },
+  twitter: {
+    card: 'summary',
+    site: '@koh110',
+    creator: '@koh110'
+  }
 }

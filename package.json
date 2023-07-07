@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build:tsc": "tsc --noEmit",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "start": "next start",
     "format": "prettier --write {pages,components,contexts,public,styles,types,lib}/**/*.{ts,tsx}",
     "serve": "serve out -l 3000"
