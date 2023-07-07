@@ -10,7 +10,7 @@ export default function About() {
   return (
     <>
       <Title>About</Title>
-      <section className  ={styles.section}>
+      <section className={styles.section}>
         <div className={styles.profile}>
           <ProfileIcon />
           <div className={styles.name}>

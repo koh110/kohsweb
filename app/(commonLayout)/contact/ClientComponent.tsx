@@ -6,7 +6,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline'
 
 export default function ClientComponent() {
   return (
-    <Stack>
+    <Stack className={styles.wrap}>
       <p className={styles.head}>依頼・ご相談等は下記メール、またはtwitterでご連絡ください。</p>
       <Stack direction="row" spacing={1}>
         <a className={styles.link} href="mailto:kohta110@gmail.com">
