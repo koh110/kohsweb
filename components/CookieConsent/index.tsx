@@ -2,12 +2,18 @@
 
 import { useState, type FormEventHandler } from 'react'
 import styles from './index.module.css'
+import IconButton from '@mui/material/IconButton'
+import ClearIcon from '@mui/icons-material/Clear'
 
 import { getConsentValue, saveGrantedConsentValue, CookieConsentValue } from '../../lib/cookieConsent'
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState(getConsentValue())
   const [tmpHiddenFlag, setTmpHiddenFlag] = useState<boolean>(false)
+
+  const onClose = () => {
+    setTmpHiddenFlag(true)
+  }
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
@@ -29,8 +35,15 @@ export default function CookieConsent() {
 
   return (
     <div className={styles.wrap} data-show-flag={showFlag}>
-      <span>当サイトでは分析のためにCookieを使用しています。</span>
-      <span>サイト維持のため、Cookie使用の同意にご協力をお願い致します。</span>
+      <div className={styles.close}>
+        <IconButton onClick={onClose}>
+          <ClearIcon fontSize="small" />
+        </IconButton>
+      </div>
+      <section className={styles.section}>
+        <p>当サイトでは分析のためにCookieを使用しています。</p>
+        <p>サイト維持のため、Cookie使用の同意にご協力をお願い致します。</p>
+      </section>
       <form onSubmit={onSubmit}>
         <div className={styles["button-field"]}>
           <button className={styles.button} type="submit">同意して閉じる</button>
