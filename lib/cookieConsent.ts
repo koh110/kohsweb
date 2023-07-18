@@ -19,7 +19,10 @@ export const isCookieConsentGranted = () => {
   if (typeof window === 'undefined') {
     throw Error('Cannot use on server side')
   }
-  return localStorage.getItem(StorageKey.consent) === CookieConsentValue['consent']['granted']
+  return (
+    localStorage.getItem(StorageKey.consent) ===
+    CookieConsentValue['consent']['granted']
+  )
 }
 
 export const getConsentValue = (): CookieConsentType['consent'] => {

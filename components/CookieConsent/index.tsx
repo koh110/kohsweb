@@ -5,7 +5,11 @@ import styles from './index.module.css'
 import IconButton from '@mui/material/IconButton'
 import ClearIcon from '@mui/icons-material/Clear'
 
-import { getConsentValue, saveGrantedConsentValue, CookieConsentValue } from '../../lib/cookieConsent'
+import {
+  getConsentValue,
+  saveGrantedConsentValue,
+  CookieConsentValue
+} from '../../lib/cookieConsent'
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState(getConsentValue())
@@ -20,7 +24,7 @@ export default function CookieConsent() {
     const granted = saveGrantedConsentValue()
     setConsent(granted)
     try {
-      (window as any).consentGranted()
+      ;(window as any).consentGranted()
     } catch (e) {
       console.error(e)
     }
@@ -45,8 +49,10 @@ export default function CookieConsent() {
         <p>サイト維持のため、Cookie使用の同意にご協力をお願い致します。</p>
       </section>
       <form onSubmit={onSubmit}>
-        <div className={styles["button-field"]}>
-          <button className={styles.button} type="submit">同意して閉じる</button>
+        <div className={styles['button-field']}>
+          <button className={styles.button} type="submit">
+            同意して閉じる
+          </button>
         </div>
       </form>
     </div>

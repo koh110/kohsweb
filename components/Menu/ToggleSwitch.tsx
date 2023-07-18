@@ -8,7 +8,11 @@ export default function ToggleSwitch() {
 
   return (
     <div className={styles.toggle_switch}>
-      <input type="checkbox" id="darkmode-toggle" onChange={() => setDarkMode(!darkMode)} />
+      <input
+        type="checkbox"
+        id="darkmode-toggle"
+        onChange={() => setDarkMode(!darkMode)}
+      />
       <label htmlFor="darkmode-toggle">
         <span className={styles.slider} />
       </label>

@@ -24,7 +24,9 @@ export default function Header() {
   return (
     <>
       <header style={titleStyle}>
-        <h1 className={end ? `${styles.title} ${styles.end}` : styles.title}>{title}</h1>
+        <h1 className={end ? `${styles.title} ${styles.end}` : styles.title}>
+          {title}
+        </h1>
       </header>
       <div className={styles.fixedHeader} style={fixedStyle}>
         <h3>{title}</h3>

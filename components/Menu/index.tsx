@@ -4,7 +4,7 @@ import Link from 'next/link'
 import ToggleSwitch from './ToggleSwitch'
 import styles from './index.module.css'
 
-export default function Menu () {
+export default function Menu() {
   const pathname = usePathname()
   const selected = { opacity: 0.3 } as const
   const about = pathname === '/' ? selected : {}
@@ -39,5 +39,5 @@ export default function Menu () {
       </div>
       <ToggleSwitch />
     </div>
-  );
+  )
 }
