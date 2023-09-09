@@ -36,7 +36,7 @@ export default function Skill(props: Props) {
       <div className={styles.skills}>
         {props.skills.map((e, i) => {
           return (
-            <div key={e.name} className="skill">
+            <div key={e.name} className={styles.skill}>
               <span>{e.name}</span>
             </div>
           )

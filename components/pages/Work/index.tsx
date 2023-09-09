@@ -27,6 +27,12 @@ const books: AmazonLogProps[] = [
 
 const softs: WorkProps[] = [
   {
+    url: 'https://github.com/koh110/tiny-type-api',
+    img: npmImage,
+    title: 'tiny-type-api',
+    desc: 'モノレポの時にAPI定義をclient/serverでうまく共有する方法を模索してできたライブラリ。tRPCからzodを抜いたようなシンプルで軽量あやつが欲しかった'
+  },
+  {
     url: 'https://mzm.dev',
     img: '/mzm.png',
     title: 'MZM',
