@@ -83,7 +83,6 @@
   padding: 2.3em 0.875rem;
 }
 .date time {
-  color: var(--color-on-card);
   font-size: 0.875rem;
 }
 @container (max-width: 700px) {

@@ -1,8 +1,16 @@
 .wrap {
+  padding: 1em;
+  border-radius: 12px;
+  container-type: inline-size;
+}
+
+.content {
   min-width: 200px;
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1em;
+  background: var(--color-body-card);
+  color: var(--color-on-card);
 }
 .head {
   font-size: 0.875rem;

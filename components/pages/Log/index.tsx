@@ -1,4 +1,5 @@
 import TimeLine, { type Props } from './TimeLine'
+import Title from '../../ContentTitle'
 import styles from './index.module.css'
 
 const logs: Props['log'][] = [
@@ -58,7 +59,7 @@ const logs: Props['log'][] = [
     type: 'log',
     title: 'Cybozu Frontend Monthly #9',
     url: 'https://cybozu.github.io/frontend-monthly/posts/2021-03/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/79/69/796994454f725bb78b68a577459a6288.png',
+    img: 'https://cybozu.github.io/frontend-monthly/_astro/header.dc458974_ZIMvDY.webp',
     date: '2021/03/30',
     desc: 'またゲストで呼んでいただいた。ちょうどSharedArrayBufferの件を追っていてCybouzuの方に聞いてみたいことがあったので持ち込み。'
   },
@@ -75,7 +76,7 @@ const logs: Props['log'][] = [
     type: 'log',
     title: 'Cybozu Frontend Monthly #4',
     url: 'https://cybozu.connpass.com/event/192820/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/4f/db/4fdb88e8a02cd395721bb06ed873a4a1.png',
+    img: 'https://cybozu.github.io/frontend-monthly/_astro/header.dc458974_ZIMvDY.webp',
     date: '2020/10/27',
     desc: 'ゲスト参加'
   },
@@ -91,7 +92,7 @@ const logs: Props['log'][] = [
     type: 'log',
     title: 'ヤフー福岡 Tech Meetup #5',
     url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/76/24/76243196f5fa8d10313054f4dfc44007.png',
+    img: 'https://media.connpass.com/thumbs/b5/fa/b5fa47e7a9ca4797a9ec31e69cd4a8f9.png',
     date: '2019/09/17',
     desc: '大規模Slackをセキュアに運用するためのTips'
   },
@@ -109,7 +110,7 @@ const logs: Props['log'][] = [
     title: '関西Node学園 6時限目',
     date: '2019/05/09',
     url: 'https://nodejs.connpass.com/event/126358/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/42/eb/42eb10e3566c37dd6f200049cd04b142.png',
+    img: 'https://media.connpass.com/thumbs/fb/48/fb484024d6023d77d8437d7852d173d1.png',
     desc: 'Node.jsに半年かけてコミットして得た知見について',
     doc: 'https://speakerdeck.com/koh110/nodejs-commit'
   },
@@ -134,7 +135,7 @@ const logs: Props['log'][] = [
     title: '市ヶ谷Geek★Night #18 フロントエンド、マジ卍',
     date: '2018/03/26',
     url: 'https://ichigayageek.connpass.com/event/87792/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/e1/5d/e15d8c9a06f047d8e37080de466685d5.png',
+    img: 'https://media.connpass.com/thumbs/ad/e6/ade6dfeefcef0978abddec6c5a8ccc8a.png',
     desc: 'Angularと私。自分がいなくなっても破綻しないようなフロントエンドを残すための試行錯誤について',
     doc: 'https://speakerdeck.com/koh110/angular-and-me'
   },
@@ -143,7 +144,7 @@ const logs: Props['log'][] = [
     title: 'Bonfire Frontend #1',
     date: '2018/03/26',
     url: 'https://yj-meetup.connpass.com/event/58718/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/d1/28/d1284989fa5d17e979cd69f88d62cef1.png',
+    img: 'https://media.connpass.com/thumbs/d5/4b/d54bd198ac0fdf4f803e4091e257e798.png',
     desc: '僕の考えるフロントエンドエンジニアの生き残り方。技術的な話というより考え方よりな話',
     doc: 'https://speakerdeck.com/koh110/bonfire-frontend-number-1'
   },
@@ -233,13 +234,13 @@ const logs: Props['log'][] = [
 
 export default function Log() {
   return (
-    <>
-      <h2 className={styles.title}>Log</h2>
+    <div className={styles.wrap}>
+      <Title>Log</Title>
       <div className={styles.logs}>
         {logs.map((e, i) => {
           return <TimeLine log={e} index={i} key={`${i}-${e.title}`} />
         })}
       </div>
-    </>
+    </div>
   )
 }

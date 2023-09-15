@@ -1,5 +1,11 @@
+.inner {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+}
+
 .title {
-  padding: 0.5rem 0;
+  padding: 0.5em 1em;
   font-weight: 400;
   font-size: 0.875rem;
 }
@@ -11,9 +17,9 @@
 }
 .content {
   flex: 1;
-  padding: 0;
+  padding: 0 1em ;
   color: var(--color-on-card);
 }
 .footer {
-  padding: 0 1rem 0.5rem;
+  padding: 0 1em 1em;
 }

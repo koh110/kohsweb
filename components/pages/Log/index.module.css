@@ -1,7 +1,10 @@
-.title {
-  padding: 0 1em;
+.wrap {
+  padding: 1em;
+  border-radius: 12px;
+  container-type: inline-size;
 }
 
 .logs {
+  padding: 1em 0;
   container-type: inline-size;
 }

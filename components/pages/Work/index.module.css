@@ -1,9 +1,13 @@
+.wrap {
+  padding: 1em;
+  border-radius: 12px;
+  container-type: inline-size;
+}
+
 .soft {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  column-gap: 2rem;
-  row-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(345px, auto));
+  gap: 2em;
 }
 
 .book {

@@ -1,3 +1,9 @@
+.wrap {
+  padding: 1em;
+  border-radius: 12px;
+  container-type: inline-size;
+}
+
 .section {
   display: flex;
   flex-direction: column;
@@ -6,6 +12,8 @@
   border: 1px solid var(--color-border);
   padding: 1em;
   container-type: inline-size;
+  background: var(--color-body-card);
+  color: var(--color-on-card);
 }
 .profile {
   display: flex;

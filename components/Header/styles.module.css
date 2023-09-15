@@ -6,11 +6,13 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  background: var(--color-header);
 }
 
 .title {
   position: relative;
   letter-spacing: 0.1em;
+  color: var(--color-on-header);
 }
 
 .title:after {

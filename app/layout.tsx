@@ -1,12 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import type { PropsWithChildren } from 'react'
 import GA from '../components/GA'
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: PropsWithChildren) {
   return (
     <html lang="ja">
       <head>

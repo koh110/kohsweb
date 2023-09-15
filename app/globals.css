@@ -21,7 +21,6 @@ body {
     'Yu Gothic', sans-serif, 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo,
     sans-serif;
   font-size: 13pt;
-  background: var(--color-background-body);
   color: var(--color-body);
 }
 
@@ -60,7 +59,11 @@ h2 {
 }
 
 :root {
-  --color-background-body: #ffffff;
+  --color-base: rgba(255, 255, 255, 1);
+  --color-on-base: rgba(42, 42, 42, 1);
+  --color-background-body: rgb(223, 235, 247);
+  --color-on-header: rgba(255, 255, 255, 1);
+  --color-header: rgba(42, 42, 42, 1);
   --color-body: #545454;
   --color-border: rgb(211, 212, 228);
   --color-link: #1da1f2;
@@ -81,7 +84,7 @@ h2 {
 }
 
 [data-theme='dark'] {
-  --color-background-body: rgb(26, 32, 39);
+  --color-background-body: rgba(42, 42, 42, 1);
   --color-body: #ffffff;
   --color-body-card: #1e1e1e;
   --color-on-card: rgba(255, 255, 255, 0.7);

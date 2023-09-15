@@ -8,7 +8,7 @@ import History from './History'
 
 export default function About() {
   return (
-    <>
+    <div className={styles.wrap}>
       <Title>About</Title>
       <section className={styles.section}>
         <div className={styles.profile}>
@@ -46,21 +46,21 @@ export default function About() {
           ]}
         />
         <Skill
+          title="Backend"
+          skills={[
+            { name: 'Node.js', num: 100 },
+            { name: 'express', num: 60 },
+            { name: 'Next.js', num: 30 },
+            { name: 'PHP', num: 10 },
+            { name: 'Java/Go/etc...', num: 5 }
+          ]}
+        />
+        <Skill
           title="Design"
           skills={[
             { name: 'HTML/CSS/CSS3', num: 50 },
             { name: 'MUI', num: 30 },
             { name: 'Sass', num: 20 }
-          ]}
-        />
-        <Skill
-          title="Backend"
-          skills={[
-            { name: 'Node.js', num: 80 },
-            { name: 'express', num: 60 },
-            { name: 'Next.js', num: 30 },
-            { name: 'PHP', num: 10 },
-            { name: 'Java/Go/etc...', num: 5 }
           ]}
         />
         <section className={styles.others}>
@@ -124,6 +124,6 @@ export default function About() {
       <section className={`${styles.section} ${styles.history}`}>
         <History />
       </section>
-    </>
+    </div>
   )
 }

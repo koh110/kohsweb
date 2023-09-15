@@ -3,6 +3,7 @@
   display: flex;
   max-width: 500px;
   background: var(--color-body-card);
+  color: var(--color-on-card);
   border-radius: 8px;
 }
 .title {
@@ -11,7 +12,7 @@
   font-size: 0.875rem;
 }
 .link {
-  max-widht: 120px;
+  max-width: 120px;
   place-self: center;
 }
 .body {

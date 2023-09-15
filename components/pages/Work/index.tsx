@@ -1,5 +1,6 @@
 'use client'
 
+import Title from '../../ContentTitle'
 import WorkElement, { type Props as WorkProps } from './WorkElement'
 import AmazonElement, { type Props as AmazonLogProps } from './AmazonElement'
 import styles from './index.module.css'
@@ -65,7 +66,8 @@ const softs: WorkProps[] = [
 
 export default function Work() {
   return (
-    <>
+    <div className={styles.wrap}>
+      <Title>Work</Title>
       <div>
         <h2 className={styles.title}>Book</h2>
         <div className={styles.book}>
@@ -80,6 +82,6 @@ export default function Work() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
