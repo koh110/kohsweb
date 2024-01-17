@@ -15,6 +15,10 @@
   max-width: 120px;
   place-self: center;
 }
+.link img {
+  max-width: 120px;
+  aspect-ratio: 1058 / 1500;
+}
 .body {
   display: flex;
   flex-direction: column;
