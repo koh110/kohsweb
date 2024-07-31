@@ -6,6 +6,17 @@ export default function History() {
       <HistoryElement date="2022/07-">
         <p>RPGテック合同会社に参画</p>
         <p>スタートアップや新規事業の開発やアドバイザー業務</p>
+        <ul>
+          <li>
+            <a
+              href="https://amzn.to/4b2hrIQ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              実践Node.js入門発売
+            </a>
+          </li>
+        </ul>
       </HistoryElement>
       <HistoryElement date="2021-2022/07">
         <p>CTO直下の部署に移動</p>

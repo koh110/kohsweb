@@ -12,10 +12,16 @@ const books: AmazonLogProps[] = [
     type: 'amazon',
     title: '実践Node.js入門',
     date: '2023/01/26',
-    desc: 'Node.jsの入門書です。基礎知識、環境構築、重要文法、非同期、CLIツール開発、Expressを用いたサーバーサイドの開発やフロントエンド（React）との連携などNode.jsの全体像が学べます。',
+    desc: [
+      'Node.jsの入門書です。',
+      '基礎知識、環境構築、重要文法、非同期、CLIツール開発、Expressを用いたサーバーサイドの開発やフロントエンド（React）との連携などNode.jsの全体像が学べます。'
+    ].join(''),
     img: '/nodejs-book.jpg',
     url: `https://amzn.to/4b2hrIQ`,
-    dangerouslySetInnerHTML: `<a href="https://gihyo.jp/book/2023/978-4-297-12956-9" target="_blank">https://gihyo.jp/book/2023/978-4-297-12956-9</a>`
+    dangerouslySetInnerHTML: [
+      `<div><a href="https://gihyo.jp/book/2023/978-4-297-12956-9" target="_blank">https://gihyo.jp/book/2023/978-4-297-12956-9</a></div>`,
+      `<div style="margin-top: 1em;"><a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B5038538340" target="_blank">韓国語版</a></div>`,
+    ].join('')
   },
   {
     type: 'amazon',
@@ -33,7 +39,7 @@ const softs: WorkProps[] = [
     url: 'https://github.com/koh110/tiny-type-api',
     img: npmImage,
     title: 'tiny-type-api',
-    desc: 'モノレポの時にAPI定義をclient/serverでうまく共有する方法を模索してできたライブラリ。tRPCからzodを抜いたようなシンプルで軽量あやつが欲しかった'
+    desc: 'モノレポの時にAPI定義をclient/serverでうまく共有する方法を模索してできたライブラリ。tRPCからzodを抜いたようなシンプルで軽量なものが欲しかった'
   },
   {
     url: 'https://mzm.dev',
