@@ -5,16 +5,7 @@
   align-items: center;
   margin: 0 auto;
   container: layout / inline-size;
-  background: var(--color-base);
-}
-
-.layout::before {
-  position: absolute;
-  top: 0;
-  content: '';
-  height: 100%;
-  width: 100vw;
-  background: linear-gradient(90deg, rgba(75, 108, 183, 1) 0%, rgba(24, 40, 72, 1) 100%);
+  background: linear-gradient(90deg, rgba(70, 120, 231, 1) 0%, rgba(151, 3, 146, 1) 100%);
 }
 
 .contents {
@@ -24,7 +15,7 @@
   width: 100%;
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
-}
+} 
 
 .contents_wrapper {
   width: 100%;
