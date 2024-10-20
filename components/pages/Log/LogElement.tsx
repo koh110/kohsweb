@@ -21,11 +21,13 @@ export default function LogElement(props: Props) {
             {props.title}
           </a>
         </div>
-        <div className={styles.img_wrap}>
-          <a href={props.url} target="_blank" rel="noopener noreferrer">
-            <img src={props.img} />
-          </a>
-        </div>
+        {props.img && (
+          <div className={styles.img_wrap}>
+            <a href={props.url} target="_blank" rel="noopener noreferrer">
+              <img src={props.img} />
+            </a>
+          </div>
+        )}
         <div className={styles.content}>
           <Desc desc={props.desc} />
         </div>

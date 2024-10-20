@@ -5,6 +5,22 @@ import styles from './index.module.css'
 const logs: Props['log'][] = [
   {
     type: 'log',
+    title: 'どこまで安定してる？Express/NestJS/Hono運用者に聞く バックエンドTSのイマ',
+    url: 'https://offers-jp.connpass.com/event/331066/',
+    img: 'https://media.connpass.com/thumbs/af/69/af69403518fc14ec52fa47272becd51e.png',
+    date: '2024/10/22',
+    desc: 'TypeScript + Node.jsのバックエンド開発について'
+  },
+  {
+    type: 'log',
+    title: '法政大学リクエスト集中講義（Node.js/JavaScript）',
+    url: 'https://syllabus.hosei.ac.jp/web/preview.php?no_id=2500188&nendo=2024&gakubueng=AK',
+    img: '',
+    date: '2024/08',
+    desc: 'Node.js/JavaScriptの基礎知識や動作の仕組み等を学ぶ講義'
+  },
+  {
+    type: 'log',
     title: 'Node学園41時限目 書籍について',
     url: 'https://nodejs.connpass.com/event/275061/',
     img: 'https://res.cloudinary.com/techfeed/image/upload/w_600,h_315,c_fill/v1649221766/assets/images/techfeed-conference-2022.png',
@@ -59,7 +75,7 @@ const logs: Props['log'][] = [
     type: 'log',
     title: 'Cybozu Frontend Monthly #9',
     url: 'https://cybozu.github.io/frontend-monthly/posts/2021-03/',
-    img: 'https://cybozu.github.io/frontend-monthly/_astro/header.dc458974_ZIMvDY.webp',
+    img: 'https://cybozu.github.io/frontend-monthly/_astro/header.fbc93836_1LeOhz.webp',
     date: '2021/03/30',
     desc: 'またゲストで呼んでいただいた。ちょうどSharedArrayBufferの件を追っていてCybouzuの方に聞いてみたいことがあったので持ち込み。'
   },
@@ -76,7 +92,7 @@ const logs: Props['log'][] = [
     type: 'log',
     title: 'Cybozu Frontend Monthly #4',
     url: 'https://cybozu.connpass.com/event/192820/',
-    img: 'https://cybozu.github.io/frontend-monthly/_astro/header.dc458974_ZIMvDY.webp',
+    img: 'https://media.connpass.com/thumbs/ca/cc/cacc78e38914c16702b30be12fe48b3c.png',
     date: '2020/10/27',
     desc: 'ゲスト参加'
   },
