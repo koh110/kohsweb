@@ -9,7 +9,8 @@ const logs: Props['log'][] = [
     url: 'https://offers-jp.connpass.com/event/331066/',
     img: 'https://media.connpass.com/thumbs/af/69/af69403518fc14ec52fa47272becd51e.png',
     date: '2024/10/22',
-    desc: 'TypeScript + Node.jsのバックエンド開発について'
+    desc: 'TypeScriptバックエンドの活かし方',
+    doc: 'https://docs.google.com/presentation/d/1pNq6c8J_pQjXmzl97fluOOJ2m0XkKPBp9QC5LV6_FiE/edit?usp=sharing'
   },
   {
     type: 'log',
