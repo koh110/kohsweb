@@ -9,17 +9,31 @@
   font-weight: 400;
   font-size: 0.875rem;
 }
+
 .img_wrap {
   width: 100%;
 }
+
 .img_wrap img {
   width: 100%;
 }
+
 .content {
   flex: 1;
   padding: 0 1em ;
   color: var(--color-on-card);
 }
+
 .footer {
   padding: 0 1em 1em;
+}
+
+.footer a {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+}
+
+.footer a span {
+  margin-left: 0.3em;
 }

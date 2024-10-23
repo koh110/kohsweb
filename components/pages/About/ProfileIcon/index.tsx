@@ -1,11 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import RssFeedIcon from '@mui/icons-material/RssFeed'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import styles from './index.module.css'
+import Icon from '../../../Icon'
 
 export default function ProfileIcon() {
   const [animationClass, setAnimationClass] = useState<string>('')
@@ -27,7 +23,7 @@ export default function ProfileIcon() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <RssFeedIcon fontSize="medium" />
+        <Icon iconName="ri-rss-line" size="medium" />
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
@@ -35,7 +31,7 @@ export default function ProfileIcon() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <TwitterIcon fontSize="medium" />
+        <Icon iconName="ri-twitter-x-line" size="medium" />
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
@@ -43,7 +39,7 @@ export default function ProfileIcon() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <GitHubIcon fontSize="medium" />
+        <Icon iconName="ri-github-fill" size="medium" />
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
@@ -51,7 +47,7 @@ export default function ProfileIcon() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <FacebookIcon fontSize="medium" />
+        <Icon iconName="ri-facebook-circle-fill" size="medium" />
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
@@ -59,7 +55,7 @@ export default function ProfileIcon() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <LinkedInIcon fontSize="medium" />
+        <Icon iconName="ri-linkedin-box-fill" size="medium" />
       </a>
     </div>
   )

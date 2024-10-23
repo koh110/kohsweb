@@ -1,5 +1,6 @@
 import 'sanitize.css'
-import { type PropsWithChildren, type ReactNode } from 'react'
+import 'remixicon/fonts/remixicon.css'
+import { type PropsWithChildren } from 'react'
 import styles from './styles.module.css'
 import Providers from '../../context/Providers'
 import Header from '../../components/Header'

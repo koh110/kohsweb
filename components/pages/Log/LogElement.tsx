@@ -1,5 +1,5 @@
-import AttachFileIcon from '@mui/icons-material/AttachFile'
 import Card from '../../Card/index'
+import Icon from '../../Icon/index'
 import styles from './LogElement.module.css'
 
 export type Props = {
@@ -48,10 +48,9 @@ function Doc(props: { doc: string }) {
       href={props.doc}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ fontSize: '0.875rem', display: 'flex' }}
     >
-      <AttachFileIcon fontSize="small" />
-      資料
+      <Icon iconName="ri-attachment-2" />
+      <span>資料</span>
     </a>
   )
 }

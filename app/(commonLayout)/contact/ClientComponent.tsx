@@ -1,16 +1,14 @@
 'use client'
 import styles from './styles.module.css'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import Stack from '@mui/material/Stack'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
+import Icon from '../../../components/Icon'
 
 export default function ClientComponent() {
   return (
-    <Stack className={styles.content}>
+    <div className={styles.content}>
       <p className={styles.head}>依頼・ご相談等は下記メール、またはtwitterでご連絡ください。</p>
-      <Stack direction="row" spacing={1}>
+      <div className={styles.account}>
         <a className={styles.link} href="mailto:kohta110@gmail.com">
-          <MailOutlineIcon fontSize="small" />
+          <Icon iconName="ri-mail-line" />
           mail
         </a>
         <a
@@ -19,10 +17,10 @@ export default function ClientComponent() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <TwitterIcon fontSize="small" />
+          <Icon iconName="ri-twitter-x-line" />
           @koh110
         </a>
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   )
 }

@@ -2,8 +2,7 @@
 
 import { useState, type FormEventHandler } from 'react'
 import styles from './index.module.css'
-import IconButton from '@mui/material/IconButton'
-import ClearIcon from '@mui/icons-material/Clear'
+import Icon from '../Icon'
 
 import {
   getConsentValue,
@@ -40,9 +39,9 @@ export default function CookieConsent() {
   return (
     <div className={styles.wrap} data-show-flag={showFlag}>
       <div className={styles.close}>
-        <IconButton onClick={onClose}>
-          <ClearIcon fontSize="small" />
-        </IconButton>
+        <button className={styles['icon-button']} onClick={onClose}>
+          <Icon iconName="ri-close-line" style={{ color: 'var(--color-body)' }} />
+        </button>
       </div>
       <section className={styles.section}>
         <p>当サイトでは分析のためにCookieを使用しています。</p>
