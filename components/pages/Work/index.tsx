@@ -7,33 +7,6 @@ import styles from './index.module.css'
 
 const npmImage = '/npm-logo-simplifed-with-white-space.png'
 
-const books: AmazonLogProps[] = [
-  {
-    type: 'amazon',
-    title: '実践Node.js入門',
-    date: '2023/01/26',
-    desc: [
-      'Node.jsの入門書です。',
-      '基礎知識、環境構築、重要文法、非同期、CLIツール開発、Expressを用いたサーバーサイドの開発やフロントエンド（React）との連携などNode.jsの全体像が学べます。'
-    ].join(''),
-    img: '/nodejs-book.jpg',
-    url: `https://amzn.to/4b2hrIQ`,
-    dangerouslySetInnerHTML: [
-      `<div><a href="https://gihyo.jp/book/2023/978-4-297-12956-9" target="_blank">https://gihyo.jp/book/2023/978-4-297-12956-9</a></div>`,
-      `<div style="margin-top: 1em;"><a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B5038538340" target="_blank">韓国語版</a></div>`,
-    ].join('')
-  },
-  {
-    type: 'amazon',
-    title: '動かして学ぶ! Slackアプリ開発入門',
-    date: '2020/12/14',
-    desc: 'SlackSDKを利用したアプリの作成方法についての解説本。\n業務フローの例に合わせてSlackAPIとサンプルコードを一緒に追っていく形式。',
-    img: '/slack-book.jpg',
-    url: `https://amzn.to/48zE5qE`,
-    dangerouslySetInnerHTML: `<a href="https://www.shoeisha.co.jp/book/detail/9784798164748" target="_blank">https://www.shoeisha.co.jp/book/detail/9784798164748</a>`
-  }
-]
-
 const softs: WorkProps[] = [
   {
     url: 'https://github.com/koh110/tiny-type-api',
@@ -79,9 +52,32 @@ export default function Work() {
       <div>
         <h2 className={styles.title}>Book</h2>
         <div className={styles.book}>
-          {books.map((e, i) => {
-            return <AmazonElement key={`${i}-${e.title}`} {...e} />
-          })}
+          <AmazonElement
+            title="実践Node.js入門"
+            date="2023/01/26"
+            desc={[
+              'Node.jsの入門書です。',
+              '基礎知識、環境構築、重要文法、非同期、CLIツール開発、Expressを用いたサーバーサイドの開発やフロントエンド（React）との連携などNode.jsの全体像が学べます。'
+            ].join('')}
+            img="/nodejs-book.jpg"
+            url="https://amzn.to/4b2hrIQ"
+          >
+            <div>
+              <a href="https://gihyo.jp/book/2023/978-4-297-12956-9" target="_blank">https://gihyo.jp/book/2023/978-4-297-12956-9</a>
+            </div>
+            <div style={{ marginTop: '0.5em' }}>
+              <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B5038538340" target="_blank">韓国語版</a>
+            </div>
+          </AmazonElement>
+          <AmazonElement
+            title="動かして学ぶ! Slackアプリ開発入門"
+            date="2020/12/14"
+            desc={['SlackSDKを利用したアプリの作成方法についての解説本。業務フローの例に合わせてSlackAPIとサンプルコードを一緒に追っていく形式。'].join('')}
+            img="/slack-book.jpg"
+            url="https://amzn.to/48zE5qE"
+          >
+            <a href="https://www.shoeisha.co.jp/book/detail/9784798164748" target="_blank">https://www.shoeisha.co.jp/book/detail/9784798164748</a>
+          </AmazonElement>
         </div>
         <h2>Software</h2>
         <div className={styles.soft}>

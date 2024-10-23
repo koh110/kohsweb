@@ -11,6 +11,7 @@ const title = 'Work'
 
 export const metadata: Metadata = {
   title,
+  description: 'koh110\'s work',
   openGraph: {
     title
   }

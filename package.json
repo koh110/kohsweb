@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack --turbo",
     "build:tsc": "tsc --noEmit",
     "build": "NODE_ENV=production next build",
+    "analyze": "ANALYZE=true NODE_ENV=production next build",
     "start": "next start",
     "format": "prettier --write {pages,components,contexts,public,styles,types,lib}/**/*.{ts,tsx}",
     "serve": "serve out -l 3000"
@@ -22,6 +23,7 @@
     "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^14.2.16",
     "serve": "^14.1.2"
   },
   "overrides": {

@@ -50,9 +50,9 @@ export default function About() {
           skills={[
             { name: 'Node.js', num: 100 },
             { name: 'express', num: 60 },
-            { name: 'Next.js', num: 30 },
-            { name: 'PHP', num: 10 },
-            { name: 'Java/Go/etc...', num: 5 }
+            { name: 'Hono', num: 20 },
+            { name: 'Next.js', num: 20 },
+            { name: 'PHP/Ruby/Java/Go/etc...', num: 5 }
           ]}
         />
         <Skill

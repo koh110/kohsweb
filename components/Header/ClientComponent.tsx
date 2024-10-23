@@ -29,7 +29,7 @@ export default function Header() {
         </h1>
       </header>
       <div className={styles.fixedHeader} style={fixedStyle}>
-        <h3>{title}</h3>
+        <h1>{title}</h1>
       </div>
     </>
   )

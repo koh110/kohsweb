@@ -30,7 +30,7 @@
 }
 
 .fixedHeader {
-  background-color: var(--color-background-body);
+  background: var(--color-header);
   opacity: 0;
   height: 2em;
   display: flex;
@@ -41,4 +41,10 @@
   width: 100%;
   transition: opacity 0.3s ease;
   z-index: 100;
+}
+
+.fixedHeader h1 {
+  color: var(--color-on-header);
+  font-size: 1.5em;
+  font-weight: 100;
 }

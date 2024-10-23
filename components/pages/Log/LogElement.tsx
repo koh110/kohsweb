@@ -23,8 +23,8 @@ export default function LogElement(props: Props) {
         </div>
         {props.img && (
           <div className={styles.img_wrap}>
-            <a href={props.url} target="_blank" rel="noopener noreferrer">
-              <img src={props.img} />
+            <a href={props.url} target="_blank" rel="noopener noreferrer" aria-label={props.title}>
+              <img src={props.img} alt={props.title} />
             </a>
           </div>
         )}

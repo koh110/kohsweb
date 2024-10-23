@@ -63,6 +63,9 @@
 }
 .body :global(ul) {
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 .date {
   margin-bottom: 0.5em;

@@ -16,6 +16,7 @@ const title = 'Contact'
 
 export const metadata: Metadata = {
   title,
+  description: 'contact form',
   openGraph: {
     title
   }

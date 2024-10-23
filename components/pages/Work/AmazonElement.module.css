@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 1rem;
+  padding: 1em;
   display: flex;
   max-width: 500px;
   background: var(--color-body-card);
@@ -7,13 +7,16 @@
   border-radius: 8px;
 }
 .title {
-  padding: 0 1rem;
+  padding: 0 1em;
   font-weight: 400;
   font-size: 0.875rem;
 }
 .link {
   max-width: 120px;
   place-self: center;
+}
+.link a {
+  display: flex;
 }
 .link img {
   max-width: 120px;
@@ -22,15 +25,14 @@
 .body {
   display: flex;
   flex-direction: column;
-  max-width: calc(500px - 120px - 1rem);
+  max-width: calc(500px - 120px - 1.5em);
 }
 .content {
-  margin-top: 0.5em;
   flex: 1;
 }
 .content p {
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 0 0 1em;
   color: var(--color-on-card);
   font-size: 0.875rem;
 }

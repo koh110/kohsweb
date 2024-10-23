@@ -39,7 +39,7 @@ export default function CookieConsent() {
   return (
     <div className={styles.wrap} data-show-flag={showFlag}>
       <div className={styles.close}>
-        <button className={styles['icon-button']} onClick={onClose}>
+        <button className={styles['icon-button']} aria-label="close button" onClick={onClose}>
           <Icon iconName="ri-close-line" style={{ color: 'var(--color-body)' }} />
         </button>
       </div>

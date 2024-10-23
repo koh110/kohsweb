@@ -10,6 +10,7 @@ export default function Index() {
 const title = 'About'
 export const metadata: Metadata = {
   title,
+  description: 'About koh110',
   openGraph: {
     title
   }

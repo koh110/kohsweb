@@ -19,6 +19,7 @@ export default function ProfileIcon() {
       </div>
       <a
         className={`${styles.account_icon} ${animationClass}`}
+        aria-label="blog"
         href="https://blog.koh.dev/"
         target="_blank"
         rel="noopener noreferrer"
@@ -27,6 +28,7 @@ export default function ProfileIcon() {
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
+        aria-label="X"
         href="https://twitter.com/koh110"
         target="_blank"
         rel="noopener noreferrer"
@@ -35,6 +37,7 @@ export default function ProfileIcon() {
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
+        aria-label="github"
         href="https://github.com/koh110"
         target="_blank"
         rel="noopener noreferrer"
@@ -43,6 +46,7 @@ export default function ProfileIcon() {
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
+        aria-label="facebook"
         href="https://www.facebook.com/kohta110"
         target="_blank"
         rel="noopener noreferrer"
@@ -51,6 +55,7 @@ export default function ProfileIcon() {
       </a>
       <a
         className={`${styles.account_icon} ${animationClass}`}
+        aria-label="linkedin"
         href="https://jp.linkedin.com/in/ito-kohta-24078410b"
         target="_blank"
         rel="noopener noreferrer"
