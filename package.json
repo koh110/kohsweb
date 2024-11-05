@@ -12,18 +12,18 @@
     "serve": "serve out -l 3000"
   },
   "dependencies": {
-    "@types/node": "^22.7.8",
+    "@types/node": "^22.9.0",
     "@types/react": "npm:types-react@19.0.0-rc.1",
-    "next": "15.0.1",
+    "next": "15.0.2",
     "prettier": "^3.0.0",
-    "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021",
-    "remixicon": "^4.4.0",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "remixicon": "^4.5.0",
     "sanitize.css": "^13.0.0",
     "typescript": "^5.0.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.16",
+    "@next/bundle-analyzer": "15.0.2",
     "serve": "^14.1.2"
   },
   "overrides": {
