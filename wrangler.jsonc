@@ -1,0 +1,7 @@
+{
+  "name": "kohsweb-worker",
+  "compatibility_date": "2025-04-02",
+  "assets": {
+    "directory": "./out/"
+  }
+}
