@@ -10,9 +10,12 @@
     "start": "next start",
     "format": "prettier --write {pages,components,contexts,public,styles,types,lib}/**/*.{ts,tsx}",
     "serve": "serve out -l 3000",
-    "deploy": "wrangler deploy"
+    "deploy": "opennextjs-cloudflare build && wrangler deploy --minify",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.4.0",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.3",
     "next": "^15.3.1",
