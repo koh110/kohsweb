@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import Title from '../../../components/ContentTitle'
-import Client from './ClientComponent'
+import Content from './_components/Content'
 import styles from './styles.module.css'
 
 export default function Contact() {
   return (
     <div className={styles.wrap}>
       <Title>Contact</Title>
-      <Client />
+      <Content />
     </div>
   )
 }

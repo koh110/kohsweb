@@ -15,10 +15,5 @@ export default function Icon({ iconName, style, size }: Props) {
     classNames.unshift(styles[size])
   }
 
-  return (
-    <i
-      className={classNames.join(' ')}
-      style={style}
-    ></i>
-  )
+  return <i className={classNames.join(' ')} style={style}></i>
 }

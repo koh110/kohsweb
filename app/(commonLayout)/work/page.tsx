@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import WorkComponent from '../../../components/pages/Work'
+import WorkComponent from './_components/index'
 
 export default function Work() {
   return (

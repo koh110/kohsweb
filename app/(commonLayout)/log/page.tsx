@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import LogComponent from '../../../components/pages/Log'
+import LogComponent from './_components/index'
 
 export default function Log() {
   return (

@@ -4,14 +4,17 @@ import { useAnimation } from './useAnimation'
 export const useFadeup = () => {
   const { addClassnameFlag, intersectionRef } = useAnimation()
   const [classnames, setClassnames] = useState<string[]>([])
+  const [prevAddClassnameFlag, setPrevAddClassnameFlag] =
+    useState(addClassnameFlag)
 
-  useEffect(() => {
+  if (prevAddClassnameFlag !== addClassnameFlag) {
+    setPrevAddClassnameFlag(addClassnameFlag)
     if (addClassnameFlag) {
       setClassnames(['fadeup'])
     } else {
       setClassnames(['before-fadeup'])
     }
-  }, [addClassnameFlag])
+  }
 
   return {
     classnames,

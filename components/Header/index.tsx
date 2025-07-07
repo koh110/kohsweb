@@ -1,10 +1,10 @@
 import styles from './styles.module.css'
-import ClientComponent from './ClientComponent'
+import HeaderInner from './HeaderInner.client'
 
 export default function Header() {
   return (
     <div className={styles.header}>
-      <ClientComponent />
+      <HeaderInner />
     </div>
   )
 }

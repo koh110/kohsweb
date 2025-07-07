@@ -1,0 +1,41 @@
+.wrap {
+  --radius: 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-rows: 1fr;
+  container: menu-wrap / inline-size;
+}
+
+@container (max-width: 500px) {
+  .wrap {
+    grid-template-rows: 1fr 1fr;
+  }
+  .inner {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.wrap::before, .wrap::after {
+  content: '';
+  width: 100%;
+}
+
+.inner {
+  padding: 0 calc(2 * var(--radius));
+  flex: 1;
+  min-width: min(980px, 90cqw);
+  display: flex;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.toggele {
+  padding: 0 1em 1em 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: var(--color-header);
+}
