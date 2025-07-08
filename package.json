@@ -10,7 +10,8 @@
     "start": "next start",
     "format": "prettier --write {pages,components,contexts,public,styles,types,lib}/**/*.{ts,tsx}",
     "serve": "serve out -l 3000",
-    "deploy": "opennextjs-cloudflare build && wrangler deploy --minify",
+    "predeploy": "opennextjs-cloudflare build",
+    "deploy": "wrangler deploy --minify",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
   },

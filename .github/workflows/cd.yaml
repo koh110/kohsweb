@@ -17,9 +17,11 @@ jobs:
           cache: 'npm'
       - name: build
         run: npm ci && npm run build
+      - name:
+        run: npm run predeploy
       - name: Deploy Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: deploy --minify
