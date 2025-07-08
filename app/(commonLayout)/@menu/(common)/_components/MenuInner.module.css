@@ -1,0 +1,88 @@
+
+.menu {
+  --menu-length: 5;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--menu-length), 1fr);
+  grid-template-rows: 1fr;
+  container: menu / inline-size;
+}
+
+.menu_item {
+  container: menu-item / inline-size;
+}
+
+.menu_item a {
+  color: var(--color-on-header);
+  padding: 1em 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-size: min(1rem, 80cqw);
+}
+
+.selector {
+  position: absolute;
+  height: 100%;
+  width: calc(100% / 5 - var(--radius) / 2);
+  transition: all 0.3s;
+}
+
+.selector::before, .selector::after {
+  content: '';
+  background: var(--color-header);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(var(--menu-length));
+}
+
+.selector::before {
+  left: calc(-100% - var(--radius));
+  background: var(--color-header);
+  transform-origin: right;
+}
+
+.selector::after {
+  right: calc(-100% - var(--radius));
+  transform-origin: left;
+}
+
+.selector_inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.selector_inner::before, .selector_inner::after {
+  position: absolute;
+  content: '';
+  width: calc(var(--radius) + 2px);
+  height: 100%;
+  background: var(--color-header);
+}
+
+.selector_inner::before {
+  left: calc(-1 * var(--radius) - 2px);
+  border-bottom-right-radius: var(--radius);
+}
+
+.selector_inner::after {
+  right: calc(-1 * var(--radius) - 2px);
+  border-bottom-left-radius: var(--radius);
+}
+
+.selector_inner span {
+  flex: 1;
+}
+
+.selector_inner span:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: var(--radius);
+  border-top-left-radius: var(--radius);
+  box-shadow: 0 calc(-1 * var(--radius)) 0 0 var(--color-header);
+}

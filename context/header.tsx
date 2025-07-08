@@ -21,20 +21,19 @@ export const HeaderProvider = ({ children }) => {
   const [title, setTitle] = useState('')
   const [end, setEnd] = useState(false)
 
-  let timer: number | null = null
-  const typing = () => {
-    timer = window.setTimeout(() => {
-      const renew = TITLE.slice(0, title.length + 1)
-      setTitle(renew)
-      if (renew.length !== TITLE.length) {
-        typing()
-      } else {
-        setEnd(true)
-      }
-    }, 200)
-  }
-
   useEffect(() => {
+    let timer: number | null = null
+    const typing = () => {
+      timer = window.setTimeout(() => {
+        const renew = TITLE.slice(0, title.length + 1)
+        setTitle(renew)
+        if (renew.length !== TITLE.length) {
+          typing()
+        } else {
+          setEnd(true)
+        }
+      }, 200)
+    }
     typing()
 
     return () => {

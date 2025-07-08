@@ -1,5 +1,3 @@
-'use client'
-
 import Script from 'next/script'
 
 // https://developers.google.com/tag-platform/devguides/consent?hl=ja#implementation_example

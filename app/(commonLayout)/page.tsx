@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import About from '../../components/pages/About'
+import About from './_components/index'
 
 export default function Index() {
   return (

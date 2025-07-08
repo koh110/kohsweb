@@ -12,7 +12,7 @@ export const DarkModeContext = createContext<
 
 export const DarkModeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(
-    process.browser
+    typeof window !== "undefined"
       ? window.matchMedia('(prefers-color-scheme: dark)').matches
       : false
   )
@@ -23,7 +23,7 @@ export const DarkModeProvider = ({ children }) => {
     } else {
       document.documentElement.setAttribute('data-theme', 'light')
     }
-    window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       if (e.matches) {
         setDarkMode(true)
       } else {
