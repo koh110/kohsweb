@@ -17,7 +17,7 @@ jobs:
           cache: 'npm'
       - name: build
         run: npm ci && npm run build
-      - name:
+      - name: predeploy
         run: npm run predeploy
       - name: Deploy Cloudflare
         uses: cloudflare/wrangler-action@v3
