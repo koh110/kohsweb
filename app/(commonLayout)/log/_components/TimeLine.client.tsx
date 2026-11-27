@@ -12,7 +12,9 @@ export default function TimeLine(props: Props) {
   const { intersectionRef, classnames } = useFadeup()
 
   const isEven = props.index % 2 === 0
-  const wrapClassName = isEven ? styles.wrapper : `${styles.wrapper} ${styles.reverse}`
+  const wrapClassName = isEven
+    ? styles.wrapper
+    : `${styles.wrapper} ${styles.reverse}`
   const contentClassName = [styles.content, ...classnames].join(' ')
 
   return (

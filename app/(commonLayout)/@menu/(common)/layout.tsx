@@ -14,7 +14,7 @@ export default function MenuLayout({ children }: React.PropsWithChildren) {
     if (segment === 'contact') return 'contact'
     return 'about'
   }
-  
+
   return (
     <MenuSegmentProvider current={getCurrentSegment()}>
       <Menu>

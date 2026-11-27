@@ -1,38 +1,56 @@
 import HistoryElement from './HistoryElement'
+import HistoryDetail from './HistoryDetail'
 
 export default function History() {
   return (
     <div>
       <HistoryElement date="2022/07-">
-        <p>RPGテック合同会社に参画</p>
-        <p>スタートアップ立ち上げ/新規事業の開発/技術顧問等</p>
-        <p>バックオフィスのDX推進/開発/運用業務</p>
-        <ul>
-          <li>
-            <a
-              href="https://amzn.to/4b2hrIQ"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              実践Node.js入門発売
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://syllabus.hosei.ac.jp/web/preview.php?no_id=2500188&nendo=2024&gakubueng=AK"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              法政大学リクエスト集中講義（Node.js/JavaScript）
-            </a>
-          </li>
-        </ul>
+        <HistoryDetail title="RPGテック合同会社（エンジニア/コンサルタント）">
+          <p>スタートアップの立ち上げや新規事業の企画/開発/運用を一緒に</p>
+          <p>技術顧問としてエンジニアやシステム支援の提供</p>
+          <ul>
+            <li>
+              <p>
+                災害検知向けエッジAIプラットフォーム（
+                <a
+                  href="https://visnu.jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visnu
+                </a>
+                ）の立ち上げ
+              </p>
+              <p>
+                企画/要件定義/設計/実装/運用まで横断して担当
+              </p>
+            </li>
+            <li>
+              <p>
+                バックオフィスDXの推進、ワークフロー整理/改善・自動化・システム開発の提案/運用
+              </p>
+              <ul style={{ marginTop: '0.5em' }}>
+                <li>
+                  各種申請/入退社/人事評価/広報チェックなどの手動運用コストが高い社内業務の改善提案/システム実装など、情シス的な業務のサポート
+                </li>
+                <li>
+                  SpreadSheet/GASを利用した自動化/社内運用改善/社内システム化の開発
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>飲食業界DXのSaaS開発。人事管理/オンボーディング/etc...</p>
+              <p>システム設計/認証認可/実装/運用</p>
+            </li>
+          </ul>
+        </HistoryDetail>
       </HistoryElement>
       <HistoryElement date="2021-2022/07">
-        <p>CTO直下の部署に移動</p>
-        <p>
-          全社横断のフロントエンド関連を担当。Webパフォーマンス向上施策やIE11のEOL対応についてなど
-        </p>
+        <HistoryDetail title="ヤフー株式会社: CTO室に社内異動">
+          <p>
+            全社横断のフロントエンド領域を担当。Webパフォーマンス向上施策とIE11のサポート等終了対応。
+          </p>
+        </HistoryDetail>
         <ul>
           <li>
             <a
@@ -55,18 +73,22 @@ export default function History() {
         </ul>
       </HistoryElement>
       <HistoryElement date="2017-2022/07">
-        <p>クリエイターエバンジェリスト (-2018) 技術広報のような活動。</p>
-        <p>
-          第9,10,11代Webフロントエンド 
-          <a
-            href="https://about.yahoo.co.jp/hr/workplace/mypolaris/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            黒帯
-          </a>
-          (2019-) ヤフーにおける領域のスペシャリスト認定のようなもの。
-        </p>
+        <HistoryDetail title="ヤフー株式会社: 技術広報・Webフロントエンド領域の専門活動">
+          <p>
+            クリエイターエバンジェリスト（2018年まで）として技術広報に近い活動
+          </p>
+          <p>
+            2019年から、第9代・第10代・第11代Webフロントエンド
+            <a
+              href="https://about.yahoo.co.jp/hr/workplace/mypolaris/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              黒帯
+            </a>
+            に認定（ヤフーの専門領域におけるスペシャリスト認定制度）
+          </p>
+        </HistoryDetail>
         <ul>
           <li>
             <a
@@ -98,10 +120,10 @@ export default function History() {
         </ul>
       </HistoryElement>
       <HistoryElement date="2016-2022/07">
-        <p>Node.jsサポートチームを立ち上げ</p>
-        <p>
-          Node.jsの社内サポート/ハンズオン/OSSへのフィードバック・バグ修正など
-        </p>
+        <HistoryDetail title="ヤフー株式会社: Node.jsサポートチームの立ち上げ">
+          <p>社内のNode.js利用支援、ハンズオンの実施</p>
+          <p>Node.jsや利用OSSへのフィードバック、バグ修正</p>
+        </HistoryDetail>
         <ul>
           <li>
             <a
@@ -143,74 +165,74 @@ export default function History() {
         </ul>
       </HistoryElement>
       <HistoryElement date="2013-2021">
-        <p>ヤフー株式会社入社/情報システム本部配属</p>
-        <p>社内システムの企画/開発/運用/チームマネジメントを担当</p>
-        <p>
-          内製チャット/社内ポータル/社員プロフィール（名簿）ツール/アンケート作成・回答ツール/承認管理プラットフォーム/社内位置情報検索システム
-        </p>
-        <p>
-          Slackの導入にむけた移行推進や周辺連携システムの開発/セキュリティ設計/ワークスペース設計などを担当
-        </p>
-        <ul>
-          <li>
-            <a
-              href="https://codezine.jp/article/detail/10693"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ヤフーを支える社内システム
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://techblog.yahoo.co.jp/advent-calendar-2016/pozzy/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ヤフーの社内システムを紹介します
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://speakerdeck.com/koh110/nodexue-yuan-ji-2017"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              社内位置情報検索システム
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://techblog.yahoo.co.jp/advent-calendar-2018/goodbye-mym/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ありがとう、MYM 安らかに眠れ
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://techblog.yahoo.co.jp/advent-calendar-2018/thankyou-mym/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              おつかれさま、MYM
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.amazon.co.jp/dp/B08KDNPT2B/ref=as_sl_pc_qf_sp_asin_til?tag=koh110-22&linkCode=w00&linkId=97b56cbebbad2dac7ae8918ad4e43b1f&creativeASIN=B08KDNPT2B"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              動かして学ぶ! Slackアプリ開発入門
-            </a>
-          </li>
-        </ul>
+        <HistoryDetail title="ヤフー株式会社: 情報システム本部での社内システム開発・運用">
+          <p>社内システムの企画・開発・運用とチームマネジメントを担当。</p>
+          <p>
+            <strong>主なシステム</strong>
+          </p>
+          <ul>
+            <li>内製チャット、社内ポータル</li>
+            <li>社員プロフィール（名簿）ツール、アンケート作成・回答ツール</li>
+            <li>承認管理プラットフォーム、社内位置情報検索システム</li>
+          </ul>
+          <p>
+            <strong>Slack導入</strong>
+          </p>
+          <p>
+            導入に向けた移行推進に加え、周辺連携システムの開発、セキュリティ設計、ワークスペース設計を担当。
+          </p>
+          <ul>
+            <li>
+              <a
+                href="https://codezine.jp/article/detail/10693"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ヤフーを支える社内システム
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://techblog.yahoo.co.jp/advent-calendar-2016/pozzy/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ヤフーの社内システムを紹介します
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://speakerdeck.com/koh110/nodexue-yuan-ji-2017"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                社内位置情報検索システム
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://techblog.yahoo.co.jp/advent-calendar-2018/goodbye-mym/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ありがとう、MYM 安らかに眠れ
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://techblog.yahoo.co.jp/advent-calendar-2018/thankyou-mym/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                おつかれさま、MYM
+              </a>
+            </li>
+          </ul>
+        </HistoryDetail>
       </HistoryElement>
-      <HistoryElement date="-2013/03">
-        <p>法政大学情報科学部卒業</p>
-        <p>HAL東京夜間ゲーム学科卒業</p>
+      <HistoryElement date="-2013">
+        <p>法政大学情報科学部 卒業</p>
+        <p>HAL東京夜間ゲーム学科 卒業</p>
       </HistoryElement>
     </div>
   )

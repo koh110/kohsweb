@@ -5,14 +5,19 @@ import styles from './Hexagon.module.css'
 
 export default function Hexagon(props: PropsWithChildren) {
   const { intersectionRef, addClassnameFlag } = useAnimation()
-  const [wrapClassname, setWrapClassname] = useState<string>('hexagon blur-before')
+  const [wrapClassname, setWrapClassname] = useState<string>(
+    'hexagon blur-before'
+  )
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | null = null
     if (addClassnameFlag) {
-      timer = setTimeout(() => {
-        setWrapClassname(`${styles.hexagon} ${styles.blur_zoom}`)
-      }, window.crypto.getRandomValues(new Uint8Array(1))[0])
+      timer = setTimeout(
+        () => {
+          setWrapClassname(`${styles.hexagon} ${styles.blur_zoom}`)
+        },
+        window.crypto.getRandomValues(new Uint8Array(1))[0]
+      )
     } else {
       setWrapClassname(`${styles.hexagon} ${styles.blur_before}`)
     }

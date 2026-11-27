@@ -6,16 +6,17 @@ import Providers from '../../context/Providers'
 import Header from '../../components/Header'
 import CookieConsent from '../../components/CookieConsent/index.client'
 
-export default function CommonLayout({ children, menu }: PropsWithChildren & { menu: React.ReactNode }) {
+export default function CommonLayout({
+  children,
+  menu
+}: PropsWithChildren & { menu: React.ReactNode }) {
   return (
     <Providers>
       <div className={styles.layout}>
         <Header />
         {menu}
         <div className={styles.contents}>
-          <div className={styles.contents_wrapper}>
-            {children}
-          </div>
+          <div className={styles.contents_wrapper}>{children}</div>
         </div>
       </div>
       <CookieConsent />

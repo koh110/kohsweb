@@ -2,9 +2,7 @@ import { Metadata } from 'next'
 import About from './_components/index'
 
 export default function Index() {
-  return (
-    <About />
-  )
+  return <About />
 }
 
 const title = 'About'

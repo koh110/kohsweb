@@ -23,10 +23,12 @@ export default function AmazonElement(props: PropsWithChildren<Props>) {
           {props.desc.split('\n').map((e, i) => (
             <p key={i}>{e}</p>
           ))}
-          <div style={{ padding: '0.5em 1em 0' }}>
-            {props.children}
-          </div>
-          <p><a href={props.url} target="_blank">Amazon</a></p>
+          <div style={{ padding: '0.5em 1em 0' }}>{props.children}</div>
+          <p>
+            <a href={props.url} target="_blank">
+              Amazon
+            </a>
+          </p>
         </div>
       </div>
     </div>

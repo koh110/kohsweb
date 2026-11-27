@@ -18,10 +18,10 @@ export default function About() {
             <h3>Web Engineer</h3>
             <div className={styles.desc}>
               <p className={styles.line}>
-                フロントエンド/サーバサイド/インフラ整備までWebならなんでも。
+                フロントエンド/サーバサイド/インフラ/ヒアリング/要件定義までなんでも
               </p>
               <p className={styles.line}>
-                技術を使って驚かせたり楽しませたりが好きです。
+                技術を使って驚かせたり楽しませたりすることが好きです
               </p>
             </div>
           </div>
@@ -30,10 +30,12 @@ export default function About() {
       </section>
       <section className={`${styles.skill} ${styles.section}`}>
         <h3>Skills</h3>
-        <h4>I love Node.js and JavaScript!!</h4>
-        <span>システム構築をSPA+Node.jsで行うのが得意です。</span>
+        <h4>主な技術・対応領域</h4>
         <span>
-          一人でざっくりとシステムの設計/開発/運用/パフォーマンス調査・チューニングの対応が可能です。
+          Node.js・JavaScriptを中心に、SPAを含むWebシステムの構築を得意としています。
+        </span>
+        <span>
+          一人でシステムの設計から開発・運用、パフォーマンス調査・改善まで対応できます。
         </span>
         <Skill
           title="Frontend"
@@ -122,8 +124,47 @@ export default function About() {
           </HexagonWrap>
         </section>
       </section>
-      <section className={`${styles.section} ${styles.history}`}>
+      <section
+        className={`${styles.section} ${styles.history}`}
+        aria-labelledby="career-history-heading"
+      >
+        <h3 id="career-history-heading">職務経歴</h3>
         <History />
+      </section>
+      <section
+        className={`${styles.section} ${styles.history}`}
+        aria-labelledby="writing-teaching-heading"
+      >
+        <h3 id="writing-teaching-heading">執筆・教育活動</h3>
+        <ul>
+          <li>
+            <a
+              href="https://amzn.to/4b2hrIQ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              実践Node.js入門の執筆・出版
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.amazon.co.jp/dp/B08KDNPT2B/ref=as_sl_pc_qf_sp_asin_til?tag=koh110-22&linkCode=w00&linkId=97b56cbebbad2dac7ae8918ad4e43b1f&creativeASIN=B08KDNPT2B"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              動かして学ぶ! Slackアプリ開発入門の執筆・出版
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://syllabus.hosei.ac.jp/web/preview.php?no_id=2500188&nendo=2024&gakubueng=AK"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              法政大学リクエスト集中講義（Node.js / JavaScript）
+            </a>
+          </li>
+        </ul>
       </section>
     </div>
   )
