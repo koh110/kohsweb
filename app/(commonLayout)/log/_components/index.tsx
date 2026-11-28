@@ -5,7 +5,16 @@ import styles from './index.module.css'
 const logs: Props['log'][] = [
   {
     type: 'log',
-    title: 'どこまで安定してる？Express/NestJS/Hono運用者に聞く バックエンドTSのイマ',
+    title: 'リクエスト集中講義（Node.js/JavaScript入門）',
+    url: 'https://syllabus.hosei.ac.jp/web/preview.php?no_id=2618753&nendo=2025&gakubueng=AK',
+    img: '',
+    date: '2026/02',
+    desc: 'Webサーバー開発に必要なNode.js・JavaScriptの基礎を学び、演習で簡単なWebシステムを構築する講義'
+  },
+  {
+    type: 'log',
+    title:
+      'どこまで安定してる？Express/NestJS/Hono運用者に聞く バックエンドTSのイマ',
     url: 'https://offers-jp.connpass.com/event/331066/',
     img: 'https://media.connpass.com/thumbs/af/69/af69403518fc14ec52fa47272becd51e.png',
     date: '2024/10/22',

@@ -61,20 +61,37 @@ export default function Work() {
             url="https://amzn.to/4b2hrIQ"
           >
             <div>
-              <a href="https://gihyo.jp/book/2023/978-4-297-12956-9" target="_blank">https://gihyo.jp/book/2023/978-4-297-12956-9</a>
+              <a
+                href="https://gihyo.jp/book/2023/978-4-297-12956-9"
+                target="_blank"
+              >
+                https://gihyo.jp/book/2023/978-4-297-12956-9
+              </a>
             </div>
             <div style={{ marginTop: '0.5em' }}>
-              <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B5038538340" target="_blank">韓国語版</a>
+              <a
+                href="https://www.hanbit.co.kr/store/books/look.php?p_code=B5038538340"
+                target="_blank"
+              >
+                韓国語版
+              </a>
             </div>
           </AmazonElement>
           <AmazonElement
             title="動かして学ぶ! Slackアプリ開発入門"
             date="2020/12/14"
-            desc={['SlackSDKを利用したアプリの作成方法についての解説本。業務フローの例に合わせてSlackAPIとサンプルコードを一緒に追っていく形式。'].join('')}
+            desc={[
+              'SlackSDKを利用したアプリの作成方法についての解説本。業務フローの例に合わせてSlackAPIとサンプルコードを一緒に追っていく形式。'
+            ].join('')}
             img="/slack-book.jpg"
             url="https://amzn.to/48zE5qE"
           >
-            <a href="https://www.shoeisha.co.jp/book/detail/9784798164748" target="_blank">https://www.shoeisha.co.jp/book/detail/9784798164748</a>
+            <a
+              href="https://www.shoeisha.co.jp/book/detail/9784798164748"
+              target="_blank"
+            >
+              https://www.shoeisha.co.jp/book/detail/9784798164748
+            </a>
           </AmazonElement>
         </div>
         <h2>Software</h2>

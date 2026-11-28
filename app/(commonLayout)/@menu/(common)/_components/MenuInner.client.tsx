@@ -9,7 +9,6 @@ export type MenuItem = {
   href: string
 }
 
-
 const menuItems = [
   {
     label: 'About',
@@ -38,7 +37,6 @@ const menuItems = [
   }
 ] as const satisfies (MenuItem & { segment: Segment | null })[]
 
-
 export function MenuInner() {
   // for css animation
   const { segment } = useMenuSegment()
@@ -55,7 +53,11 @@ export function MenuInner() {
       </div>
       {menuItems.map((item) => {
         return (
-          <MenuItem key={item.label} {...item} selected={item.segment === segment} />
+          <MenuItem
+            key={item.label}
+            {...item}
+            selected={item.segment === segment}
+          />
         )
       })}
     </div>

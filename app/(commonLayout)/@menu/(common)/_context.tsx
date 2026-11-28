@@ -1,7 +1,13 @@
 'use client'
-import { createContext, useContext, useState, type ReactNode, type Dispatch, type SetStateAction } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+  type Dispatch,
+  type SetStateAction
+} from 'react'
 import { type Segment } from './_constants'
-
 
 type MenuSegmentContextType = {
   segment: Segment
@@ -15,10 +21,10 @@ const MenuSegmentContext = createContext<MenuSegmentContextType>({
 
 export const useMenuSegment = () => useContext(MenuSegmentContext)
 
-export function MenuSegmentProvider({ 
-  children, 
-  current 
-}: { 
+export function MenuSegmentProvider({
+  children,
+  current
+}: {
   children: ReactNode
   current: Segment
 }) {

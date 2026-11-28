@@ -17,7 +17,9 @@ export default function Skill(props: Props) {
     return prev + next.num
   }, 0)
 
-  const barWrap = addClassnameFlag ? `${styles.bar_wrap} ${styles.zoom_right}` : styles.bar_wrap
+  const barWrap = addClassnameFlag
+    ? `${styles.bar_wrap} ${styles.zoom_right}`
+    : styles.bar_wrap
 
   return (
     <div className={styles.wrap}>

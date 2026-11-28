@@ -1,27 +1,155 @@
 name: Deploy to Cloudflare
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
-    branches: 
+    branches:
       - main
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    name: Deploy
+  validate:
+    name: Validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          node-version: '22'
-          cache: 'npm'
-      - name: build
-        run: npm ci && npm run build
-      - name: predeploy
-        run: npm run predeploy
-      - name: Deploy Cloudflare
-        uses: cloudflare/wrangler-action@v3
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --minify
+          node-version: 22.23.5
+          cache: npm
+      - name: Prepare isolated locked npm toolchain
+        run: |
+          mkdir -p "$RUNNER_TEMP/kohsweb-npm-toolchain"
+          cp tools/npm-bootstrap/package.json tools/npm-bootstrap/package-lock.json "$RUNNER_TEMP/kohsweb-npm-toolchain/"
+      - name: Install locked npm with minimum-release-age support
+        run: npm ci --prefix "$RUNNER_TEMP/kohsweb-npm-toolchain" --ignore-scripts --no-audit --no-fund
+      - name: Add locked npm to PATH
+        run: echo "$RUNNER_TEMP/kohsweb-npm-toolchain/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Verify toolchain and release-age policy
+        run: test "$(npm --version)" = '12.2.3' && test "$(npm config get min-release-age)" = '7' && test "$(npm config get strict-allow-scripts)" = 'true'
+      # npm配布物に残るmoderate advisoryは許容し、high/criticalは遮断する。
+      - name: Audit npm bootstrap (high/critical)
+        run: npm audit --prefix "$RUNNER_TEMP/kohsweb-npm-toolchain" --audit-level=high
+      - name: Record toolchain versions
+        run: node --version && npm --version
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check formatting
+        run: npm exec prettier -- --check .github/workflows/cd.yaml package.json scripts/deploy-worker.mts scripts/deploy-worker.test.mjs scripts/merged-release-eligibility.mjs tools/npm-bootstrap/package.json
+      - name: Typecheck
+        run: npm run build:tsc
+      - name: Test deployment guards
+        run: npm run test:deploy
+      - name: Audit locked dependencies
+        run: npm audit --audit-level=moderate
+      - name: Build Next.js application
+        run: npm run build
+      - name: Build Cloudflare Worker
+        run: npm run build:worker
+
+  release-eligibility:
+    name: Check authorized release PR
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read # Read-only association lookup for authorized PR #7.
+    outputs:
+      eligible: ${{ steps.classify.outputs.eligible }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.23.5
+      - name: Resolve associated pull requests without deployment credentials
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --paginate --slurp "repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}/pulls?per_page=100" > "$RUNNER_TEMP/associated-pulls.json"
+      - name: Classify the exact authorized PR and source SHA
+        id: classify
+        run: |
+          eligible="$(node scripts/merged-release-eligibility.mjs "$RUNNER_TEMP/associated-pulls.json")"
+          printf 'eligible=%s\n' "$eligible" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    name: Deploy production Worker
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.release-eligibility.outputs.eligible == 'true'
+    needs:
+      - validate
+      - release-eligibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    concurrency:
+      group: kohsweb-cloudflare-production
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://koh.dev
+    permissions:
+      contents: read
+      pull-requests: read # Required to read PR metadata for the exact source SHA.
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Create isolated release branch
+        run: git switch --create "verify/${GITHUB_SHA}" "${GITHUB_SHA}"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.23.5
+          cache: npm
+      - name: Prepare isolated locked npm toolchain
+        run: |
+          mkdir -p "$RUNNER_TEMP/kohsweb-npm-toolchain"
+          cp tools/npm-bootstrap/package.json tools/npm-bootstrap/package-lock.json "$RUNNER_TEMP/kohsweb-npm-toolchain/"
+      - name: Install locked npm with minimum-release-age support
+        run: npm ci --prefix "$RUNNER_TEMP/kohsweb-npm-toolchain" --ignore-scripts --no-audit --no-fund
+      - name: Add locked npm to PATH
+        run: echo "$RUNNER_TEMP/kohsweb-npm-toolchain/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Verify toolchain and release-age policy
+        run: test "$(npm --version)" = '12.2.3' && test "$(npm config get min-release-age)" = '7' && test "$(npm config get strict-allow-scripts)" = 'true'
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Deploy through the merged-release guard
+        run: node scripts/deploy-worker.mts --merged-release
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          KOH_EXPECTED_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          KOH_PREVIEW_URLS_ENABLED: 'false'
+          KOH_RELEASE_EVIDENCE_DIR: ${{ runner.temp }}/kohsweb-release-${{ github.run_id }}-${{ github.run_attempt }}
+          KOH_RELEASE_SHA: ${{ github.sha }}
+          KOH_WORKERS_DEV_ENABLED: 'false'
+      - name: Publish sanitized release outcome
+        if: always()
+        env:
+          KOH_RELEASE_EVIDENCE_DIR: ${{ runner.temp }}/kohsweb-release-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          record="$KOH_RELEASE_EVIDENCE_DIR/release-record.json"
+          if [[ -f "$record" ]]; then
+            {
+              printf '## Sanitized production release record\n\n```json\n'
+              jq '.' "$record"
+              printf '\n```\n'
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '## Production release record\n\nNo sanitized release record was created. Check the deployment step logs before any recovery action.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
