@@ -726,7 +726,7 @@ export function classifyPromotionRecovery(
 const WORKER_NAME = 'kohsweb-worker'
 const REPOSITORY = 'koh110/kohsweb'
 const RELEASE_HOSTNAME = 'koh.dev'
-const RELEASE_PULL_REQUEST_NUMBER = 9
+const RELEASE_PULL_REQUEST_NUMBER = 10
 const WRANGLER_VERSION = '4.165.0'
 const MAX_CHILD_OUTPUT_BYTES = 8 * 1024 * 1024
 const DEFAULT_CHILD_TIMEOUT_MS = 5 * 60 * 1000
@@ -1840,28 +1840,36 @@ export function validateReleaseAccountId(
 
 export function parseWorkerSubdomainResponse(
   value: unknown,
-  expectedWorkersDev: boolean
-): { workersDev: boolean; previewsEnabled: false } {
-  const envelope = requireRecord(value, 'Cloudflare Worker subdomain response')
+  expectedWorkersDev: boolean,
+  expectedWorkerName: string
+): { workersDev: boolean; previewsEnabled: boolean } {
+  const envelope = requireRecord(value, 'Cloudflare Worker response')
   if (envelope.success !== true)
-    throw new Error('Cloudflare Worker subdomain read-back was not successful')
-  const result = requireRecord(
-    envelope.result,
-    'Cloudflare Worker subdomain result'
+    throw new Error('Cloudflare Worker exposure read-back was not successful')
+  const result = requireRecord(envelope.result, 'Cloudflare Worker result')
+  const workerName = requireString(result.name, 'Cloudflare Worker name')
+  if (workerName !== expectedWorkerName)
+    throw new Error(
+      'Cloudflare Worker response name does not match the requested Worker'
+    )
+  const subdomain = requireRecord(
+    result.subdomain,
+    'Cloudflare Worker subdomain settings'
   )
-  if (typeof result.enabled !== 'boolean')
-    throw new Error('Cloudflare Worker subdomain enabled value is missing')
-  if (typeof result.previews_enabled !== 'boolean')
-    throw new Error('Cloudflare Worker preview setting is missing')
-  if (result.enabled !== expectedWorkersDev)
+  const workersDev = subdomain.enabled ?? false
+  const previewsEnabled = subdomain.previews_enabled ?? false
+  if (typeof workersDev !== 'boolean')
+    throw new Error('Cloudflare Worker subdomain enabled value is invalid')
+  if (typeof previewsEnabled !== 'boolean')
+    throw new Error('Cloudflare Worker preview setting is invalid')
+  if (workersDev !== expectedWorkersDev)
     throw new Error(
       'Live workers.dev setting does not match the requested exposure-preserving release'
     )
-  if (result.previews_enabled !== false)
-    throw new Error(
-      'Code-only release requires live Worker preview URLs to be disabled'
-    )
-  return { workersDev: result.enabled, previewsEnabled: false }
+  return {
+    workersDev,
+    previewsEnabled
+  }
 }
 
 export async function readWorkerSubdomainState({
@@ -1880,8 +1888,8 @@ export async function readWorkerSubdomainState({
   timeoutMs: number
   abortSignal: AbortSignal
   fetchImpl?: typeof fetch
-}): Promise<{ workersDev: boolean; previewsEnabled: false }> {
-  const url = `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/workers/scripts/${encodeURIComponent(workerName)}/subdomain`
+}): Promise<{ workersDev: boolean; previewsEnabled: boolean }> {
+  const url = `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/workers/workers/${encodeURIComponent(workerName)}`
   let response: Response
   try {
     response = await fetchImpl(url, {
@@ -1906,7 +1914,65 @@ export async function readWorkerSubdomainState({
   } catch {
     throw new Error('Cloudflare live Worker exposure response was invalid JSON')
   }
-  return parseWorkerSubdomainResponse(body, expectedWorkersDev)
+  return parseWorkerSubdomainResponse(body, expectedWorkersDev, workerName)
+}
+
+export async function ensureWorkerPreviewUrlsDisabled(
+  options: Parameters<typeof readWorkerSubdomainState>[0]
+): Promise<{ workersDev: boolean; previewsEnabled: false }> {
+  const before = await readWorkerSubdomainState(options)
+  if (!before.previewsEnabled) return { ...before, previewsEnabled: false }
+
+  const {
+    accountId,
+    workerName,
+    apiToken,
+    timeoutMs,
+    abortSignal,
+    fetchImpl = fetch
+  } = options
+  const url = `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/workers/workers/${encodeURIComponent(workerName)}`
+  let response: Response
+  try {
+    response = await fetchImpl(url, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${apiToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ subdomain: { previews_enabled: false } }),
+      redirect: 'error',
+      signal: AbortSignal.any([abortSignal, AbortSignal.timeout(timeoutMs)])
+    })
+  } catch {
+    throw new Error('Cloudflare Worker preview URL disable request failed')
+  }
+  if (!response.ok)
+    throw new Error(
+      `Cloudflare Worker preview URL disable failed with HTTP ${response.status}`
+    )
+  let body: unknown
+  try {
+    body = await response.json()
+  } catch {
+    throw new Error(
+      'Cloudflare Worker preview URL disable response was invalid JSON'
+    )
+  }
+  const envelope = requireRecord(
+    body,
+    'Cloudflare Worker preview setting update response'
+  )
+  if (envelope.success !== true)
+    throw new Error('Cloudflare Worker preview URL disable was not accepted')
+
+  const after = await readWorkerSubdomainState(options)
+  if (after.previewsEnabled)
+    throw new Error(
+      'Cloudflare Worker preview URLs remained enabled after update'
+    )
+  return { workersDev: after.workersDev, previewsEnabled: false }
 }
 
 export function parseWorkerRoutingState({
@@ -2126,7 +2192,7 @@ function parseReleaseInputs(mode: ReleaseMode): {
   }
   if (process.env.KOH_PREVIEW_URLS_ENABLED !== 'false') {
     throw new Error(
-      'Code-only release requires KOH_PREVIEW_URLS_ENABLED=false from the current exposure read-back'
+      'Code-only release requires KOH_PREVIEW_URLS_ENABLED=false to disable public Version URLs'
     )
   }
   if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === '0') {
@@ -2152,7 +2218,7 @@ function parseReleaseInputs(mode: ReleaseMode): {
     }
     if (process.env.KOH_RELEASE_PR !== undefined) {
       throw new Error(
-        'Production release derives authorized PR #9 from the exact source commit; KOH_RELEASE_PR must not be set'
+        'Production release derives authorized PR #10 from the exact source commit; KOH_RELEASE_PR must not be set'
       )
     }
     inputs.apiToken = process.env.CLOUDFLARE_API_TOKEN
@@ -2511,6 +2577,23 @@ async function runGuardedDeployment({
       throw new Error('Release tree changed before Version upload')
     if (artifactFingerprint(config, repoRoot) !== artifactHash)
       throw new Error('Build artifacts changed before Version upload')
+    if (release) {
+      stage = 'pre-upload-preview-disable'
+      const preUploadExposure = await ensureWorkerPreviewUrlsDisabled({
+        accountId: inputs.accountId,
+        workerName: WORKER_NAME,
+        apiToken: inputs.apiToken!,
+        expectedWorkersDev: inputs.workersDev,
+        timeoutMs: inputs.timeoutMs,
+        abortSignal
+      })
+      createProcessResultFile(evidencePath, 'pre-upload-worker-exposure', {
+        worker: WORKER_NAME,
+        workers_dev: preUploadExposure.workersDev,
+        preview_urls: preUploadExposure.previewsEnabled
+      })
+      validateEvidenceTree(evidencePath, evidence.identity, protectedFiles)
+    }
     stage = 'version-upload'
     const uploadRun = await runWrangler({
       binary: wranglerBinary,
@@ -2540,12 +2623,30 @@ async function runGuardedDeployment({
       uploadRun,
       dryRun ? 'Version upload dry-run' : 'Version upload'
     )
+    if (release) {
+      stage = 'post-upload-preview-read-back'
+      const postUploadExposure = await ensureWorkerPreviewUrlsDisabled({
+        accountId: inputs.accountId,
+        workerName: WORKER_NAME,
+        apiToken: inputs.apiToken!,
+        expectedWorkersDev: inputs.workersDev,
+        timeoutMs: inputs.timeoutMs,
+        abortSignal
+      })
+      createProcessResultFile(evidencePath, 'post-upload-worker-exposure', {
+        worker: WORKER_NAME,
+        workers_dev: postUploadExposure.workersDev,
+        preview_urls: postUploadExposure.previewsEnabled
+      })
+      validateEvidenceTree(evidencePath, evidence.identity, protectedFiles)
+    }
     const uploadOutput = readStructuredOutput(
       path.join(
         evidencePath,
         `${dryRun ? 'dry-run-upload' : 'version-upload'}.wrangler-output.jsonl`
       )
     )
+    stage = 'version-upload-record-parse'
     const uploadSummary = parseVersionUploadOutput(uploadOutput, {
       workerName: WORKER_NAME,
       dryRun

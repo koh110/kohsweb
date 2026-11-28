@@ -143,7 +143,7 @@ test('GitHub Actions validates pull requests and uses the guarded merged-release
   )
   assert.match(
     workflow,
-    /pull-requests: read # Read-only association lookup for authorized PR #9/
+    /pull-requests: read # Read-only association lookup for authorized PR #10/
   )
   assert.match(workflow, /Publish sanitized release outcome/)
   assert.match(workflow, /KOH_RELEASE_SHA:\s*\$\{\{\s*github\.sha\s*\}\}/)
@@ -202,24 +202,25 @@ test('pull-request guard requires the exact open unmerged Draft PR and head', ()
   requireFunction('parsePullRequest')
   const sha = 'a'.repeat(40)
   const pullRequest = {
-    number: 9,
+    number: 10,
     draft: true,
     state: 'open',
     merged_at: null,
     base: { ref: 'main', repo: { full_name: 'koh110/kohsweb' } },
     head: {
-      ref: 'fix/release-upload-record-validation',
+      ref: 'fix/worker-preview-exposure-guard',
       sha,
       repo: { full_name: 'koh110/kohsweb' }
     }
   }
-  assert.equal(deployment.parsePullRequest(pullRequest, sha, 9).headSha, sha)
+  assert.equal(deployment.parsePullRequest(pullRequest, sha, 10).headSha, sha)
   assert.throws(
-    () => deployment.parsePullRequest({ ...pullRequest, number: 8 }, sha, 9),
+    () => deployment.parsePullRequest({ ...pullRequest, number: 8 }, sha, 10),
     /Draft|requested/i
   )
   assert.throws(
-    () => deployment.parsePullRequest({ ...pullRequest, draft: false }, sha, 9),
+    () =>
+      deployment.parsePullRequest({ ...pullRequest, draft: false }, sha, 10),
     /Draft/i
   )
   assert.throws(
@@ -246,14 +247,14 @@ test('merged release guard derives one exact same-repository main PR from the re
   requireFunction('parseMergedPullRequest')
   const releaseSha = 'b'.repeat(40)
   const pullRequest = {
-    number: 9,
+    number: 10,
     draft: false,
     state: 'closed',
     merged_at: '2026-11-28T00:00:00Z',
     merge_commit_sha: releaseSha,
     base: { ref: 'main', repo: { full_name: 'koh110/kohsweb' } },
     head: {
-      ref: 'fix/release-upload-record-validation',
+      ref: 'fix/worker-preview-exposure-guard',
       sha: 'a'.repeat(40),
       repo: { full_name: 'koh110/kohsweb' }
     }
@@ -261,8 +262,8 @@ test('merged release guard derives one exact same-repository main PR from the re
   assert.deepEqual(
     deployment.parseMergedPullRequest([pullRequest], releaseSha),
     {
-      number: 9,
-      headRef: 'fix/release-upload-record-validation',
+      number: 10,
+      headRef: 'fix/worker-preview-exposure-guard',
       headSha: 'a'.repeat(40),
       baseRef: 'main',
       mergeCommitSha: releaseSha
@@ -270,7 +271,7 @@ test('merged release guard derives one exact same-repository main PR from the re
   )
   assert.throws(
     () => deployment.parseMergedPullRequest([], releaseSha),
-    /PR #9/i
+    /PR #10/i
   )
   assert.throws(
     () =>
@@ -278,7 +279,7 @@ test('merged release guard derives one exact same-repository main PR from the re
         [{ ...pullRequest, merged_at: null }],
         releaseSha
       ),
-    /PR #9/i
+    /PR #10/i
   )
   assert.throws(
     () =>
@@ -291,7 +292,7 @@ test('merged release guard derives one exact same-repository main PR from the re
         ],
         releaseSha
       ),
-    /PR #9/i
+    /PR #10/i
   )
   assert.throws(
     () =>
@@ -307,14 +308,14 @@ test('merged release guard derives one exact same-repository main PR from the re
         ],
         releaseSha
       ),
-    /PR #9/i
+    /PR #10/i
   )
   assert.equal(
     deployment.parseMergedPullRequest(
       [pullRequest, { ...pullRequest, number: 8 }],
       releaseSha
     ).number,
-    9
+    10
   )
   assert.throws(
     () =>
@@ -322,14 +323,14 @@ test('merged release guard derives one exact same-repository main PR from the re
         [{ ...pullRequest, number: 8 }],
         releaseSha
       ),
-    /PR #9/i
+    /PR #10/i
   )
 })
 
-test('pre-deploy eligibility safely skips every commit except the exact merged PR #9', () => {
+test('pre-deploy eligibility safely skips every commit except the exact merged PR #10', () => {
   const releaseSha = 'd'.repeat(40)
   const pullRequest = {
-    number: 9,
+    number: 10,
     state: 'closed',
     merged_at: '2026-11-28T00:00:00Z',
     merge_commit_sha: releaseSha,
@@ -381,7 +382,7 @@ test('eligibility CLI emits one workflow boolean and skips a direct main push', 
   ).pathname
   const releaseSha = 'f'.repeat(40)
   const pullRequest = {
-    number: 9,
+    number: 10,
     state: 'closed',
     merged_at: '2026-11-28T00:00:00Z',
     merge_commit_sha: releaseSha,
@@ -467,83 +468,175 @@ test('release account must match the independently read-back target', () => {
   )
 })
 
-test('release wrapper pins the authorized PR number to #9', () => {
+test('release wrapper pins the authorized PR number to #10', () => {
   requireFunction('parseReleasePullRequestNumber')
-  assert.equal(deployment.parseReleasePullRequestNumber(undefined), 9)
-  assert.equal(deployment.parseReleasePullRequestNumber('9'), 9)
+  assert.equal(deployment.parseReleasePullRequestNumber(undefined), 10)
+  assert.equal(deployment.parseReleasePullRequestNumber('10'), 10)
   assert.throws(
     () => deployment.parseReleasePullRequestNumber('8'),
-    /pinned to pull request #9/i
+    /pinned to pull request #10/i
   )
   assert.throws(
     () => deployment.parseReleasePullRequestNumber('07'),
-    /pinned to pull request #9/i
+    /pinned to pull request #10/i
   )
 })
 
-test('live Worker exposure is read from Cloudflare and mismatches fail closed', async () => {
+test('live Worker exposure uses Wrangler API and disables public Version URLs', async () => {
   requireFunction('parseWorkerSubdomainResponse')
   requireFunction('readWorkerSubdomainState')
-  const body = {
+  const accountId = 'a'.repeat(32)
+  const workerName = 'kohsweb-worker'
+  const endpoint = `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/workers/${workerName}`
+  const enabledBody = {
     success: true,
-    result: { enabled: false, previews_enabled: false }
+    result: {
+      name: workerName,
+      subdomain: { enabled: false, previews_enabled: true }
+    }
   }
-  assert.deepEqual(deployment.parseWorkerSubdomainResponse(body, false), {
-    workersDev: false,
-    previewsEnabled: false
-  })
+  const disabledBody = {
+    success: true,
+    result: {
+      name: workerName,
+      subdomain: { enabled: false, previews_enabled: false }
+    }
+  }
+
+  assert.deepEqual(
+    deployment.parseWorkerSubdomainResponse(enabledBody, false, workerName),
+    {
+      workersDev: false,
+      previewsEnabled: true
+    }
+  )
+  assert.deepEqual(
+    deployment.parseWorkerSubdomainResponse(disabledBody, false, workerName),
+    {
+      workersDev: false,
+      previewsEnabled: false
+    }
+  )
   assert.throws(
-    () => deployment.parseWorkerSubdomainResponse(body, true),
+    () =>
+      deployment.parseWorkerSubdomainResponse(disabledBody, true, workerName),
     /does not match/i
   )
   assert.throws(
     () =>
       deployment.parseWorkerSubdomainResponse(
-        { success: true, result: { enabled: false, previews_enabled: true } },
-        false
+        {
+          ...enabledBody,
+          result: { ...enabledBody.result, name: 'unexpected-worker' }
+        },
+        false,
+        workerName
       ),
-    /preview URLs to be disabled/i
+    /requested Worker/i
+  )
+  const omittedExposureFlags = {
+    success: true,
+    result: { name: workerName, subdomain: {} }
+  }
+  assert.deepEqual(
+    deployment.parseWorkerSubdomainResponse(
+      omittedExposureFlags,
+      false,
+      workerName
+    ),
+    { workersDev: false, previewsEnabled: false }
+  )
+  assert.deepEqual(
+    deployment.parseWorkerSubdomainResponse(
+      {
+        success: true,
+        result: {
+          name: workerName,
+          subdomain: { enabled: null, previews_enabled: null }
+        }
+      },
+      false,
+      workerName
+    ),
+    { workersDev: false, previewsEnabled: false }
   )
   assert.throws(
     () =>
       deployment.parseWorkerSubdomainResponse(
-        { success: true, result: { enabled: false } },
-        false
+        {
+          success: true,
+          result: {
+            name: workerName,
+            subdomain: { enabled: false, previews_enabled: 'false' }
+          }
+        },
+        false,
+        workerName
       ),
-    /preview setting is missing/i
+    /preview setting is invalid/i
   )
 
-  const accountId = 'a'.repeat(32)
-  let requestedUrl
-  let requestOptions
-  const exposure = await deployment.readWorkerSubdomainState({
+  requireFunction('ensureWorkerPreviewUrlsDisabled')
+  const calls = []
+  const responses = [enabledBody, { success: true }, disabledBody]
+  const exposure = await deployment.ensureWorkerPreviewUrlsDisabled({
     accountId,
-    workerName: 'kohsweb-worker',
+    workerName,
     apiToken: 'fake-token',
     expectedWorkersDev: false,
     timeoutMs: 1000,
     abortSignal: new AbortController().signal,
     fetchImpl: async (url, options) => {
-      requestedUrl = String(url)
-      requestOptions = options
+      calls.push({ url: String(url), options })
+      const body = responses.shift()
       return { ok: true, status: 200, json: async () => body }
     }
   })
-  assert.equal(
-    requestedUrl,
-    `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/kohsweb-worker/subdomain`
-  )
-  assert.equal(requestOptions.headers.Authorization, 'Bearer fake-token')
   assert.deepEqual(exposure, { workersDev: false, previewsEnabled: false })
+  assert.deepEqual(
+    calls.map(({ url, options }) => [url, options.method]),
+    [
+      [endpoint, 'GET'],
+      [endpoint, 'PATCH'],
+      [endpoint, 'GET']
+    ]
+  )
+  assert.equal(calls[0].options.headers.Authorization, 'Bearer fake-token')
+  assert.equal(calls[1].options.headers.Authorization, 'Bearer fake-token')
+  assert.equal(calls[1].options.headers['Content-Type'], 'application/json')
+  assert.deepEqual(JSON.parse(calls[1].options.body), {
+    subdomain: { previews_enabled: false }
+  })
+
+  let noOpCalls = 0
+  const unchanged = await deployment.ensureWorkerPreviewUrlsDisabled({
+    accountId,
+    workerName,
+    apiToken: 'fake-token',
+    expectedWorkersDev: false,
+    timeoutMs: 1000,
+    abortSignal: new AbortController().signal,
+    fetchImpl: async () => {
+      noOpCalls += 1
+      return { ok: true, status: 200, json: async () => disabledBody }
+    }
+  })
+  assert.equal(noOpCalls, 1)
+  assert.deepEqual(unchanged, { workersDev: false, previewsEnabled: false })
+
   await assert.rejects(
-    deployment.readWorkerSubdomainState({
+    deployment.ensureWorkerPreviewUrlsDisabled({
       accountId,
-      workerName: 'kohsweb-worker',
+      workerName,
       apiToken: 'fake-token',
       expectedWorkersDev: true,
       timeoutMs: 1000,
       abortSignal: new AbortController().signal,
-      fetchImpl: async () => ({ ok: true, status: 200, json: async () => body })
+      fetchImpl: async () => ({
+        ok: true,
+        status: 200,
+        json: async () => disabledBody
+      })
     }),
     /does not match/i
   )
@@ -665,7 +758,7 @@ test('Worker build environment excludes deployment and GitHub credentials', () =
         LANG: 'C.UTF-8',
         CLOUDFLARE_API_TOKEN: 'token-should-not-propagate',
         GH_TOKEN: 'github-token-should-not-propagate',
-        KOH_RELEASE_PR: '9'
+        KOH_RELEASE_PR: '10'
       }
     })
     assert.equal(env.PATH, '/usr/bin')
