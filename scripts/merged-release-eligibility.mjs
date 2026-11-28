@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
 export const REPOSITORY = 'koh110/kohsweb'
-export const RELEASE_PULL_REQUEST_NUMBER = 7
+export const RELEASE_PULL_REQUEST_NUMBER = 9
 
 export function isEligibleMergedReleasePullRequest(
   value,
@@ -32,7 +32,7 @@ export function isEligibleMergedReleasePullRequest(
     (pullRequest) => pullRequest.number === RELEASE_PULL_REQUEST_NUMBER
   )
   if (authorized.length > 1) {
-    throw new Error('More than one associated entry matched authorized PR #7')
+    throw new Error('More than one associated entry matched authorized PR #9')
   }
   if (authorized.length === 0) return false
 
@@ -54,7 +54,7 @@ export function isEligibleMergedReleasePullRequest(
     typeof pullRequest.head.repo !== 'object' ||
     typeof pullRequest.head.repo.full_name !== 'string'
   ) {
-    throw new Error('Associated PR #7 metadata is incomplete')
+    throw new Error('Associated PR #9 metadata is incomplete')
   }
 
   return (
