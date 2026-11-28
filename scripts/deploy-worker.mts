@@ -447,18 +447,31 @@ export function parseVersionUploadOutput(
         ],
         'version-upload'
       )
+      const invalidFields: string[] = []
+      if (record.version !== 1) invalidFields.push('version')
+      if (record.worker_name !== workerName) invalidFields.push('worker_name')
+      if (record.worker_name_overridden !== false)
+        invalidFields.push('worker_name_overridden')
+      // Wrangler can omit the optional remote script tag in its JSON record.
       if (
-        record.version !== 1 ||
-        record.worker_name !== workerName ||
-        record.worker_name_overridden !== false ||
-        !isNullableString(record.worker_tag) ||
-        !isNullableString(record.version_id) ||
-        (record.preview_url !== undefined && record.preview_url !== null) ||
-        (record.preview_alias_url !== undefined &&
-          record.preview_alias_url !== null) ||
-        !isOptionalNullableString(record.wrangler_environment)
-      ) {
-        throw new Error('Invalid version-upload record or Worker identity')
+        record.worker_tag !== undefined &&
+        !isNullableString(record.worker_tag)
+      )
+        invalidFields.push('worker_tag')
+      if (!isNullableString(record.version_id)) invalidFields.push('version_id')
+      if (record.preview_url !== undefined && record.preview_url !== null)
+        invalidFields.push('preview_url')
+      if (
+        record.preview_alias_url !== undefined &&
+        record.preview_alias_url !== null
+      )
+        invalidFields.push('preview_alias_url')
+      if (!isOptionalNullableString(record.wrangler_environment))
+        invalidFields.push('wrangler_environment')
+      if (invalidFields.length > 0) {
+        throw new Error(
+          `Invalid version-upload record fields: ${invalidFields.join(', ')}`
+        )
       }
       uploads.push(record)
       continue
@@ -713,7 +726,7 @@ export function classifyPromotionRecovery(
 const WORKER_NAME = 'kohsweb-worker'
 const REPOSITORY = 'koh110/kohsweb'
 const RELEASE_HOSTNAME = 'koh.dev'
-const RELEASE_PULL_REQUEST_NUMBER = 7
+const RELEASE_PULL_REQUEST_NUMBER = 9
 const WRANGLER_VERSION = '4.165.0'
 const MAX_CHILD_OUTPUT_BYTES = 8 * 1024 * 1024
 const DEFAULT_CHILD_TIMEOUT_MS = 5 * 60 * 1000
@@ -2139,7 +2152,7 @@ function parseReleaseInputs(mode: ReleaseMode): {
     }
     if (process.env.KOH_RELEASE_PR !== undefined) {
       throw new Error(
-        'Production release derives authorized PR #7 from the exact source commit; KOH_RELEASE_PR must not be set'
+        'Production release derives authorized PR #9 from the exact source commit; KOH_RELEASE_PR must not be set'
       )
     }
     inputs.apiToken = process.env.CLOUDFLARE_API_TOKEN

@@ -143,7 +143,7 @@ test('GitHub Actions validates pull requests and uses the guarded merged-release
   )
   assert.match(
     workflow,
-    /pull-requests: read # Read-only association lookup for authorized PR #7/
+    /pull-requests: read # Read-only association lookup for authorized PR #9/
   )
   assert.match(workflow, /Publish sanitized release outcome/)
   assert.match(workflow, /KOH_RELEASE_SHA:\s*\$\{\{\s*github\.sha\s*\}\}/)
@@ -202,24 +202,24 @@ test('pull-request guard requires the exact open unmerged Draft PR and head', ()
   requireFunction('parsePullRequest')
   const sha = 'a'.repeat(40)
   const pullRequest = {
-    number: 7,
+    number: 9,
     draft: true,
     state: 'open',
     merged_at: null,
     base: { ref: 'main', repo: { full_name: 'koh110/kohsweb' } },
     head: {
-      ref: 'feature/career-history',
+      ref: 'fix/release-upload-record-validation',
       sha,
       repo: { full_name: 'koh110/kohsweb' }
     }
   }
-  assert.equal(deployment.parsePullRequest(pullRequest, sha, 7).headSha, sha)
+  assert.equal(deployment.parsePullRequest(pullRequest, sha, 9).headSha, sha)
   assert.throws(
-    () => deployment.parsePullRequest({ ...pullRequest, number: 8 }, sha, 7),
+    () => deployment.parsePullRequest({ ...pullRequest, number: 8 }, sha, 9),
     /Draft|requested/i
   )
   assert.throws(
-    () => deployment.parsePullRequest({ ...pullRequest, draft: false }, sha, 7),
+    () => deployment.parsePullRequest({ ...pullRequest, draft: false }, sha, 9),
     /Draft/i
   )
   assert.throws(
@@ -227,7 +227,7 @@ test('pull-request guard requires the exact open unmerged Draft PR and head', ()
       deployment.parsePullRequest(
         { ...pullRequest, head: { ...pullRequest.head, sha: 'b'.repeat(40) } },
         sha,
-        7
+        9
       ),
     /Draft|release SHA/i
   )
@@ -236,7 +236,7 @@ test('pull-request guard requires the exact open unmerged Draft PR and head', ()
       deployment.parsePullRequest(
         { ...pullRequest, base: { ...pullRequest.base, ref: 'develop' } },
         sha,
-        7
+        9
       ),
     /requested Draft/i
   )
@@ -246,14 +246,14 @@ test('merged release guard derives one exact same-repository main PR from the re
   requireFunction('parseMergedPullRequest')
   const releaseSha = 'b'.repeat(40)
   const pullRequest = {
-    number: 7,
+    number: 9,
     draft: false,
     state: 'closed',
     merged_at: '2026-11-28T00:00:00Z',
     merge_commit_sha: releaseSha,
     base: { ref: 'main', repo: { full_name: 'koh110/kohsweb' } },
     head: {
-      ref: 'feature/career-history',
+      ref: 'fix/release-upload-record-validation',
       sha: 'a'.repeat(40),
       repo: { full_name: 'koh110/kohsweb' }
     }
@@ -261,8 +261,8 @@ test('merged release guard derives one exact same-repository main PR from the re
   assert.deepEqual(
     deployment.parseMergedPullRequest([pullRequest], releaseSha),
     {
-      number: 7,
-      headRef: 'feature/career-history',
+      number: 9,
+      headRef: 'fix/release-upload-record-validation',
       headSha: 'a'.repeat(40),
       baseRef: 'main',
       mergeCommitSha: releaseSha
@@ -270,7 +270,7 @@ test('merged release guard derives one exact same-repository main PR from the re
   )
   assert.throws(
     () => deployment.parseMergedPullRequest([], releaseSha),
-    /PR #7/i
+    /PR #9/i
   )
   assert.throws(
     () =>
@@ -278,7 +278,7 @@ test('merged release guard derives one exact same-repository main PR from the re
         [{ ...pullRequest, merged_at: null }],
         releaseSha
       ),
-    /PR #7/i
+    /PR #9/i
   )
   assert.throws(
     () =>
@@ -291,7 +291,7 @@ test('merged release guard derives one exact same-repository main PR from the re
         ],
         releaseSha
       ),
-    /PR #7/i
+    /PR #9/i
   )
   assert.throws(
     () =>
@@ -307,14 +307,14 @@ test('merged release guard derives one exact same-repository main PR from the re
         ],
         releaseSha
       ),
-    /PR #7/i
+    /PR #9/i
   )
   assert.equal(
     deployment.parseMergedPullRequest(
       [pullRequest, { ...pullRequest, number: 8 }],
       releaseSha
     ).number,
-    7
+    9
   )
   assert.throws(
     () =>
@@ -322,14 +322,14 @@ test('merged release guard derives one exact same-repository main PR from the re
         [{ ...pullRequest, number: 8 }],
         releaseSha
       ),
-    /PR #7/i
+    /PR #9/i
   )
 })
 
-test('pre-deploy eligibility safely skips every commit except the exact merged PR #7', () => {
+test('pre-deploy eligibility safely skips every commit except the exact merged PR #9', () => {
   const releaseSha = 'd'.repeat(40)
   const pullRequest = {
-    number: 7,
+    number: 9,
     state: 'closed',
     merged_at: '2026-11-28T00:00:00Z',
     merge_commit_sha: releaseSha,
@@ -381,7 +381,7 @@ test('eligibility CLI emits one workflow boolean and skips a direct main push', 
   ).pathname
   const releaseSha = 'f'.repeat(40)
   const pullRequest = {
-    number: 7,
+    number: 9,
     state: 'closed',
     merged_at: '2026-11-28T00:00:00Z',
     merge_commit_sha: releaseSha,
@@ -467,17 +467,17 @@ test('release account must match the independently read-back target', () => {
   )
 })
 
-test('release wrapper pins the authorized PR number to #7', () => {
+test('release wrapper pins the authorized PR number to #9', () => {
   requireFunction('parseReleasePullRequestNumber')
-  assert.equal(deployment.parseReleasePullRequestNumber(undefined), 7)
-  assert.equal(deployment.parseReleasePullRequestNumber('7'), 7)
+  assert.equal(deployment.parseReleasePullRequestNumber(undefined), 9)
+  assert.equal(deployment.parseReleasePullRequestNumber('9'), 9)
   assert.throws(
     () => deployment.parseReleasePullRequestNumber('8'),
-    /pinned to pull request #7/i
+    /pinned to pull request #9/i
   )
   assert.throws(
     () => deployment.parseReleasePullRequestNumber('07'),
-    /pinned to pull request #7/i
+    /pinned to pull request #9/i
   )
 })
 
@@ -665,7 +665,7 @@ test('Worker build environment excludes deployment and GitHub credentials', () =
         LANG: 'C.UTF-8',
         CLOUDFLARE_API_TOKEN: 'token-should-not-propagate',
         GH_TOKEN: 'github-token-should-not-propagate',
-        KOH_RELEASE_PR: '7'
+        KOH_RELEASE_PR: '9'
       }
     })
     assert.equal(env.PATH, '/usr/bin')
@@ -722,6 +722,44 @@ test('version upload parser accepts only pinned Wrangler records with exact Work
     ).versionId,
     'v-123'
   )
+  const overriddenButExact = { ...upload, worker_name_overridden: true }
+  const overriddenOutput = [
+    JSON.stringify(session),
+    JSON.stringify(overriddenButExact)
+  ].join(String.fromCharCode(10))
+  assert.throws(
+    () =>
+      deployment.parseVersionUploadOutput(overriddenOutput, {
+        workerName: 'kohsweb-worker',
+        dryRun: false
+      }),
+    /worker_name_overridden/
+  )
+  const workerTagOmitted = { ...upload }
+  delete workerTagOmitted.worker_tag
+  const omittedTagOutput = [
+    JSON.stringify(session),
+    JSON.stringify(workerTagOmitted)
+  ].join(String.fromCharCode(10))
+  assert.equal(
+    deployment.parseVersionUploadOutput(omittedTagOutput, {
+      workerName: 'kohsweb-worker',
+      dryRun: false
+    }).versionId,
+    'v-123'
+  )
+  assert.throws(
+    () =>
+      deployment.parseVersionUploadOutput(
+        `${JSON.stringify(session)}\n${JSON.stringify({ ...upload, worker_name: 'other-worker' })}`,
+        { workerName: 'kohsweb-worker', dryRun: false }
+      ),
+    (error) => {
+      assert.match(error.message, /worker_name/)
+      assert.doesNotMatch(error.message, /other-worker/)
+      return true
+    }
+  )
   for (const field of ['preview_url', 'preview_alias_url']) {
     assert.throws(
       () =>
@@ -762,6 +800,44 @@ test('version upload parser accepts only pinned Wrangler records with exact Work
         dryRun: false
       }),
     /worker/i
+  )
+})
+
+test('version upload parser identifies invalid fields without including their values', () => {
+  const timestamp = '2026-11-27T00:00:00.000Z'
+  const session = {
+    type: 'wrangler-session',
+    version: 1,
+    wrangler_version: '4.165.0',
+    command_line_args: [],
+    timestamp
+  }
+  const upload = {
+    type: 'version-upload',
+    version: 1,
+    worker_name: 'other-worker',
+    worker_tag: null,
+    version_id: 'v-123',
+    preview_url: null,
+    preview_alias_url: null,
+    wrangler_environment: null,
+    worker_name_overridden: false,
+    timestamp
+  }
+  const output = [JSON.stringify(session), JSON.stringify(upload)].join(
+    String.fromCharCode(10)
+  )
+  assert.throws(
+    () =>
+      deployment.parseVersionUploadOutput(output, {
+        workerName: 'kohsweb-worker',
+        dryRun: false
+      }),
+    (error) => {
+      assert.match(error.message, /worker_name/)
+      assert.doesNotMatch(error.message, /other-worker/)
+      return true
+    }
   )
 })
 
