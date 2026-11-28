@@ -4,7 +4,7 @@ import Accounts from './Accounts'
 import Skill from './Skill/index.client'
 import { HexagonWrap, HexagonGroup, Hexagon } from './Hexagon'
 import ProfileIcon from './ProfileIcon'
-import History from './History'
+import History, { Education } from './History'
 
 export default function About() {
   return (
@@ -130,6 +130,13 @@ export default function About() {
       >
         <h3 id="career-history-heading">職務経歴</h3>
         <History />
+      </section>
+      <section
+        className={`${styles.section} ${styles.history}`}
+        aria-labelledby="education-heading"
+      >
+        <h3 id="education-heading">学歴</h3>
+        <Education />
       </section>
       <section
         className={`${styles.section} ${styles.history}`}

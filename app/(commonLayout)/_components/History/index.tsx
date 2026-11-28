@@ -21,9 +21,7 @@ export default function History() {
                 </a>
                 ）の立ち上げ
               </p>
-              <p>
-                企画/要件定義/設計/実装/運用まで横断して担当
-              </p>
+              <p>企画/要件定義/設計/実装/運用まで横断して担当</p>
             </li>
             <li>
               <p>
@@ -230,10 +228,15 @@ export default function History() {
           </ul>
         </HistoryDetail>
       </HistoryElement>
-      <HistoryElement date="-2013">
-        <p>法政大学情報科学部 卒業</p>
-        <p>HAL東京夜間ゲーム学科 卒業</p>
-      </HistoryElement>
     </div>
+  )
+}
+
+export function Education() {
+  return (
+    <HistoryElement date="-2013">
+      <p>法政大学情報科学部 卒業</p>
+      <p>HAL東京夜間ゲーム学科 卒業</p>
+    </HistoryElement>
   )
 }

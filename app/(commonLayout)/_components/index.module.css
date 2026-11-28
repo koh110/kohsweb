@@ -64,10 +64,12 @@
   margin-top: 1em;
 }
 
-.skill h3, .history h3 {
+.skill h3,
+.history h3 {
   margin: 0 0 1em 0;
 }
-.skill h4, .history h4 {
+.skill h4,
+.history h4 {
   margin: 0 0 0.5em 0;
 }
 

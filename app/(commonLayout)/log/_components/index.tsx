@@ -9,7 +9,7 @@ const logs: Props['log'][] = [
     url: 'https://syllabus.hosei.ac.jp/web/preview.php?no_id=2618753&nendo=2025&gakubueng=AK',
     img: '',
     date: '2026/02',
-    desc: 'スタートアップの立ち上げや新規事業の企画/開発/運用を一緒に。技術顧問としてエンジニアやシステム支援の提供'
+    desc: 'Webサーバー開発に必要なNode.js・JavaScriptの基礎を学び、演習で簡単なWebシステムを構築する講義'
   },
   {
     type: 'log',
