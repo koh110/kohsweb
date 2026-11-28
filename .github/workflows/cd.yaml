@@ -65,7 +65,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
-      pull-requests: read # Read-only association lookup for authorized PR #9.
+      pull-requests: read # Read-only association lookup for authorized PR #10.
     outputs:
       eligible: ${{ steps.classify.outputs.eligible }}
     steps:
